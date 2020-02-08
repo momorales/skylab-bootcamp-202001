@@ -1,0 +1,1 @@
+ReactDOM.render (<Details/>, document.querySelector('#root'))

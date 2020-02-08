@@ -1,0 +1,24 @@
+@import config
+.register
+    @extend %generic-border
+    display: flex
+    flex-direction: column
+    width: 35%
+    margin: 5% 32.5%
+    &>*
+        margin-bottom: 4%
+    h2
+        text-align: center
+    .textbox
+        @extend %generic-border
+        padding: 2%
+    .age
+        @extend %generic-border
+        width: 20%
+    .gender-radio
+        display: flex
+        flex-direction: row
+        font-size: 0.5em
+    .button, a
+        @extend %generic-border
+        text-align: center
