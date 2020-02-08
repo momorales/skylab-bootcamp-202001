@@ -1,0 +1,1 @@
+ReactDOM.render(<Hearthstone title="HEARTHSTONE DATABASE"/>, document.querySelector('#root'))

@@ -1,0 +1,73 @@
+.accordion, .mana-cost, .search .browser, .search, .register .button, .register a, .register .age, .register .textbox, .register {
+  padding: 3%;
+  border: 3px solid #2c2c2c;
+  border-radius: 1em;
+  box-shadow: 0.3em 0.3em black;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  margin: 5% 32.5%;
+}
+.register > * {
+  margin-bottom: 4%;
+}
+.register h2 {
+  text-align: center;
+}
+.register .textbox {
+  padding: 2%;
+}
+.register .age {
+  width: 20%;
+}
+.register .gender-radio {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.5em;
+}
+.register .button, .register a {
+  text-align: center;
+}
+
+.accordion, .mana-cost, .search .browser, .search, .register, .register .textbox, .register .age, .register .button, .register a {
+  padding: 3%;
+  border: 3px solid #2c2c2c;
+  border-radius: 1em;
+  box-shadow: 0.3em 0.3em black;
+}
+
+.search {
+  width: 60%;
+  margin: 5% 20%;
+}
+.search > * {
+  margin: 1.5% auto;
+}
+.search .browser {
+  width: 60%;
+}
+
+.accordion, .mana-cost {
+  cursor: pointer;
+}
+
+.container-filters > * {
+  margin: 1.5%;
+}
+
+.register, .register .textbox, .register .age, .register .button, .register a, .search, .search .browser, .accordion, .mana-cost {
+  padding: 3%;
+  border: 3px solid #2c2c2c;
+  border-radius: 1em;
+  box-shadow: 0.3em 0.3em black;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*# sourceMappingURL=style.css.map */
