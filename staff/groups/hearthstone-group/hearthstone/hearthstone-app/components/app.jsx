@@ -1,18 +1,43 @@
 const { Component, Fragment } = React
 class Hearthstone extends Component {
     state = { view: 'login', loggedIn: false, error: undefined, token: undefined }
-    handleLogin = () => {
-        //
+
+    __handleError__ = error => {
+        this.setState({ error: error.message + " :^(" })
+
+        setTimeout(() => {
+            this.setState({ error: undefined })
+        }, 3000)
     }
+
+    handleLogin = (username, password) => {
+        authenticateUser(username, password, (error, token) => {
+            if (error) {
+                this.__handleError__(error)
+            } else {
+                this.setState({ view: 'search' })
+            }
+        })
+    }
+
     handleGoToRegister = () => {
-        //
+        this.setState({ view: 'register' })
     }
-    handleRegister = () => {
-        //
+
+    handleRegister = (name, surname, username, password, age, gender) => {
+        registerUser(name, surname, username, password, age, gender, error => {
+            if (error) {
+                this.__handleError__(error)
+            } else {
+                this.setState({ view: 'login' })
+            }
+        })
     }
+
     handleGoToLogin = () => {
-        //
+        this.setState({ view: 'login' })
     }
+    
     handleSearch = () => {
         //
     }
