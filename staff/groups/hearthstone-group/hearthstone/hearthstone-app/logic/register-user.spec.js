@@ -1,4 +1,4 @@
-'use strict'
+
 
 describe('registerUser', () => {
     let name, surname, username, password, age, gender
@@ -13,14 +13,12 @@ describe('registerUser', () => {
         gender = genderTypes[Math.floor(Math.random() * 3)] 
     })
 
-    it('should succeed on new user creation', () => {
-        //TODO
+    it('should succeed on new user creation', done => { //happy path :)
+        registerUser(name,surname, username,password,age,gender,error =>{
+            expect(error).toBeUndefined()
+            done()
+        })
     })
-
-    describe('when the user already exists', () => {
-        //TODO
-    })
-
 
     //Code to clean the database of random users
     afterEach(done => {
@@ -55,4 +53,57 @@ describe('registerUser', () => {
             })
         })
     })
+
+    describe('when the user already exists', () => { //unhappy path :(
+        beforeEach(done => {
+            call('https://skylabcoders.herokuapp.com/api/v2/users', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name, surname, username, password, age, gender})
+                },(error, response) => {
+                    if(error) callback(error)
+                    
+                    done()
+                })
+        })
+
+        it('should fail when the username already exists', done => {
+            registerUser(name,surname,username,password,age,gender,error =>{
+                expect(error).toBeDefined()
+                expect(error.message).toBe(`user with username "${username}" already exists`)
+                done()
+            })    
+        })
+
+        it('should fail on empty/blank name', () => {
+            error = undefined
+            expect(()=>
+                registerUser('',surname,'pepitosososososo',password,age,gender,error)).toThrowError(SyntaxError, 'The name is blank or empty')
+          
+        })
+
+        it('should fail on empty/blank surname', () => {
+            error = undefined
+            expect(()=>
+                registerUser(name,'','pepitosososo',password,age,gender,error)).toThrowError(SyntaxError, 'The surname is blank or empty')
+          
+        })
+
+        it('should fail on empty/blank username', () => {
+            error = undefined
+            expect(()=>
+                registerUser(':^)',surname,'',password,age,gender,error)).toThrowError(SyntaxError, 'The username is blank or empty')
+          
+        })
+
+        it('should fail on empty/blank password', () => {
+            error = undefined
+            expect(()=>
+                registerUser('asd',surname,'pepitoasdososo','',age,gender,error)).toThrowError(SyntaxError, 'The password is blank or empty')
+          
+        })
+    })
+
+
+   
 })

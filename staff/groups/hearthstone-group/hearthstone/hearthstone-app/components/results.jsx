@@ -1,12 +1,12 @@
 function Results({ results, onItemClick, onItemWL, onItemDeck }) {
     return <ul className="results" >
-        {results.forEach( card => {
-            <Card key ={card.cardId}
-                    cardInfo={card} 
+        {results.map( result => 
+            <Card key ={result.cardId}
+                    cardInfo={result} 
                     onClick={onItemClick} 
                     onWL={onItemWL} 
                     onDeck={onItemDeck} />
-        })}
+        )}
     </ul>
 }
 

@@ -1,4 +1,4 @@
-function authenticateUser(username, password) {
+function authenticateUser(username, password, callback) {
     if (typeof username !== 'string') { throw new TypeError(`The username ${username} is not a string`) }
     if (typeof password !== 'string') { throw new TypeError(`The password ${password} is not a string`) }
 
@@ -16,3 +16,4 @@ function authenticateUser(username, password) {
         callback(undefined, token)
     })
 }
+

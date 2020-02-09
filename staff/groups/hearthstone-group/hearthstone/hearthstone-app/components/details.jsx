@@ -1,19 +1,30 @@
-function Details({}){
+function Details({detailInfo: {imgGold, name, cardId, cardSet, type, text, playerClass}, onBackClick, onItemWL, onItemDeck}){
     return <div className = 'details'>
-        <img src = "https://wow.zamimg.com/images/hearthstone/cards/enus/animated/PRO_001at_premium.gif"/>
+
+        <a href='' onClick={event => {
+            event.preventDefault()
+            onBackClick()
+        }}>BACK</a>
+        {imgGold && <img src={imgGold} />}
+        {!imgGold && <img src ="https://legaldbol.com/wp-content/uploads/2019/03/48-Free-Printable-Card-Template-Hearthstone-in-Photoshop-by-Card-Template-Hearthstone.jpg"/>}
         <ul className = 'card-info'>
-            <li>Murloc (PRO_001at)</li>
-            <li>Card Set: Hall of Fame</li>
-            <li>Type: Minion</li>
-            <li>Cost: 0</li>
-            <li>Attack: 1</li>
-            <li>Health: 1</li>
-            <li>Race: Murloc</li>
-            <li>Faction: Neutral</li>
+            <li><b>Name: </b>{`${name} (${cardId})`}</li>
+            <li><b>Card Set: </b>{cardSet}</li>
+            <li><b>Type: </b>{type}</li>
+            <li><b>Description: </b>{text}</li>
+            <li><b>Faction: </b>{playerClass}</li>
         </ul>
         <span>Score: 7/10 (50)</span>
-        <button className = 'btn-wishlist'>Add to wishlist</button>
-        <button className = 'btn-deck'>Add to deck</button>
+        <button className = 'btn-wishlist' onClick={event => {
+            event.preventDefault()
+            onItemWL(cardId)
+        }}>Add to wishlist</button>
+
+        
+        <button className = 'btn-deck' onClick={event => {
+            event.preventDefault()
+            onItemDeck(cardId)
+        }}>Add to deck</button>
     </div>
 }
 

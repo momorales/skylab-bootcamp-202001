@@ -1,1 +1,1 @@
-ReactDOM.render (<Details/>, document.querySelector('#root'))
+ReactDOM.render (<App title='Hearthstone Database'/>, document.querySelector('#root'))

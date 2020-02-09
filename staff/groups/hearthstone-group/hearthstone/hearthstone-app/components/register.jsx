@@ -10,7 +10,7 @@ function Register({ onSubmit, onToLogin, error }) {
         onSubmit(name, surname, username, password, age, gender)
     }}>
         <h2>REGISTER</h2>
-        {error && <Feedback level="error" message={error}/>}
+       
         <input className="textbox" type="text" name="name" placeholder="Name" />
         <input className="textbox" type="text" name="surname" placeholder="Surname" />
         <input className="textbox" type="text" name="username" placeholder="Username" />
@@ -25,6 +25,7 @@ function Register({ onSubmit, onToLogin, error }) {
         <label>
             <input className="gender-radio" type="radio" name="gender" value="non-binary"/>Non-binary
         </label>
+        {error && <Feedback level="error" message={error}/>}
         <input className="button" type="submit" placeholder="REGISTER" name="REGISTER"/>
         <a href= "" onClick={event => {
             event.preventDefault()

@@ -1,10 +1,13 @@
-function Search({onSubmit}) {
+function Search({query, onSubmit}) {
     return <form className="search" onSubmit={event => {
         event.preventDefault()
-        onSubmit()
+
+        query = event.target.query.value
+        onSubmit(query)
     }}>
+
         <h2>SEARCH CARDS</h2>
-        <input className="browser" type="text" name="browser" placeholder="Type here to search of a card"/>
+        <input className="browser" type="text" name="query" placeholder="Type here to search of a card"/>
             <br/>
             Mana Cost: <input className="mana-cost" type="number" name="age" min="0" max="10" />
             <br />
@@ -54,5 +57,6 @@ function Search({onSubmit}) {
                 <input type="checkbox" name="weapon" value="Weapon" />Weapon
                 <input type="checkbox" name="hero power" value="Hero Power"/>Hero Power
             </div>
+            <button>SEARCH</button>
     </form>
 }
