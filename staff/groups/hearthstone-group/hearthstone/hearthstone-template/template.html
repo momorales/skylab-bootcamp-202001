@@ -12,14 +12,14 @@
 
 <body>
     <main class="main-background">
-        <div>
-            <button class='btn-wish'>WishList</button>
-            <button class='btn-deck'>Deck</button>
+        <div class = 'btns-logged'>
+            <button class='btns-logged__wishlist'>WishList</button>
+            <button class='btns-logged__deck'>Deck</button>
         </div>
 
         <h1>HEARTHSTONE DATABASE</h1>
 
-        <form class="login" style="background-color: rgb(239, 245, 226);>
+        <form class="login" style="background-color: rgb(239, 245, 226)">
             <h2>Login</h2>
             <input type="text" name="username" placeholder="Username"></input><br><br>
             <input type="text" name="password" placeholder="Password"></input><br><br>
@@ -51,7 +51,7 @@
         
         <form style="background-color: violet;">
             <h2>Search</h2>
-            <input type="text" name="" id="">
+            <input type="text" name="browser" placeholder="Type here to search of a card">
             <button class="accordion">By Class</button>
             <div class = 'container-filters'>
                 <input type="checkbox" name = "Druid" value ="Druid" >Druid
@@ -106,25 +106,25 @@
 
         
         <ul class = 'results'>
-            <li>
+            <li class=" = results__card">
                 <img src="https://legaldbol.com/wp-content/uploads/2019/03/48-Free-Printable-Card-Template-Hearthstone-in-Photoshop-by-Card-Template-Hearthstone.jpg">
                 <span>10/10 (500)</span>
                 <button>Add to wishlist</button>
                 <button>Add to deck</button>
             </li>
-            <li>
+            <li  class=" = results__card">
                 <img src="https://legaldbol.com/wp-content/uploads/2019/03/48-Free-Printable-Card-Template-Hearthstone-in-Photoshop-by-Card-Template-Hearthstone.jpg">
                 <span>10/10 (500)</span>
                 <button>Add to wishlist</button>
                 <button>Add to deck</button>
             </li>
-            <li>
+            <li  class=" = results__card">
                 <img src="https://legaldbol.com/wp-content/uploads/2019/03/48-Free-Printable-Card-Template-Hearthstone-in-Photoshop-by-Card-Template-Hearthstone.jpg">
                 <span>10/10 (500)</span>
                 <button>Add to wishlist</button>
                 <button>Add to deck</button>
             </li>
-            <li>
+            <li  class=" = results__card">
                 <img src="https://legaldbol.com/wp-content/uploads/2019/03/48-Free-Printable-Card-Template-Hearthstone-in-Photoshop-by-Card-Template-Hearthstone.jpg">
                 <span>10/10 (500)</span>
                 <button>Add to wishlist</button>
@@ -133,7 +133,7 @@
         </ul>
 
                 
-        <div class = 'detail' style="background-color: rgb(239, 245, 226);">
+        <div class = 'details' style="background-color: rgb(239, 245, 226);">
             <img src="https://legaldbol.com/wp-content/uploads/2019/03/48-Free-Printable-Card-Template-Hearthstone-in-Photoshop-by-Card-Template-Hearthstone.jpg"> 
             <ul class = 'card-info'>
                <li>name:Ysera(EX1_572)</li>
@@ -148,6 +148,9 @@
                <li></li>
                <li>Race</li> 
             </ul>
+            <span>Score: 7/10 (50)</span>
+            <button>Add to wishlist</button>
+            <button>Add to deck</button>
         </div>
     </main>
     <footer>
