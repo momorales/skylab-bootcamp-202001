@@ -67,15 +67,15 @@
             </div>
 
             <button class="accordion">By Race</button>
-            <div class = 'container-filters'>
-                <input type="checkbox" name = "Demon" value ="Demon" >Demon
-                <input type="checkbox" name = "Dragon" value ="Dragon">Dragon
-                <input type="checkbox" name = "Mech" value ="Mech">Mech
-                <input type="checkbox" name = "Murloc" value ="Murloc">Murloc
-                <input type="checkbox" name = "Beast" value ="Beast">Beast
-                <input type="checkbox" name = "Pirate" value ="Pirate">Pirate
-                <input type="checkbox" name = "Totem" value ="Totem">Totem
-            </div>
+            <form class = 'by-race'>
+                <input type="radio" name = "Demon" value ="Demon" >Demon
+                <input type="radio" name = "Dragon" value ="Dragon">Dragon
+                <input type="radio" name = "Mech" value ="Mech">Mech
+                <input type="radio" name = "Murloc" value ="Murloc">Murloc
+                <input type="radio" name = "Beast" value ="Beast">Beast
+                <input type="radio" name = "Pirate" value ="Pirate">Pirate
+                <input type="radio" name = "Totem" value ="Totem">Totem
+            </form>
 
             <button class="accordion">By Faction</button>
             <div class="by-faction">
@@ -85,23 +85,25 @@
             </div>
 
             <button class="accordion">By Quality</button>
-            <div class="by-quality">
-                <input type="checkbox" name="basic" value="Basic">Free
-                <input type="checkbox" name="common" value="Common">Common
-                <input type="checkbox" name="rare" value="Rare">Rare
-                <input type="checkbox" name="epic" value="Epic">Epic
-                <input type="checkbox" name="legendary" value="Legendary">Legendary
-            </div>
+            <form class="by-quality">
+                <h2>SEARCH CARDS BY QUALITY</h2>
+                <input type="radio" name="basic" value="Basic">Free
+                <input type="radio" name="common" value="Common">Common
+                <input type="radio" name="rare" value="Rare">Rare
+                <input type="radio" name="epic" value="Epic">Epic
+                <input type="radio" name="legendary" value="Legendary">Legendary
+            </form>
 
             <button class="accordion">By Type</button>
-            <div class="by-type">
+            <form class="by-type">
+                <h2>SEARCH CARDS BY TYPE</h2>
                 <input type="checkbox" name="hero" value="Hero">Hero
                 <input type="checkbox" name="minion" value="Minion">Minion
                 <input type="checkbox" name="spell" value="Spell">Spell
                 <input type="checkbox" name="enchantment" value="Enchantment">Enchantment
                 <input type="checkbox" name="weapon" value="Weapon">Weapon
                 <input type="checkbox" name="hero power" value="Hero Power">Hero Power
-            </div>
+            </form>
         </form>
 
         
