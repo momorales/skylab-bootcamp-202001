@@ -42,7 +42,7 @@ function Search({query, onSubmit}) {
             </select>
             <h4 className="accordion">By Quality</h4>
             <select className="container-filters">
-                <option  name="basic" value="Basic" >Basic</option>
+                <option  name="free" value="free" >Free</option>
                 <option  name="common" value="Common" >Common</option>
                 <option  name="rare" value="Rare" >Rare</option>
                 <option  name="epic" value="Epic" >Epic</option>
