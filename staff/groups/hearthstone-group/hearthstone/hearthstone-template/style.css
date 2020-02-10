@@ -1,4 +1,81 @@
+<<<<<<< HEAD
 .accordion, .mana-cost, .search .browser, .search, .register .button, .register a, .register .age, .register .textbox, .register {
+=======
+@config;
+.login {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-left: 34%;
+  margin-top: 7%;
+}
+.login h2 {
+  text-align: center;
+}
+.login input {
+  margin-left: 31%;
+  width: 40%;
+  border-radius: 2%;
+}
+.login button {
+  margin-left: 31%;
+  width: 40%;
+  border-radius: 2%;
+}
+.login a {
+  margin-left: 40%;
+  padding-bottom: 5%;
+}
+
+.login > * {
+  margin-top: 2rem;
+}
+
+.btns-logged__deck, .btns-logged__wishlist, .feedback, .accordion, .mana-cost, .search .browser, .search, .register .button, .register a, .register .age, .register .textbox, .register, .details, .login {
+  padding: 3%;
+  border: 3px solid #2c2c2c;
+  border-radius: 1em;
+  box-shadow: 0.3em 0.3em black;
+}
+
+.details {
+  width: 70%;
+  margin: 5% 15%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr repeat(3, auto);
+}
+.details img {
+  grid-area: 1/1/1/1;
+  margin-left: 20%;
+}
+.details .card-info {
+  grid-area: 1/2/1/2;
+  list-style: none;
+  display: flex;
+  margin-top: 17%;
+  flex-direction: column;
+}
+.details .card-info > li {
+  margin-bottom: 3%;
+}
+.details span, .details .btn-wishlist, .details .btn-deck {
+  width: 50%;
+  margin-left: 25%;
+  margin-bottom: 3%;
+}
+.details span {
+  grid-area: 2/1/2/1;
+}
+.details .btn-wishlist {
+  grid-area: 3/1/3/1;
+}
+.details .btn-deck {
+  grid-area: 4/1/4/1;
+}
+
+.btns-logged__deck, .btns-logged__wishlist, .feedback, .accordion, .mana-cost, .search .browser, .search, .register .button, .register a, .register .age, .register .textbox, .register, .login, .details {
+>>>>>>> refs/remotes/origin/hearthstone-develop
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
@@ -32,7 +109,11 @@
   text-align: center;
 }
 
+<<<<<<< HEAD
 .accordion, .mana-cost, .search .browser, .search, .register, .register .textbox, .register .age, .register .button, .register a {
+=======
+.btns-logged__deck, .btns-logged__wishlist, .feedback, .accordion, .mana-cost, .search .browser, .search, .login, .details, .register, .register .textbox, .register .age, .register .button, .register a {
+>>>>>>> refs/remotes/origin/hearthstone-develop
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
@@ -58,16 +139,84 @@
   margin: 1.5%;
 }
 
+<<<<<<< HEAD
 .register, .register .textbox, .register .age, .register .button, .register a, .search, .search .browser, .accordion, .mana-cost {
+=======
+.btns-logged__deck, .btns-logged__wishlist, .feedback, .login, .details, .register, .register .textbox, .register .age, .register .button, .register a, .search, .search .browser, .accordion, .mana-cost {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
   box-shadow: 0.3em 0.3em black;
 }
 
+.feedback {
+  text-align: center;
+}
+.feedback--error {
+  color: red;
+}
+
+.btns-logged__deck, .btns-logged__wishlist, .login, .details, .register, .register .textbox, .register .age, .register .button, .register a, .search, .search .browser, .accordion, .mana-cost, .feedback {
+  padding: 3%;
+  border: 3px solid #2c2c2c;
+  border-radius: 1em;
+  box-shadow: 0.3em 0.3em black;
+}
+
+.btns-logged__deck, .btns-logged__wishlist, .login, .details, .register, .register .textbox, .register .age, .register .button, .register a, .search, .search .browser, .accordion, .mana-cost, .feedback {
+>>>>>>> refs/remotes/origin/hearthstone-develop
+  padding: 3%;
+  border: 3px solid #2c2c2c;
+  border-radius: 1em;
+  box-shadow: 0.3em 0.3em black;
+}
+
+<<<<<<< HEAD
+=======
+.btns-logged {
+  display: grid;
+  grid-template-columns: 15% auto 15%;
+}
+.btns-logged > * {
+  text-align: center;
+}
+.btns-logged__wishlist {
+  grid-area: 1/1/1/1;
+}
+.btns-logged__deck {
+  grid-area: 1/3/1/3;
+}
+
+.login, .details, .register, .register .textbox, .register .age, .register .button, .register a, .search, .search .browser, .accordion, .mana-cost, .feedback, .btns-logged__wishlist, .btns-logged__deck {
+  padding: 3%;
+  border: 3px solid #2c2c2c;
+  border-radius: 1em;
+  box-shadow: 0.3em 0.3em black;
+}
+
+.results {
+  display: flex;
+  width: 90%;
+  margin-left: 5%;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+.results > * {
+  width: 25%;
+}
+
+>>>>>>> refs/remotes/origin/hearthstone-develop
 * {
   margin: 0;
   padding: 0;
 }
 
+<<<<<<< HEAD
+=======
+h1 {
+  text-align: center;
+}
+
+>>>>>>> refs/remotes/origin/hearthstone-develop
 /*# sourceMappingURL=style.css.map */

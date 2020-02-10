@@ -1,0 +1,32 @@
+@import config
+    
+.details
+    @extend %generic-border
+    width: 70%
+    margin: 5% 15%
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    grid-template-rows: 1fr repeat(3, auto)
+    img 
+        grid-area: 1/1/1/1
+        margin-left: 20%
+    .card-info
+        grid-area: 1/2/1/2
+        list-style: none
+        display: flex
+        margin-top: 17%
+        flex-direction: column
+
+        & > li
+            margin-bottom: 3%
+
+    span, .btn-wishlist, .btn-deck
+        width: 50%
+        margin-left: 25%
+        margin-bottom: 3%
+    span 
+        grid-area: 2/1/2/1
+    .btn-wishlist
+        grid-area: 3/1/3/1
+    .btn-deck
+        grid-area: 4/1/4/1

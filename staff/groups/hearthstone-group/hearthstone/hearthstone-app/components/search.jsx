@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function Search({onSubmit}) {
     return <form className="search" onSubmit={event => {
         event.preventDefault()
@@ -5,6 +6,18 @@ function Search({onSubmit}) {
     }}>
         <h2>SEARCH CARDS</h2>
         <input className="browser" type="text" name="browser" placeholder="Type here to search of a card"/>
+=======
+function Search({query, onSubmit}) {
+    return <form className="search" onSubmit={event => {
+        event.preventDefault()
+
+        query = event.target.query.value
+        onSubmit(query)
+    }}>
+
+        <h2>SEARCH CARDS</h2>
+        <input className="browser" type="text" name="query" placeholder="Type here to search of a card"/>
+>>>>>>> refs/remotes/origin/hearthstone-develop
             <br/>
             Mana Cost: <input className="mana-cost" type="number" name="age" min="0" max="10" />
             <br />
@@ -21,7 +34,10 @@ function Search({onSubmit}) {
                 <input type="checkbox" name = "Warrior" value ="Warrior" />Warrior
                 <input type="checkbox" name = "Dream" value ="Dream" />Dream
             </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/hearthstone-develop
             <button className="accordion">By Race</button>
             <div className='container-filters'>
                 <input type="checkbox" name = "Demon" value ="Demon" />Demon
@@ -32,14 +48,20 @@ function Search({onSubmit}) {
                 <input type="checkbox" name = "Pirate" value ="Pirate" />Pirate
                 <input type="checkbox" name = "Totem" value ="Totem" />Totem
             </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/hearthstone-develop
             <button className="accordion">By Faction</button>
             <div className="container-filters">
                 <input type="checkbox" name="horde" value="Horde" />Horde
                 <input type="checkbox" name="alliance" value="Alliance" />Alliance
                 <input type="checkbox" name="neutral" value="Neutral" />Neutral
             </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/hearthstone-develop
             <button className="accordion">By Quality</button>
             <div className="container-filters">
                 <input type="checkbox" name="basic" value="Basic" />Basic
@@ -48,7 +70,10 @@ function Search({onSubmit}) {
                 <input type="checkbox" name="epic" value="Epic" />Epic
                 <input type="checkbox" name="legendary" value="Legendary" />Legendary
             </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/hearthstone-develop
             <button className="accordion">By Type</button>
             <div className="container-filters">
                 <input type="checkbox" name="hero" value="Hero" />Hero
@@ -58,5 +83,9 @@ function Search({onSubmit}) {
                 <input type="checkbox" name="weapon" value="Weapon" />Weapon
                 <input type="checkbox" name="hero power" value="Hero Power"/>Hero Power
             </div>
+<<<<<<< HEAD
+=======
+            <button>SEARCH</button>
+>>>>>>> refs/remotes/origin/hearthstone-develop
     </form>
 }
