@@ -1,4 +1,4 @@
-function Search({query, onSubmit}) {
+function Search({query, onSubmit, onClick}) {
     return <form className="search" onSubmit={event => {
         event.preventDefault()
 
@@ -11,7 +11,8 @@ function Search({query, onSubmit}) {
             <br/>
             Mana Cost: <input className="mana-cost" type="number" name="age" min="0" max="10" />
             <br />
-            <button className="accordion">By Class</button>
+            <button className="accordion" onClick={event => {event.preventDefault() 
+                                                            onClick()}}>By Class</button>
             <div className='container-filters'>
                 <input type="checkbox" name = "Druid" value ="Druid"  />Druid
                 <input type="checkbox" name = "Hunter" value ="Hunter" />Hunter
@@ -19,7 +20,7 @@ function Search({query, onSubmit}) {
                 <input type="checkbox" name = "Paladin" value ="Paladin" />Paladin
                 <input type="checkbox" name = "Priest" value ="Priest" />Priest
                 <input type="checkbox" name = "Rogue" value ="Rogue" />Rogue
-                <input type="checkbox" name = "Shaman" value ="Shaman" />Shaman
+                <input type="checkbox" name = "Shaman" value ="Shaman" />Sfunctionhaman
                 <input type="checkbox" name = "Warlock" value ="Warlock" />Warlock
                 <input type="checkbox" name = "Warrior" value ="Warrior" />Warrior
                 <input type="checkbox" name = "Dream" value ="Dream" />Dream

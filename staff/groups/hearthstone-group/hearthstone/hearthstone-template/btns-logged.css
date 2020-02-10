@@ -1,0 +1,22 @@
+.btns-logged__deck, .btns-logged__wishlist {
+  padding: 3%;
+  border: 3px solid #2c2c2c;
+  border-radius: 1em;
+  box-shadow: 0.3em 0.3em black;
+}
+
+.btns-logged {
+  display: grid;
+  grid-template-columns: 15% auto 15%;
+}
+.btns-logged > * {
+  text-align: center;
+}
+.btns-logged__wishlist {
+  grid-area: 1/1/1/1;
+}
+.btns-logged__deck {
+  grid-area: 1/3/1/3;
+}
+
+/*# sourceMappingURL=btns-logged.css.map */

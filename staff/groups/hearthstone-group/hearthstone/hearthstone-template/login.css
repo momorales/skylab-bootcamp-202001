@@ -1,0 +1,31 @@
+@config;
+.login {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-left: 34%;
+  margin-top: 7%;
+}
+.login h2 {
+  text-align: center;
+}
+.login input {
+  margin-left: 31%;
+  width: 40%;
+  border-radius: 2%;
+}
+.login button {
+  margin-left: 31%;
+  width: 40%;
+  border-radius: 2%;
+}
+.login a {
+  margin-left: 40%;
+  padding-bottom: 5%;
+}
+
+.login > * {
+  margin-top: 2rem;
+}
+
+/*# sourceMappingURL=login.css.map */

@@ -1,0 +1,35 @@
+.register .button, .register a, .register .age, .register .textbox, .register {
+  padding: 3%;
+  border: 3px solid #2c2c2c;
+  border-radius: 1em;
+  box-shadow: 0.3em 0.3em black;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  margin: 5% 32.5%;
+}
+.register > * {
+  margin-bottom: 4%;
+}
+.register h2 {
+  text-align: center;
+}
+.register .textbox {
+  padding: 2%;
+}
+.register .age {
+  width: 20%;
+}
+.register .gender-radio {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.5em;
+}
+.register .button, .register a {
+  text-align: center;
+}
+
+/*# sourceMappingURL=register.css.map */

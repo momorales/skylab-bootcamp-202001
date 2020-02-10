@@ -1,0 +1,15 @@
+.feedback {
+  padding: 3%;
+  border: 3px solid #2c2c2c;
+  border-radius: 1em;
+  box-shadow: 0.3em 0.3em black;
+}
+
+.feedback {
+  text-align: center;
+}
+.feedback--error {
+  color: red;
+}
+
+/*# sourceMappingURL=feedback.css.map */
