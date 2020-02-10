@@ -24,7 +24,7 @@ function searchCards (query='', token, callback){
         }
         
         
-        call(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${query}`, {
+        call(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/`, {
             method :'GET',
             headers: {'x-rapidapi-host': 'omgvamp-hearthstone-v1.p.rapidapi.com', "x-rapidapi-key": 'b6eebce870msh7f0a04580a33075p10faf0jsn46955d428530'},
             body: undefined
@@ -41,14 +41,38 @@ function searchCards (query='', token, callback){
                     }
 
                     cardList = cardList.flat(2)
-                    
-                    
+                      
                     return callback (undefined,cardList)
 
-                }
-            const results = JSON.parse(response.content)
+                } else {
+                    const results = JSON.parse(response.content)
+                   
+                    let cardList = []
+                    for (const key in results) {
+                        cardList.push(results[key])
+                    }
 
-            callback (undefined,results)
+                    cardList = cardList.flat(2)
+                    
+                    const _cardList = []
+                    
+                    debugger
+                    cardList.forEach(card => {
+                        card.hasOwnProperty('img') ? _cardList.push(card) : cardList.push()
+                    })
+
+                    for (let i = 0; i < _cardList.length; i++) {
+                        let card = _cardList[i]
+                        if (card.name.toLowerCase().includes(query.toLowerCase())) {
+                            continue
+                        } else {
+                            _cardList.splice(i, 1)
+                            i--
+                        }
+                    }    
+                      
+                    callback (undefined,_cardList)
+                }
             }
         })
 

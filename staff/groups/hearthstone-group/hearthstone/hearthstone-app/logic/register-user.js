@@ -7,7 +7,7 @@ function registerUser(name, surname, username, password, age, gender, callback )
     if (!username.trim().length) {throw new SyntaxError ('The username is blank or empty')}
     if (typeof password !== 'string') { throw new TypeError(`The password ${password} is not a string`) }
     if (!password.trim().length) {throw new SyntaxError ('The password is blank or empty')}
-    if (typeof age !== 'number') { throw new TypeError(`The age ${age} is not a number`) }
+    if (typeof age !== 'string') { throw new TypeError(`The age ${age} is not a string`) }
     if (typeof gender !== 'string') { throw new TypeError(`The gender ${gender} is not a string`) }
     if (typeof callback !== 'function') { throw new TypeError(`The callback ${callback} is not a function`) }
 

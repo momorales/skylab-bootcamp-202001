@@ -5,12 +5,13 @@ class App extends Component {
     componentWillMount () {
         const { token } = sessionStorage
         if (token) {
+            
             retrieveUser(token, (error, user) => {
                 if (error) {
                     this.__handleError__(error)
                 } else {
-
-                    this.setState({ view: 'search', user})
+                
+                    this.setState({ view: 'search', user, loggedIn: true, token})
                 }
             })
         } else {
@@ -33,7 +34,16 @@ class App extends Component {
                     this.__handleError__(error)
                 } else {
                     sessionStorage.token = token
-                    this.setState({ view: 'search', token, loggedIn: true, user })
+                    retrieveUser(token, (error, user) => {
+                        if (error) {
+                            this.__handleError__(error)
+                        } else {
+                            this.setState({ user })
+                        }
+                    })
+                    this.setState({ view: 'search', token, loggedIn: true })
+
+                    
                 }
             })
         } catch(error) {
@@ -117,9 +127,9 @@ class App extends Component {
         const { props: { title }, state: { view, error, loggedIn, cards, card, user}, handleLogout, handleGoToRegister, handleToggleDeck, handleDetailBack, handleToggleWL, handleDetails, handleLogin, handleSearch, handleRegister, handleGoToLogin, handleToWishlist, handleToDeck } = this
         return <Fragment>
 
-        {loggedIn && <BtnsLogged onWishlist={handleToWishlist} onDeck={handleToDeck}/>}
+        {user && <BtnsLogged user={user} onWishlist={handleToWishlist} onDeck={handleToDeck}/>}
 
-        {user && <Fragment><h2>{user.name} <button onClick={handleLogout}>Logout</button></h2></Fragment>}
+        {/* {user && <Fragment><h2>{user.name} <button onClick={handleLogout}>Logout</button></h2></Fragment>} */}
 
         { <h1>{title}</h1> }
 
@@ -127,11 +137,11 @@ class App extends Component {
        
         { view === 'register' && <Register onSubmit={handleRegister} onToLogin={handleGoToLogin} error={error} /> }
        
-        { view === 'search' && <Search onSubmit={handleSearch} /> }
+        { view === 'search' && loggedIn && <Search onSubmit={handleSearch} /> }
 
-        { view === 'search' && cards && <Results results={cards} onItemClick={handleDetails} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
+        { view === 'search' && loggedIn && cards && <Results results={cards} onItemClick={handleDetails} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
 
-        { view === 'details' && card && <Details detailInfo={card} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck} onBackClick={handleDetailBack}/>} 
+        { view === 'details' && loggedIn && card && <Details detailInfo={card} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck} onBackClick={handleDetailBack}/>} 
         </Fragment>
    }
 }

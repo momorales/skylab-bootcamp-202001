@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-.accordion, .mana-cost, .search .browser, .search, .register .button, .register a, .register .age, .register .textbox, .register {
-=======
 @config;
 .login {
   display: flex;
@@ -75,7 +72,6 @@
 }
 
 .btns-logged__deck, .btns-logged__wishlist, .feedback, .accordion, .mana-cost, .search .browser, .search, .register .button, .register a, .register .age, .register .textbox, .register, .login, .details {
->>>>>>> refs/remotes/origin/hearthstone-develop
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
@@ -109,11 +105,7 @@
   text-align: center;
 }
 
-<<<<<<< HEAD
-.accordion, .mana-cost, .search .browser, .search, .register, .register .textbox, .register .age, .register .button, .register a {
-=======
 .btns-logged__deck, .btns-logged__wishlist, .feedback, .accordion, .mana-cost, .search .browser, .search, .login, .details, .register, .register .textbox, .register .age, .register .button, .register a {
->>>>>>> refs/remotes/origin/hearthstone-develop
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
@@ -139,9 +131,6 @@
   margin: 1.5%;
 }
 
-<<<<<<< HEAD
-.register, .register .textbox, .register .age, .register .button, .register a, .search, .search .browser, .accordion, .mana-cost {
-=======
 .btns-logged__deck, .btns-logged__wishlist, .feedback, .login, .details, .register, .register .textbox, .register .age, .register .button, .register a, .search, .search .browser, .accordion, .mana-cost {
   padding: 3%;
   border: 3px solid #2c2c2c;
@@ -164,15 +153,12 @@
 }
 
 .btns-logged__deck, .btns-logged__wishlist, .login, .details, .register, .register .textbox, .register .age, .register .button, .register a, .search, .search .browser, .accordion, .mana-cost, .feedback {
->>>>>>> refs/remotes/origin/hearthstone-develop
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
   box-shadow: 0.3em 0.3em black;
 }
 
-<<<<<<< HEAD
-=======
 .btns-logged {
   display: grid;
   grid-template-columns: 15% auto 15%;
@@ -206,17 +192,13 @@
   width: 25%;
 }
 
->>>>>>> refs/remotes/origin/hearthstone-develop
 * {
   margin: 0;
   padding: 0;
 }
 
-<<<<<<< HEAD
-=======
 h1 {
   text-align: center;
 }
 
->>>>>>> refs/remotes/origin/hearthstone-develop
 /*# sourceMappingURL=style.css.map */

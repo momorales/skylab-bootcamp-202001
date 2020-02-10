@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-function Search({onSubmit}) {
-    return <form className="search" onSubmit={event => {
-        event.preventDefault()
-        onSubmit()
-    }}>
-        <h2>SEARCH CARDS</h2>
-        <input className="browser" type="text" name="browser" placeholder="Type here to search of a card"/>
-=======
 function Search({query, onSubmit}) {
     return <form className="search" onSubmit={event => {
         event.preventDefault()
@@ -17,75 +8,55 @@ function Search({query, onSubmit}) {
 
         <h2>SEARCH CARDS</h2>
         <input className="browser" type="text" name="query" placeholder="Type here to search of a card"/>
->>>>>>> refs/remotes/origin/hearthstone-develop
             <br/>
-            Mana Cost: <input className="mana-cost" type="number" name="age" min="0" max="10" />
+            Mana Cost: <input className="mana-cost" type="number" name="mana-cost" min="0" max="10" />
             <br />
-            <button className="accordion">By Class</button>
-            <div className='container-filters'>
-                <input type="checkbox" name = "Druid" value ="Druid"  />Druid
-                <input type="checkbox" name = "Hunter" value ="Hunter" />Hunter
-                <input type="checkbox" name = "Mage" value ="Mage" />Mage
-                <input type="checkbox" name = "Paladin" value ="Paladin" />Paladin
-                <input type="checkbox" name = "Priest" value ="Priest" />Priest
-                <input type="checkbox" name = "Rogue" value ="Rogue" />Rogue
-                <input type="checkbox" name = "Shaman" value ="Shaman" />Shaman
-                <input type="checkbox" name = "Warlock" value ="Warlock" />Warlock
-                <input type="checkbox" name = "Warrior" value ="Warrior" />Warrior
-                <input type="checkbox" name = "Dream" value ="Dream" />Dream
-            </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/hearthstone-develop
-            <button className="accordion">By Race</button>
-            <div className='container-filters'>
-                <input type="checkbox" name = "Demon" value ="Demon" />Demon
-                <input type="checkbox" name = "Dragon" value ="Dragon" />Dragon
-                <input type="checkbox" name = "Mech" value ="Mech" />Mech
-                <input type="checkbox" name = "Murloc" value ="Murloc" />Murloc
-                <input type="checkbox" name = "Beast" value ="Beast" />Beast
-                <input type="checkbox" name = "Pirate" value ="Pirate" />Pirate
-                <input type="checkbox" name = "Totem" value ="Totem" />Totem
-            </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/hearthstone-develop
-            <button className="accordion">By Faction</button>
-            <div className="container-filters">
-                <input type="checkbox" name="horde" value="Horde" />Horde
-                <input type="checkbox" name="alliance" value="Alliance" />Alliance
-                <input type="checkbox" name="neutral" value="Neutral" />Neutral
-            </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/hearthstone-develop
-            <button className="accordion">By Quality</button>
-            <div className="container-filters">
-                <input type="checkbox" name="basic" value="Basic" />Basic
-                <input type="checkbox" name="common" value="Common" />Common
-                <input type="checkbox" name="rare" value="Rare" />Rare
-                <input type="checkbox" name="epic" value="Epic" />Epic
-                <input type="checkbox" name="legendary" value="Legendary" />Legendary
-            </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/hearthstone-develop
-            <button className="accordion">By Type</button>
-            <div className="container-filters">
-                <input type="checkbox" name="hero" value="Hero" />Hero
-                <input type="checkbox" name="minion" value="Minion" />Minion
-                <input type="checkbox" name="spell" value="Spell" />Spell
-                <input type="checkbox" name="enchantment" value="Enchantment" />Enchantment
-                <input type="checkbox" name="weapon" value="Weapon" />Weapon
-                <input type="checkbox" name="hero power" value="Hero Power"/>Hero Power
-            </div>
-<<<<<<< HEAD
-=======
+            <h4 className="accordion">By Class</h4>
+            <select className='container-filters'>
+                <option  name = "Druid" value ="Druid"  >Druid     </option>
+                <option  name = "Hunter" value ="Hunter" >Hunter     </option>
+                <option  name = "Mage" value ="Mage" >Mage     </option>
+                <option  name = "Paladin" value ="Paladin" >Paladin     </option>
+                <option  name = "Priest" value ="Priest" >Priest     </option>
+                <option  name = "Rogue" value ="Rogue" >Rogue     </option>
+                <option  name = "Shaman" value ="Shaman" >Shaman     </option>
+                <option  name = "Warlock" value ="Warlock" >Warlock     </option>
+                <option  name = "Warrior" value ="Warrior" >Warrior     </option>
+                <option  name = "Dream" value ="Dream" >Dream</option>
+            </select>
+            <h4 className="accordion">By Race</h4>
+            <select className='container-filters'>
+                <option  name = "Demon" value ="Demon" >Demon </option>
+                <option  name = "Dragon" value ="Dragon" >Dragon</option>
+                <option  name = "Mech" value ="Mech">Mech</option>
+                <option  name = "Murloc" value ="Murloc" >Murloc</option>
+                <option  name = "Beast" value ="Beast" >Beast</option>
+                <option  name = "Pirate" value ="Pirate" >Pirate</option>
+                <option  name = "Totem" value ="Totem" >Totem</option>
+            </select>
+            <h4 className="accordion">By Faction</h4>
+            <select className="container-filters">
+                <option  name="horde" value="Horde"> Horde</option>
+                <option  name="alliance" value="Alliance" >Alliance</option>
+                <option  name="neutral" value="Neutral">Neutral </option>
+            </select>
+            <h4 className="accordion">By Quality</h4>
+            <select className="container-filters">
+                <option  name="basic" value="Basic" >Basic</option>
+                <option  name="common" value="Common" >Common</option>
+                <option  name="rare" value="Rare" >Rare</option>
+                <option  name="epic" value="Epic" >Epic</option>
+                <option  name="legendary" value="Legendary" >Legendary</option>
+            </select>
+            <h4 className="accordion">By Type</h4>
+            <select className="container-filters">
+                <option  name="hero" value="Hero" >Hero</option>
+                <option  name="minion" value="Minion" >Minion</option>
+                <option  name="spell" value="Spell">Spell</option>
+                <option  name="enchantment" value="Enchantment" >Enchantment</option>
+                <option  name="weapon" value="Weapon"> Weapon </option>
+                <option  name="hero power" value="Hero Power">Hero Power</option> 
+            </select>
             <button>SEARCH</button>
->>>>>>> refs/remotes/origin/hearthstone-develop
     </form>
 }
