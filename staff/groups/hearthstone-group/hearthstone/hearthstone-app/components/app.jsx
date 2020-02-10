@@ -76,7 +76,7 @@ class App extends Component {
     
     handleSearch = query => {
         const { token } = sessionStorage
-        
+        debugger
         searchCards(query, token, (error, cards) => {
             if (error) {
                 this.__handleError__(error)
@@ -88,7 +88,7 @@ class App extends Component {
     }
 
     handleToQualities = () => {
-        this.setState({ view: 'byqualities' })
+        this.setState({ view: 'byqualities', cards: undefined})
     }
 
     handleToWishlist = () => {
@@ -146,7 +146,7 @@ class App extends Component {
 
         { view === 'byqualities' && loggedIn && <SearchByQuality onSubmit={handleSearch} onToBack={handleDetailBack}/>}
 
-        { view === 'search' || view === 'byqualities' && loggedIn && cards && <Results results={cards} onItemClick={handleDetails} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
+        { loggedIn && cards && !card && <Results results={cards} onItemClick={handleDetails} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
 
         { view === 'details' && loggedIn && card && <Details detailInfo={card} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck} onBackClick={handleDetailBack}/>} 
         </Fragment>

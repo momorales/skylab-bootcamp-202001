@@ -1,4 +1,4 @@
-function searchCards (query='', token, callback){
+function searchCards (query, token, callback){
     if (typeof query !== 'undefined') {
         if (typeof query !== 'string') throw new TypeError(`${query} is not a string`)
     }
@@ -31,7 +31,8 @@ function searchCards (query='', token, callback){
             if(error) return callback(error)
             
             if(response.status === 200){
-                const results = JSON.parse(response.content)               
+                const results = JSON.parse(response.content)    
+                console.log(results)           
                 callback (undefined, results)
             }
         })
