@@ -1,6 +1,6 @@
 const { Component, Fragment } = React
 class App extends Component {
-    state = { view: undefined, user: undefined, loggedIn: false, error: undefined, token: undefined, cards: undefined, card: undefined }
+    state = { view: undefined, user: undefined, loggedIn: false, error: undefined, token: undefined, cards: undefined, card: undefined, query: undefined }
 
     componentWillMount () {
         const { token } = sessionStorage
@@ -76,6 +76,7 @@ class App extends Component {
     
     handleSearch = query => {
         const { token } = sessionStorage
+        
         searchCards(query, token, (error, cards) => {
             if (error) {
                 this.__handleError__(error)
@@ -84,6 +85,10 @@ class App extends Component {
                 this.setState({cards})
             }
         })
+    }
+
+    handleToQualities = () => {
+        this.setState({ view: 'byqualities' })
     }
 
     handleToWishlist = () => {
@@ -124,7 +129,7 @@ class App extends Component {
     }
 
     render() {
-        const { props: { title }, state: { view, error, loggedIn, cards, card, user}, handleLogout, handleGoToRegister, handleToggleDeck, handleDetailBack, handleToggleWL, handleDetails, handleLogin, handleSearch, handleRegister, handleGoToLogin, handleToWishlist, handleToDeck } = this
+        const { props: { title }, state: { view, error, loggedIn, cards, card, user, query}, handleLogout, handleToQualities, handleGoToRegister, handleToggleDeck, handleDetailBack, handleToggleWL, handleDetails, handleLogin, handleSearch, handleRegister, handleGoToLogin, handleToWishlist, handleToDeck } = this
         return <Fragment>
 
         {user && <BtnsLogged user={user} onWishlist={handleToWishlist} onDeck={handleToDeck}/>}
@@ -137,9 +142,11 @@ class App extends Component {
        
         { view === 'register' && <Register onSubmit={handleRegister} onToLogin={handleGoToLogin} error={error} /> }
        
-        { view === 'search' && loggedIn && <Search onSubmit={handleSearch} /> }
+        { view === 'search' && loggedIn && <Search onSubmit={handleSearch} onToQualities={handleToQualities}/> }
 
-        { view === 'search' && loggedIn && cards && <Results results={cards} onItemClick={handleDetails} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
+        { view === 'byqualities' && loggedIn && <SearchByQuality onSubmit={handleSearch} onToBack={handleDetailBack}/>}
+
+        { view === 'search' || view === 'byqualities' && loggedIn && cards && <Results results={cards} onItemClick={handleDetails} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
 
         { view === 'details' && loggedIn && card && <Details detailInfo={card} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck} onBackClick={handleDetailBack}/>} 
         </Fragment>
