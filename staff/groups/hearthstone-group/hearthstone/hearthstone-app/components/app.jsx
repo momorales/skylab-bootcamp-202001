@@ -14,7 +14,7 @@ class App extends Component {
                 }
             })
         } else {
-            this.setState({view: 'login '})
+            this.setState({view: 'login'})
         }
     }
 
