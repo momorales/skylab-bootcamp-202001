@@ -14,11 +14,19 @@ function SearchByQuality({onSubmit, onToBack}) {
         }}>GO BACK</a>
             
 
+<<<<<<< HEAD
             <input type="radio"  name="basic" value="Basic" />Basic 
             <input type="radio"  name="common" value="Common" />Common 
             <input type="radio"  name="rare" value="Rare" />Rare 
             <input type="radio"  name="epic" value="Epic"/>Epic 
             <input type="radio"  name="legendary" value="Legendary"/>Legendary 
+=======
+            <input type="radio"  name="quality" value="Basic" />Basic 
+            <input type="radio"  name="quality" value="Common" />Common 
+            <input type="radio"  name="quality" value="Rare" />Rare 
+            <input type="radio"  name="quality" value="Epic"/>Epic 
+            <input type="radio"  name="quality" value="Legendary"/>Legendary 
+>>>>>>> hearthstone-develop
 
 
         Mana Cost: <input className="mana-cost" type="number" name="manacost" min="-1" max="10" />

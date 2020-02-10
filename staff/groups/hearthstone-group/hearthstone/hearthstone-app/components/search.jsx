@@ -1,17 +1,24 @@
-function Search({query, onSubmit}) {
+function Search({ query, onSubmit, onToQualities }) {
     return <form className="search" onSubmit={event => {
         event.preventDefault()
 
-        query = event.target.query.value
+        query = `search/${event.target.query.value}`
         onSubmit(query)
     }}>
 
         <h2>SEARCH CARDS</h2>
-        <input className="browser" type="text" name="query" placeholder="Type here to search of a card"/>
-            <br/>
-            Mana Cost: <input className="mana-cost" type="number" name="mana-cost" min="0" max="10" />
-            <br />
-            <h4 className="accordion">By Class</h4>
+        <input className="browser" type="text" name="query" placeholder="Type here to search of a card" />
+
+        <button onClick={event => {
+            event.preventDefault()
+            onToQualities()
+        }}>SEARCH BY QUALITIES</button>
+
+        <button>SEARCH</button>
+        
+    </form>
+}
+        {/* <h4 className="accordion">By Class</h4>
             <select className='container-filters'>
                 <option  name = "Druid" value ="Druid"  >Druid     </option>
                 <option  name = "Hunter" value ="Hunter" >Hunter     </option>
@@ -40,6 +47,7 @@ function Search({query, onSubmit}) {
                 <option  name="alliance" value="Alliance" >Alliance</option>
                 <option  name="neutral" value="Neutral">Neutral </option>
             </select>
+<<<<<<< HEAD
             <h4 className="accordion">By Quality</h4>
             <select className="container-filters">
                 <option  name="free" value="free" >Free</option>
@@ -48,6 +56,9 @@ function Search({query, onSubmit}) {
                 <option  name="epic" value="Epic" >Epic</option>
                 <option  name="legendary" value="Legendary" >Legendary</option>
             </select>
+=======
+            
+>>>>>>> hearthstone-develop
             <h4 className="accordion">By Type</h4>
             <select className="container-filters">
                 <option  name="hero" value="Hero" >Hero</option>
@@ -56,7 +67,4 @@ function Search({query, onSubmit}) {
                 <option  name="enchantment" value="Enchantment" >Enchantment</option>
                 <option  name="weapon" value="Weapon"> Weapon </option>
                 <option  name="hero power" value="Hero Power">Hero Power</option> 
-            </select>
-            <button>SEARCH</button>
-    </form>
-}
+            </select> */}

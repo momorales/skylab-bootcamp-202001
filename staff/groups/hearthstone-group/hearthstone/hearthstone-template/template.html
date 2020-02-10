@@ -52,20 +52,21 @@
         <form style="background-color: violet;">
             <h2>Search</h2>
             <input type="text" name="browser" placeholder="Type here to search of a card">
-            <button class="accordion">By Class</button>
-            <div class = 'container-filters'>
-                <input type="checkbox" name = "Druid" value ="Druid" >Druid
-                <input type="checkbox" name = "Hunter" value ="Hunter">Hunter
-                <input type="checkbox" name = "Mage" value ="Mage">Mage
-                <input type="checkbox" name = "Paladin" value ="Paladin">Paladin
-                <input type="checkbox" name = "Priest" value ="Priest">Priest
-                <input type="checkbox" name = "Rogue" value ="Rogue">Rogue
-                <input type="checkbox" name = "Shaman" value ="Shaman">Shaman
-                <input type="checkbox" name = "Warlock" value ="Warlock">Warlock
-                <input type="checkbox" name = "Warrior" value ="Warrior">Warrior
-                <input type="checkbox" name = "Dream" value ="Dream">Dream
-            </div>
+            <button class="filter">By Class</button>
+            <form class = 'by-class'>
+                <input type="radio" name = "Druid" value ="Druid" >Druid
+                <input type="radio" name = "Hunter" value ="Hunter">Hunter
+                <input type="radio" name = "Mage" value ="Mage">Mage
+                <input type="radio" name = "Paladin" value ="Paladin">Paladin
+                <input type="radio" name = "Priest" value ="Priest">Priest
+                <input type="radio" name = "Rogue" value ="Rogue">Rogue
+                <input type="radio" name = "Shaman" value ="Shaman">Shaman
+                <input type="radio" name = "Warlock" value ="Warlock">Warlock
+                <input type="radio" name = "Warrior" value ="Warrior">Warrior
+                <input type="radio" name = "Dream" value ="Dream">Dream
+            </form>
 
+<<<<<<< HEAD
             <button class="accordion">By Race</button>
             <form class = 'by-race'>
                 <input type="radio" name = "Demon" value ="Demon" >Demon
@@ -76,14 +77,27 @@
                 <input type="radio" name = "Pirate" value ="Pirate">Pirate
                 <input type="radio" name = "Totem" value ="Totem">Totem
             </form>
+=======
+            <button class="filter">By Race</button>
+            <div class = 'container-filters'>
+                <input type="checkbox" name = "Demon" value ="Demon" >Demon
+                <input type="checkbox" name = "Dragon" value ="Dragon">Dragon
+                <input type="checkbox" name = "Mech" value ="Mech">Mech
+                <input type="checkbox" name = "Murloc" value ="Murloc">Murloc
+                <input type="checkbox" name = "Beast" value ="Beast">Beast
+                <input type="checkbox" name = "Pirate" value ="Pirate">Pirate
+                <input type="checkbox" name = "Totem" value ="Totem">Totem
+            </div>
+>>>>>>> hearthstone-develop
 
-            <button class="accordion">By Faction</button>
+            <button class="filter">By Faction</button>
             <div class="by-faction">
                 <input type="checkbox" name="horde" value="Horde">Horde
                 <input type="checkbox" name="alliance" value="Alliance">Alliance
                 <input type="checkbox" name="neutral" value="Neutral">Neutral
             </div>
 
+<<<<<<< HEAD
             <button class="accordion">By Quality</button>
             <form class="by-quality">
                 <h2>SEARCH CARDS BY QUALITY</h2>
@@ -97,6 +111,19 @@
             <button class="accordion">By Type</button>
             <form class="by-type">
                 <h2>SEARCH CARDS BY TYPE</h2>
+=======
+            <button class="filter">By Quality</button>
+            <form class="by-quality">
+                <input type="checkbox" name="basic" value="Basic">Basic
+                <input type="checkbox" name="common" value="Common">Common
+                <input type="checkbox" name="rare" value="Rare">Rare
+                <input type="checkbox" name="epic" value="Epic">Epic
+                <input type="checkbox" name="legendary" value="Legendary">Legendary
+            </form>
+
+            <button class="filter">By Type</button>
+            <form class="by-type">
+>>>>>>> hearthstone-develop
                 <input type="checkbox" name="hero" value="Hero">Hero
                 <input type="checkbox" name="minion" value="Minion">Minion
                 <input type="checkbox" name="spell" value="Spell">Spell
