@@ -1,5 +1,5 @@
 function SearchByQuality({onSubmit, onToBack}) {
-    return <form className="search" onSubmit={event => {
+    return <form className="by-quality" onSubmit={event => {
         event.preventDefault()
         let query = querySet('qualities', event.target.quality.value, {cost: event.target.manacost.value, attack: event.target.attack.value, durability: event.target.durability.value, health: event.target.health.value})
 
