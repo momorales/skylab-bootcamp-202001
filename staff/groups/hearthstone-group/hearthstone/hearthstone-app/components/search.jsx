@@ -1,4 +1,4 @@
-function Search({query, onSubmit}) {
+function Search({query, onSubmit, onToQualities}) {
     return <form className="search" onSubmit={event => {
         event.preventDefault()
 
@@ -11,6 +11,12 @@ function Search({query, onSubmit}) {
             <br/>
             Mana Cost: <input className="mana-cost" type="number" name="mana-cost" min="0" max="10" />
             <br />
+
+            <button onClick={event => {
+                event.preventDefault()
+                onToQualities()
+            }}>SEARCH BY QUALITIES</button>
+
             <h4 className="accordion">By Class</h4>
             <select className='container-filters'>
                 <option  name = "Druid" value ="Druid"  >Druid     </option>
@@ -40,14 +46,7 @@ function Search({query, onSubmit}) {
                 <option  name="alliance" value="Alliance" >Alliance</option>
                 <option  name="neutral" value="Neutral">Neutral </option>
             </select>
-            <h4 className="accordion">By Quality</h4>
-            <select className="container-filters">
-                <option  name="basic" value="Basic" >Basic</option>
-                <option  name="common" value="Common" >Common</option>
-                <option  name="rare" value="Rare" >Rare</option>
-                <option  name="epic" value="Epic" >Epic</option>
-                <option  name="legendary" value="Legendary" >Legendary</option>
-            </select>
+            
             <h4 className="accordion">By Type</h4>
             <select className="container-filters">
                 <option  name="hero" value="Hero" >Hero</option>
