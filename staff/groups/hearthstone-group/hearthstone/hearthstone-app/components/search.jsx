@@ -1,91 +1,60 @@
-function Search({ query, onSubmit, onToQualities, onToType, onToClasses, onToRace, onToFaction }) {
+function Search({ query, locale, onSubmit }) {
     return <form className="search" onSubmit={event => {
         event.preventDefault()
 
-        query = `textFilter=${event.target.query.value}`
-        onSubmit(query)
+        locale = event.target.language.value
+        const {attack, manacost, health, rarity, byclass} = event.target
+        
+        query = querySet({
+            'textFilter': event.target.query.value,
+            'manaCost': manacost.value,
+            'attack': attack.value,
+            'health': health.value,
+            'rarity': rarity.value,
+            'class': byclass.value
+        })
+
+        onSubmit(query, locale)
     }}>
 
         <h2>SEARCH CARDS</h2>
         <input className="browser" type="text" name="query" placeholder="Type here to search of a card" />
-        <button>SEARCH</button> 
-        <br></br>
-        <button onClick={event => {
-            event.preventDefault()
-            onToQualities()
-        }}>SEARCH BY QUALITIES</button>
+        <button>SEARCH</button>
+
         <br></br>
 
-        <button onClick={event => {
-            event.preventDefault()
-            onToType()
-        }}>SEARCH BY TYPE</button>
+        Mana Cost: <input className="mana-cost" type="number" name="manacost" min="-1" max="10" />
+        Attack: <input className="mana-cost" type="number" name="attack" min="-1" max="100" />
+        Health: <input className="mana-cost" type="number" name="health" min="-1" max="100" />
+
         <br></br>
 
-        <button onClick={event => {
-            event.preventDefault()
-            onToClasses()
-        }}>SEARCH BY CLASSES</button>
+        <input type="radio"  name="rarity" value="basic" />Basic 
+        <input type="radio"  name="rarity" value="common" />Common 
+        <input type="radio"  name="rarity" value="rare" />Rare 
+        <input type="radio"  name="rarity" value="epic"/>Epic 
+        <input type="radio"  name="rarity" value="legendary"/>Legendary 
+
         <br></br>
 
-        <button onClick={event => {
-            event.preventDefault()
-            onToRace()
-        }}>SEARCH BY RACE</button>
+        <input type="radio" name="byclass" value="druid" />Druid
+        <input type="radio" name="byclass" value="hunter" />Hunter
+        <input type="radio" name="byclass" value="mage" />Mage
+        <input type="radio" name="byclass" value="paladin" />Paladin
+        <input type="radio" name="byclass" value="priest" />Priest
+        <input type="radio" name="byclass" value="rogue" />Rogue
+        <input type="radio" name="byclass" value="shaman" />Shaman
+        <input type="radio" name="byclass" value="warlock" />Warlock
+        <input type="radio" name="byclass" value="warrior" />Warrior
+        <input type="radio" name="byclass" value="dream" />Dream
+
         <br></br>
 
-        <button onClick={event => {
-            event.preventDefault()
-            onToFaction()
-        }}>SEARCH BY FACTION</button>
-        <br></br>
+        <input type='submit' value="Select language" />
+        <input type='radio' name='language' value='en_US' /> English (USA)
+        <input type='radio' name='language' value='es_ES' /> Spanish
+        <input type='radio' name='language' value='de_DE' /> German
+        <input type='radio' name='language' value='fr_FR' /> French
 
-               
     </form>
 }
-        {/* <h4 className="accordion">By Class</h4>
-            <select className='container-filters'>
-                <option  name = "Druid" value ="Druid"  >Druid     </option>
-                <option  name = "Hunter" value ="Hunter" >Hunter     </option>
-                <option  name = "Mage" value ="Mage" >Mage     </option>
-                <option  name = "Paladin" value ="Paladin" >Paladin     </option>
-                <option  name = "Priest" value ="Priest" >Priest     </option>
-                <option  name = "Rogue" value ="Rogue" >Rogue     </option>
-                <option  name = "Shaman" value ="Shaman" >Shaman     </option>
-                <option  name = "Warlock" value ="Warlock" >Warlock     </option>
-                <option  name = "Warrior" value ="Warrior" >Warrior     </option>
-                <option  name = "Dream" value ="Dream" >Dream</option>
-            </select>
-            <h4 className="accordion">By Race</h4>
-            <select className='container-filters'>
-                <option  name = "Demon" value ="Demon" >Demon </option>
-                <option  name = "Dragon" value ="Dragon" >Dragon</option>
-                <option  name = "Mech" value ="Mech">Mech</option>
-                <option  name = "Murloc" value ="Murloc" >Murloc</option>
-                <option  name = "Beast" value ="Beast" >Beast</option>
-                <option  name = "Pirate" value ="Pirate" >Pirate</option>
-                <option  name = "Totem" value ="Totem" >Totem</option>
-            </select>
-            <h4 className="accordion">By Faction</h4>
-            <select className="container-filters">
-                <option  name="horde" value="Horde"> Horde</option>
-                <option  name="alliance" value="Alliance" >Alliance</option>
-                <option  name="neutral" value="Neutral">Neutral </option>
-            </select>
-            <h4 className="accordion">By Quality</h4>
-            <select className="container-filters">
-                <option  name="free" value="free" >Free</option>
-                <option  name="common" value="Common" >Common</option>
-                <option  name="rare" value="Rare" >Rare</option>
-                <option  name="epic" value="Epic" >Epic</option>
-                <option  name="legendary" value="Legendary" >Legendary</option>
-            </select>
-            <h4 className="accordion">By Type</h4>
-            <select className="container-filters">
-                <option  name="hero" value="Hero" >Hero</option>
-                <option  name="minion" value="Minion" >Minion</option>
-                <option  name="spell" value="Spell">Spell</option>
-                <option  name="enchantment" value="Enchantment" >Enchantment</option>
-                <option  name="weapon" value="Weapon"> Weapon </option>
-                <option  name="hero power" value="Hero Power">Hero Power</option> 
-            </select> */}

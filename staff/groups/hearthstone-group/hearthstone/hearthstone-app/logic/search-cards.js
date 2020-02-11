@@ -1,11 +1,11 @@
-function searchCards (query, token, callback){
+function searchCards (query, token, locale, callback){
     if (typeof query !== 'undefined') {
         if (typeof query !== 'string') throw new TypeError(`${query} is not a string`)
     }
 
     if (typeof token !== 'string') throw new TypeError(`${token} is not a string`)
 
-    // query.length? query : query=''
+    if (locale === '') locale = 'en_US'
 
     const _token = token.split('.')
     const payload = JSON.parse(atob(_token[1])).sub
@@ -22,8 +22,8 @@ function searchCards (query, token, callback){
             if (_error) return callback(new Error(_error)) 
 
         }
-        
-        call(`https://eu.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUNnUMPm3AYTiVNRZVQ05R4j4kka67IbEZ&pageSize=9999&${query}&`, {
+        debugger
+        call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EUNnUMPm3AYTiVNRZVQ05R4j4kka67IbEZ&pageSize=9999&${query}`, {
             method :'GET'
         }, (error, response) => {
             if(error) return callback(error)
@@ -31,10 +31,6 @@ function searchCards (query, token, callback){
             if(response.status === 200){
                 let results = JSON.parse(response.content)    
                 
-                // const cardList = []
-                // results.cards.forEach(card => { if (card.name.toLowerCase().includes(query.toLowerCase())) { 
-                //     cardList.push(card)
-                // }})
                 console.log(results)
                 results = results.cards
                 callback (undefined, results)
@@ -42,27 +38,3 @@ function searchCards (query, token, callback){
         })
     })
 }
-
-                // let cardList = []
-                // for (const key in results) {
-                //     cardList.push(results[key])
-                // }
-
-                // cardList = cardList.flat(2)
-                
-                // const _cardList = []
-                
-                // debugger
-                // cardList.forEach(card => {
-                //     card.hasOwnProperty('img') ? _cardList.push(card) : cardList.push()
-                // })
-
-                // for (let i = 0; i < _cardList.length; i++) {
-                //     let card = _cardList[i]
-                //     if (card.name.toLowerCase().includes(query.toLowerCase())) {
-                //         continue
-                //     } else {
-                //         _cardList.splice(i, 1)
-                //         i--
-                //     }
-                // }  
