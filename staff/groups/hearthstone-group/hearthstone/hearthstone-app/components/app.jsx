@@ -10,8 +10,21 @@ class App extends Component {
                 if (error) {
                     this.__handleError__(error)
                 } else {
-                
                     this.setState({ view: 'search', user, loggedIn: true, token})
+                    
+                    // if (location.search) {
+                    //     const query = location.search.split('?')[1]
+                    //     debugger
+                    //     searchCards(query, token, locale, (error, cards) => {
+                    //         if (error) {
+                    //             this.__handleError__(error)
+                    //         } else {
+                    //             this.setState({ view: 'search', cards, user, query, locale })
+                    //         }
+                    //     })
+                    // } else {
+                    //     this.setState({ view: 'search', user })
+                    // }
                 }
             })
         } else {
@@ -74,14 +87,15 @@ class App extends Component {
         this.setState({ view: 'login' })
     }
     
-    handleSearch = query => {
+    handleSearch = (query, locale) => {
         const { token } = sessionStorage
-        searchCards(query, token, (error, cards) => {
+        
+        searchCards(query, token, locale, (error, cards) => {
             if (error) {
                 this.__handleError__(error)
             } else {
-                
-                this.setState({cards})
+
+                this.setState({query, locale, cards})
             }
         })
     }
@@ -115,9 +129,9 @@ class App extends Component {
     }
 
     handleDetails = id => {
-        const { token } = sessionStorage
+        const { token } = sessionStorage, { locale } = this.state
         
-        retrieveCard(token, id, (error, card) => {
+        retrieveCard(token, locale, id, (error, card) => {
             if (error) {
                 this.__handleError__(error)
             } else {
@@ -160,7 +174,7 @@ class App extends Component {
        
         { view === 'register' && <Register onSubmit={handleRegister} onToLogin={handleGoToLogin} error={error} /> }
        
-        { view === 'search' && loggedIn && <Search onSubmit={handleSearch} onToQualities={handleToQualities}
+        { view === 'search' && loggedIn && <Search query={query} onSubmit={handleSearch} onToQualities={handleToQualities}
          onToType={handleToType} onToClasses={handleToClasses} onToRace= {handleToRaces} onToFaction={handleToFaction} /> } {/*mirarlo con Alex */}
 
         { view === 'byqualities' && loggedIn && <SearchByQuality onSubmit={handleSearch} onToBack={handleDetailBack}/>}
@@ -173,7 +187,7 @@ class App extends Component {
 
         { view === 'byfaction' && loggedIn && <SearchByFaction onSubmit={handleSearch} onToBack={handleDetailBack}/>}
 
-        { loggedIn && cards && !card && <Results results={cards} onItemClick={handleDetails} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
+        { loggedIn && cards && !card && <Results results={cards} onLocaleSubmit={handleSearch} onItemClick={handleDetails} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
 
         { view === 'details' && loggedIn && card && <Details detailInfo={card} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck} onBackClick={handleDetailBack}/>} 
         </Fragment>

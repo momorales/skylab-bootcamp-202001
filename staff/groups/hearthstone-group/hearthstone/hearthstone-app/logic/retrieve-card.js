@@ -1,10 +1,12 @@
-function retrieveCard(token, id, callback) {
+function retrieveCard(token, locale, id, callback) {
     if (typeof token !== 'string') throw new TypeError(`${token} is not a string`)
     if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)
     if (typeof callback !== 'function') throw new TypeError(`${callback} is not a function`)
 
     const _token = token.split('.')
     const payload = JSON.parse(atob(_token[1])).sub
+
+    if (locale === '') locale = 'en_US'
 
     call(`https://skylabcoders.herokuapp.com/api/v2/users/${payload}`,{
 
@@ -19,15 +21,14 @@ function retrieveCard(token, id, callback) {
 
         }
 
-        call(`https://eu.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUNnUMPm3AYTiVNRZVQ05R4j4kka67IbEZ&id=${id.toString()}`, undefined,
+        call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EUNnUMPm3AYTiVNRZVQ05R4j4kka67IbEZ&id=${id}`, undefined,
          (error, response) => {
             if (error) return callback(error)
 
             if (response.status === 200) {
                 let detailInfo = JSON.parse(response.content)
                 detailInfo = detailInfo.cards[0]
-                console.log(detailInfo)
-                debugger
+
                 callback(undefined, detailInfo)
             }
 
