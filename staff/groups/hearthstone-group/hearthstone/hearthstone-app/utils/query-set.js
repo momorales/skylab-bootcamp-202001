@@ -1,18 +1,13 @@
-function querySet(type, value, obj) {
-    let query = `${type}/${value}?`
+function querySet(obj) {
+    let query = ''
+    const keys = Object.keys(obj)
 
-    const keys = obj
-    const keyEval = Object.keys(keys)
-
-    for (let i = 0; i < keyEval.length; i++) {
-        const key = keyEval[i]
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i]
 
         if (keys[key] !== '') {
-            query += `${key}=${keys[key]}`
-            if (i < keyEval.length -1) query += '&'
+            query += `${key}=${obj[key]}&`
         }
-
     }
-
     return query
 }
