@@ -1,6 +1,6 @@
 function Card({ cardInfo: { id, name, image } , onClick, onWL, onDeck}) {
     return <li className = "results__card">
-        <h2>{`${name} (${id})`}</h2>
+        <h2>{name}</h2>
 
        { image && <img src={image}
             onClick={() => onClick(id)} />}

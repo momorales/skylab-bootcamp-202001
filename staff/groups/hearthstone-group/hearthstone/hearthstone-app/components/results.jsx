@@ -7,8 +7,6 @@ function Results({ results, onItemClick, onItemWL, onItemDeck }) {
                     onWL={onItemWL} 
                     onDeck={onItemDeck} />
         )}
-
-        <button>Next page</button>
     </ul>
 }
 

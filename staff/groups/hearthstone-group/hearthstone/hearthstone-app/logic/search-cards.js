@@ -23,20 +23,21 @@ function searchCards (query, token, callback){
 
         }
         
-        call(`https://eu.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUNnUMPm3AYTiVNRZVQ05R4j4kka67IbEZ&`, {
+        call(`https://eu.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUNnUMPm3AYTiVNRZVQ05R4j4kka67IbEZ&pageSize=9999&${query}&`, {
             method :'GET'
         }, (error, response) => {
             if(error) return callback(error)
             
             if(response.status === 200){
                 let results = JSON.parse(response.content)    
-                debugger
-                const cardList = []
-                results.cards.forEach(card => { if (card.name.toLowerCase().includes(query.toLowerCase())) { 
-                    cardList.push(card)
-                }})
-                console.log(cardList)
-                callback (undefined, cardList)
+                
+                // const cardList = []
+                // results.cards.forEach(card => { if (card.name.toLowerCase().includes(query.toLowerCase())) { 
+                //     cardList.push(card)
+                // }})
+                console.log(results)
+                results = results.cards
+                callback (undefined, results)
             }
         })
     })

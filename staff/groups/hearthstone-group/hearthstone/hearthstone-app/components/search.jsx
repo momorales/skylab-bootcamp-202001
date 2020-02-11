@@ -2,7 +2,7 @@ function Search({ query, onSubmit, onToQualities, onToType, onToClasses, onToRac
     return <form className="search" onSubmit={event => {
         event.preventDefault()
 
-        query = event.target.query.value
+        query = `textFilter=${event.target.query.value}`
         onSubmit(query)
     }}>
 
