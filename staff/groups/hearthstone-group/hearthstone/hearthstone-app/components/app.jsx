@@ -1,6 +1,6 @@
 const { Component, Fragment } = React
 class App extends Component {
-    state = { view: undefined, user: undefined, loggedIn: false, error: undefined, token: undefined, cards: undefined, card: undefined, query: undefined }
+    state = { locale: undefined, view: undefined, user: undefined, loggedIn: false, error: undefined, token: undefined, cards: undefined, card: undefined, query: undefined, wishedCards: undefined }
 
     componentWillMount () {
         const { token } = sessionStorage
@@ -95,7 +95,7 @@ class App extends Component {
                 this.__handleError__(error)
             } else {
 
-                this.setState({query, locale, cards})
+                this.setState({query, locale, cards, card: undefined})
             }
         })
     }
@@ -120,10 +120,51 @@ class App extends Component {
         this.setState({ view: 'byfaction', cards: undefined})
     }
 
-    handleToWishlist = () => {
-        //
+    handleToggleWL = id => {
+        try{
+            const {token} = sessionStorage
+            
+            toggleFavs(id, token, error=>{
+                if (error) {
+                    return this.__handleError__(error)
+
+                } else {
+
+                    const {query} = this.state
+
+                    if(query)
+                        this.handleSearch(query)
+                    
+                }
+
+                    
+            })
+        }catch(error){
+            this.__handleError__(error)
+        }
     }
 
+    handleToggleWLDetail = id => {
+        try{
+            const {token} = sessionStorage
+            
+            toggleFavs(id, token, error=>{
+                if (error) {
+                    return this.__handleError__(error)
+
+                } else {
+                    
+                    this.handleDetails(id)
+                    
+                }
+
+                    
+            })
+        }catch(error){
+            this.__handleError__(error)
+        }
+    }
+    
     handleToDeck = () => {
         //
     }
@@ -141,11 +182,71 @@ class App extends Component {
     }
 
     handleDetailBack = () => {
-        this.setState({ view: 'search', card: undefined })
+        
+        const { query, cards, wishedCards } = this.state
+        if (query) {
+            if (wishedCards) {
+                this.handleToWishlist()
+                this.setState({ view: 'wishlisted', wishedCards })
+            } else {
+                this.handleSearch(query)
+                this.setState({view: 'search', card: undefined })
+            }
+            
+        } else {
+            if (wishedCards) {
+                this.handleToWishlist()
+                this.setState({ view: 'wishlisted', wishedCards })
+            } else {
+                this.setState({ view: 'search' })
+            }
+        }
     }
 
-    handleToggleWL = () => {
-        //
+    handleBackFromWL = () => {
+        const { query } = this.state
+        if (query) {
+            this.handleSearch(query)
+            this.setState({ view: 'search', wishedCards: undefined })    
+        } else {
+            this.setState({ view: 'search', wishedCards: undefined })
+        }
+    }
+
+    handleToWishlist = () => {
+        const {token} = sessionStorage
+        const { locale } = this.state
+        displayWishlist(token, locale, (error, wishedCards) =>{
+            if (error) {
+                this.__handleError__(error)
+            } else {
+                this.setState({ view: 'wishlisted', wishedCards })
+            }
+        })
+
+    }
+
+    handleUnwishlist = id => {
+        const { token } = sessionStorage
+        const { locale } = this.state
+        toggleFavs(id, token, error=>{
+            if (error) {
+                return this.__handleError__(error)
+
+            } else {
+                
+                displayWishlist(token, locale, (error, wishedCards) =>{
+                    if (error) {
+                        this.__handleError__(error)
+                    } else {
+                        this.setState({ view: 'wishlisted', wishedCards })
+                    }
+                })
+                
+            }
+
+                
+        })
     }
 
     handleToggleDeck = () => {
@@ -158,9 +259,9 @@ class App extends Component {
     }
 
     render() {
-        const { props: { title }, state: { view, error, loggedIn, cards, card, user, query}, handleLogout, handleToQualities, 
-        handleGoToRegister, handleToggleDeck, handleDetailBack, handleToggleWL, handleDetails, handleLogin, handleSearch, 
-        handleRegister, handleGoToLogin, handleToWishlist, handleToDeck, handleToType, handleToClasses, handleToRaces, handleToFaction } = this
+        const { props: { title }, state: { wishedCards, view, error, loggedIn, cards, card, user, query}, handleLogout, handleToQualities, 
+        handleGoToRegister, handleToggleDeck, handleDetailBack, handleToggleWL, handleDetails, handleLogin, handleSearch, handleToggleWLDetail,
+        handleRegister, handleUnwishlist, handleBackFromWL, handleGoToLogin, handleToWishlist, handleToDeck, handleToType, handleToClasses, handleToRaces, handleToFaction } = this
          
         return <Fragment>
 
@@ -174,9 +275,10 @@ class App extends Component {
        
         { view === 'register' && <Register onSubmit={handleRegister} onToLogin={handleGoToLogin} error={error} /> }
        
-        { view === 'search' && loggedIn && <Search query={query} onSubmit={handleSearch} onToQualities={handleToQualities}
-         onToType={handleToType} onToClasses={handleToClasses} onToRace= {handleToRaces} onToFaction={handleToFaction} /> } {/*mirarlo con Alex */}
-
+        { view === 'search' && loggedIn && !wishedCards && <Search query={query} onSubmit={handleSearch} onToQualities={handleToQualities}
+         onToType={handleToType} onToClasses={handleToClasses} onToRace= {handleToRaces} onToFaction={handleToFaction}
+         onWl = {handleToWishlist} /> } 
+         
         { view === 'byqualities' && loggedIn && <SearchByQuality onSubmit={handleSearch} onToBack={handleDetailBack}/>}
 
         { view === 'byclasses' && loggedIn && <SearchByClass onSubmit={handleSearch} onToBack={handleDetailBack} />}
@@ -187,9 +289,11 @@ class App extends Component {
 
         { view === 'byfaction' && loggedIn && <SearchByFaction onSubmit={handleSearch} onToBack={handleDetailBack}/>}
 
-        { loggedIn && cards && !card && <Results results={cards} onLocaleSubmit={handleSearch} onItemClick={handleDetails} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
+        { view === 'search' && loggedIn && cards && !card && <Results results={cards} onItemClick={handleDetails} onWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
 
-        { view === 'details' && loggedIn && card && <Details detailInfo={card} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck} onBackClick={handleDetailBack}/>} 
+        { view === 'details' && loggedIn && card && <Details detailInfo={card} onItemWL={handleToggleWLDetail} onItemDeck={handleToggleDeck} onBackClick={handleDetailBack}/>} 
+        
+        { view === 'wishlisted' && loggedIn && wishedCards && <ResultsWL onToBack={handleBackFromWL} results={wishedCards} onItemClick={handleDetails} onWL={handleUnwishlist} onItemDeck={handleToggleDeck}/> }
         </Fragment>
    }
 }

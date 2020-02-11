@@ -1,5 +1,9 @@
-function Results({ results, onItemClick, onWL, onItemDeck }) { debugger
+function ResultsWL({ results, onToBack, onItemClick, onWL, onItemDeck }) { debugger
     return <div>
+        <button onClick={event => {
+            event.preventDefault()
+            onToBack()
+        }}>GO BACK</button>
         <ul className="results" >
             {results.map(result =>
                 <Card key={result.id}
@@ -11,5 +15,4 @@ function Results({ results, onItemClick, onWL, onItemDeck }) { debugger
         </ul>
     </div>
 }
-
 
