@@ -1,4 +1,4 @@
-function Search({ query, onSubmit, onToQualities }) {
+function Search({ query, onSubmit, onToQualities, onToType, onToClasses, onToRace, onToFaction }) {
     return <form className="search" onSubmit={event => {
         event.preventDefault()
 
@@ -8,14 +8,39 @@ function Search({ query, onSubmit, onToQualities }) {
 
         <h2>SEARCH CARDS</h2>
         <input className="browser" type="text" name="query" placeholder="Type here to search of a card" />
-
+        <button>SEARCH</button> 
+        <br></br>
         <button onClick={event => {
             event.preventDefault()
             onToQualities()
         }}>SEARCH BY QUALITIES</button>
+        <br></br>
 
-        <button>SEARCH</button>
-        
+        <button onClick={event => {
+            event.preventDefault()
+            onToType()
+        }}>SEARCH BY TYPE</button>
+        <br></br>
+
+        <button onClick={event => {
+            event.preventDefault()
+            onToClasses()
+        }}>SEARCH BY CLASSES</button>
+        <br></br>
+
+        <button onClick={event => {
+            event.preventDefault()
+            onToRace()
+        }}>SEARCH BY RACE</button>
+        <br></br>
+
+        <button onClick={event => {
+            event.preventDefault()
+            onToFaction()
+        }}>SEARCH BY FACTION</button>
+        <br></br>
+
+               
     </form>
 }
         {/* <h4 className="accordion">By Class</h4>
@@ -47,7 +72,6 @@ function Search({ query, onSubmit, onToQualities }) {
                 <option  name="alliance" value="Alliance" >Alliance</option>
                 <option  name="neutral" value="Neutral">Neutral </option>
             </select>
-<<<<<<< HEAD
             <h4 className="accordion">By Quality</h4>
             <select className="container-filters">
                 <option  name="free" value="free" >Free</option>
@@ -56,9 +80,6 @@ function Search({ query, onSubmit, onToQualities }) {
                 <option  name="epic" value="Epic" >Epic</option>
                 <option  name="legendary" value="Legendary" >Legendary</option>
             </select>
-=======
-            
->>>>>>> hearthstone-develop
             <h4 className="accordion">By Type</h4>
             <select className="container-filters">
                 <option  name="hero" value="Hero" >Hero</option>

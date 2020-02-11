@@ -76,7 +76,6 @@ class App extends Component {
     
     handleSearch = query => {
         const { token } = sessionStorage
-        debugger
         searchCards(query, token, (error, cards) => {
             if (error) {
                 this.__handleError__(error)
@@ -89,6 +88,22 @@ class App extends Component {
 
     handleToQualities = () => {
         this.setState({ view: 'byqualities', cards: undefined})
+    }
+    
+    handleToClasses = () => {
+        this.setState({ view: 'byclasses', cards: undefined})
+    }
+    
+    handleToRaces = () => {
+        this.setState({ view: 'byraces', cards: undefined})
+    }
+   
+    handleToType = () => {
+        this.setState({ view: 'bytype', cards: undefined})
+    }
+  
+    handleToFaction = () => {
+        this.setState({ view: 'byfaction', cards: undefined})
     }
 
     handleToWishlist = () => {
@@ -129,7 +144,10 @@ class App extends Component {
     }
 
     render() {
-        const { props: { title }, state: { view, error, loggedIn, cards, card, user, query}, handleLogout, handleToQualities, handleGoToRegister, handleToggleDeck, handleDetailBack, handleToggleWL, handleDetails, handleLogin, handleSearch, handleRegister, handleGoToLogin, handleToWishlist, handleToDeck } = this
+        const { props: { title }, state: { view, error, loggedIn, cards, card, user, query}, handleLogout, handleToQualities, 
+        handleGoToRegister, handleToggleDeck, handleDetailBack, handleToggleWL, handleDetails, handleLogin, handleSearch, 
+        handleRegister, handleGoToLogin, handleToWishlist, handleToDeck, handleToType, handleToClasses, handleToRaces, handleToFaction } = this
+         
         return <Fragment>
 
         {user && <BtnsLogged user={user} onWishlist={handleToWishlist} onDeck={handleToDeck}/>}
@@ -142,9 +160,18 @@ class App extends Component {
        
         { view === 'register' && <Register onSubmit={handleRegister} onToLogin={handleGoToLogin} error={error} /> }
        
-        { view === 'search' && loggedIn && <Search onSubmit={handleSearch} onToQualities={handleToQualities}/> }
+        { view === 'search' && loggedIn && <Search onSubmit={handleSearch} onToQualities={handleToQualities}
+         onToType={handleToType} onToClasses={handleToClasses} onToRace= {handleToRaces} onToFaction={handleToFaction} /> } {/*mirarlo con Alex */}
 
         { view === 'byqualities' && loggedIn && <SearchByQuality onSubmit={handleSearch} onToBack={handleDetailBack}/>}
+
+        { view === 'byclasses' && loggedIn && <SearchByClass onSubmit={handleSearch} onToBack={handleDetailBack} />}
+
+        { view === 'byraces' && loggedIn && <SearchByRaces onSubmit={handleSearch} onToBack={handleDetailBack}/>}
+
+        { view === 'bytype' && loggedIn && <SearchByType onSubmit={handleSearch} onToBack={handleDetailBack}/>}
+
+        { view === 'byfaction' && loggedIn && <SearchByFaction onSubmit={handleSearch} onToBack={handleDetailBack}/>}
 
         { loggedIn && cards && !card && <Results results={cards} onItemClick={handleDetails} onItemWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
 

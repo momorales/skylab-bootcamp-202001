@@ -1,5 +1,5 @@
 function SearchByRaces({onSubmit, onToBack}){
-    return <form className = "by-race" onSubmit = {event => {
+    return <form className = "container-filters" onSubmit = {event => {
         event.preventDefault()
         let query = querySet('races', event.target.quality.value, {cost: event.target.manacost.value, attack: event.target.attack.value, durability: event.target.durability.value, health: event.target.health.value})
 

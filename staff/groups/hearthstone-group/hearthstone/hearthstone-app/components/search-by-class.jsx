@@ -1,16 +1,17 @@
-function SearchByClass (onSubmit, onToBack){
-    return <form className="by-class" onSubmit={event =>{
+function SearchByClass ({onSubmit, onToBack}){
+    return <form className="container-filters" onSubmit={event =>{
             event.preventDefault()
             
             let query = querySet('classes',event.target.classes.value,{health: event.target.health.value,durability:event.target.durability.value,cost: event.target.cost.value,attack: event.target.attack.value})
+            
             onSubmit(query)
     }}>
             <h2>SEARCH CARDS BY CLASS</h2>
 
-            <a href="" onClick={event=>{
-                event.preventDefault()
-                onToBack()
-            }}>GO BACK</a>
+            <a href="" onClick={event => {
+            event.preventDefault()
+            onToBack()
+        }}>GO BACK</a>
 
                 <input type="radio" name = "Druid" value ="Druid" />Druid
                 <input type="radio" name = "Hunter" value ="Hunter"/>Hunter

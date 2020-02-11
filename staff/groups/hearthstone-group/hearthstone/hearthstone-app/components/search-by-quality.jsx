@@ -1,6 +1,7 @@
 function SearchByQuality({onSubmit, onToBack}) {
-    return <form className="by-quality" onSubmit={event => {
+    return <form className="container-filters" onSubmit={event => {
         event.preventDefault()
+        
         let query = querySet('qualities', event.target.quality.value, {cost: event.target.manacost.value, attack: event.target.attack.value, durability: event.target.durability.value, health: event.target.health.value})
 
         onSubmit(query)
@@ -14,19 +15,11 @@ function SearchByQuality({onSubmit, onToBack}) {
         }}>GO BACK</a>
             
 
-<<<<<<< HEAD
             <input type="radio"  name="basic" value="Basic" />Basic 
             <input type="radio"  name="common" value="Common" />Common 
             <input type="radio"  name="rare" value="Rare" />Rare 
             <input type="radio"  name="epic" value="Epic"/>Epic 
             <input type="radio"  name="legendary" value="Legendary"/>Legendary 
-=======
-            <input type="radio"  name="quality" value="Basic" />Basic 
-            <input type="radio"  name="quality" value="Common" />Common 
-            <input type="radio"  name="quality" value="Rare" />Rare 
-            <input type="radio"  name="quality" value="Epic"/>Epic 
-            <input type="radio"  name="quality" value="Legendary"/>Legendary 
->>>>>>> hearthstone-develop
 
 
         Mana Cost: <input className="mana-cost" type="number" name="manacost" min="-1" max="10" />
