@@ -1,17 +1,17 @@
-function Card({ cardInfo: { cardId, name, img } , onClick, onWL, onDeck}) {
+function Card({ cardInfo: { id, name, image } , onClick, onWL, onDeck}) {
     return <li className = "results__card">
-        <h2>{`${name} (${cardId})`}</h2>
+        <h2>{`${name} (${id})`}</h2>
 
-       { img && <img src={img}
-            onClick={() => onClick(cardId)} />}
+       { image && <img src={image}
+            onClick={() => onClick(id)} />}
 
-       { !img && <img src="https://legaldbol.com/wp-content/uploads/2019/03/48-Free-Printable-Card-Template-Hearthstone-in-Photoshop-by-Card-Template-Hearthstone.jpg"
-            onClick={() => onClick(cardId)} />}
+       { !image && <img src="https://legaldbol.com/wp-content/uploads/2019/03/48-Free-Printable-Card-Template-Hearthstone-in-Photoshop-by-Card-Template-Hearthstone.jpg"
+            onClick={() => onClick(id)} />}
 
         <span>10/10 (500)</span>
 
-        <button onClick={() => onWL(cardId)}>Add to wishlist</button>
-        <button onClick={() => onDeck(cardId)}>Add to deck</button>
+        <button onClick={() => onWL(id)}>Add to wishlist</button>
+        <button onClick={() => onDeck(id)}>Add to deck</button>
     </li>
 }
 

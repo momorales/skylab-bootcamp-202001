@@ -129,6 +129,10 @@
 
 .container-filters > * {
   margin: 1.5%;
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
 }
 
 .btns-logged__deck, .btns-logged__wishlist, .feedback, .login, .details, .register, .register .textbox, .register .age, .register .button, .register a, .search, .search .browser, .accordion, .mana-cost {
@@ -188,8 +192,11 @@
   list-style: none;
   text-align: center;
 }
-.results > * {
-  width: 25%;
+.results__card {
+  width: 22%;
+}
+.results__card img {
+  max-width: 90%;
 }
 
 * {
