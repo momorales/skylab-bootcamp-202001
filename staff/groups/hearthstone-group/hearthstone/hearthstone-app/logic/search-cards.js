@@ -23,16 +23,20 @@ function searchCards (query, token, callback){
 
         }
         
-        call(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${query}`, {
-            method :'GET',
-            headers: {'x-rapidapi-host': 'omgvamp-hearthstone-v1.p.rapidapi.com', "x-rapidapi-key": 'b6eebce870msh7f0a04580a33075p10faf0jsn46955d428530'},
-            body: undefined
+        call(`https://eu.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUNnUMPm3AYTiVNRZVQ05R4j4kka67IbEZ&pageSize=9999&${query}&`, {
+            method :'GET'
         }, (error, response) => {
             if(error) return callback(error)
             
             if(response.status === 200){
-                const results = JSON.parse(response.content)    
-                console.log(results)           
+                let results = JSON.parse(response.content)    
+                
+                // const cardList = []
+                // results.cards.forEach(card => { if (card.name.toLowerCase().includes(query.toLowerCase())) { 
+                //     cardList.push(card)
+                // }})
+                console.log(results)
+                results = results.cards
                 callback (undefined, results)
             }
         })
