@@ -25,7 +25,7 @@ function displayWishlist (token, locale, callback){
             
             for (i = 0; i < user.favs.length; i++) {
 
-                call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EUNnUMPm3AYTiVNRZVQ05R4j4kka67IbEZ&pageSize=9999&id=${user.favs[i]}`, {
+                call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EU7c4yvfvI83T87hQBSii8r3IpHRQNf2c2&pageSize=9999&id=${user.favs[i]}`, {
                         method :'GET'
                     }, (error, response) => {
                         if(error) return callback(error)

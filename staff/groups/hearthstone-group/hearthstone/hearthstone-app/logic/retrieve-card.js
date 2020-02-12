@@ -22,7 +22,7 @@ function retrieveCard(token, locale, id, callback) {
 
         
 
-        call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EUNnUMPm3AYTiVNRZVQ05R4j4kka67IbEZ&id=${id}`, undefined,
+        call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EU7c4yvfvI83T87hQBSii8r3IpHRQNf2c2&id=${id}`, undefined,
          (error, response) => {
             if (error) return callback(error)
 

@@ -258,10 +258,29 @@ class App extends Component {
         this.setState({ user: undefined, token: undefined, view: 'login', loggedIn: false })
     }
 
+    handleRating = rating => {
+        const key = Object.keys(rating)
+        const { token } = sessionStorage
+        toggleRating(token, rating, error => {
+            if (error) {
+                this.__handleError__(error)
+            } else {
+                const { view, locale, query } = this.state
+                if (view === 'search') {
+                    this.handleSearch(query, locale)
+                } else if (view === 'detail') {
+                    this.handleDetails(key)
+                } else if (view === 'wishlisted') {
+                    this.handleToWishlist()
+                }
+            }
+        })
+    }
+
     render() {
         const { props: { title }, state: { wishedCards, view, error, loggedIn, cards, card, user, query}, handleLogout, handleToQualities, 
         handleGoToRegister, handleToggleDeck, handleDetailBack, handleToggleWL, handleDetails, handleLogin, handleSearch, handleToggleWLDetail,
-        handleRegister, handleUnwishlist, handleBackFromWL, handleGoToLogin, handleToWishlist, handleToDeck, handleToType, handleToClasses, handleToRaces, handleToFaction } = this
+        handleRegister, handleUnwishlist, handleRating, handleBackFromWL, handleGoToLogin, handleToWishlist, handleToDeck, handleToType, handleToClasses, handleToRaces, handleToFaction } = this
          
         return <Fragment>
 
@@ -289,7 +308,7 @@ class App extends Component {
 
         { view === 'byfaction' && loggedIn && <SearchByFaction onSubmit={handleSearch} onToBack={handleDetailBack}/>}
 
-        { view === 'search' && loggedIn && cards && !card && <Results results={cards} onItemClick={handleDetails} onWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
+        { view === 'search' && loggedIn && cards && !card && <Results results={cards} onRating={handleRating} onItemClick={handleDetails} onWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
 
         { view === 'details' && loggedIn && card && <Details detailInfo={card} onItemWL={handleToggleWLDetail} onItemDeck={handleToggleDeck} onBackClick={handleDetailBack}/>} 
         

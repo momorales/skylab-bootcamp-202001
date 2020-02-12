@@ -1,4 +1,4 @@
-function Card({ cardInfo: { id, name, image, isFav } , onClick, onWL, onDeck}) {
+function Card({ cardInfo: { id, name, image, isFav, rating, rateCount, rateAvg } , onClick, onWL, onDeck, onRating}) {
     return <li className = "results__card">
         <h2>{name}</h2>
 
@@ -9,12 +9,37 @@ function Card({ cardInfo: { id, name, image, isFav } , onClick, onWL, onDeck}) {
             onClick={() => onClick(id)} />}
 
         <div>
-            <span><i className="fas fa-star checked"></i></span>
-            <span><i className="fas fa-star checked"></i></span>
-            <span><i className="fas fa-star checked"></i></span>
-            <span><i className="fas fa-star"></i></span>
-            <span><i className="fas fa-star"></i></span>
-            <p>7.5/10 (2)</p>
+            <span onClick={event => {
+                event.preventDefault()
+                const rating = [id, 1]
+                onRating(rating)
+            }}><i className="fas fa-star"></i></span>
+
+            <span  onClick={event => {
+                event.preventDefault()
+                const rating = [id, 2]
+                onRating(rating)
+            }}><i className="fas fa-star"></i></span>
+
+            <span onClick={event => {
+                event.preventDefault()
+                const rating = [id, 3]
+                onRating(rating)
+            }}><i className="fas fa-star"></i></span>
+
+            <span onClick={event => {
+                event.preventDefault()
+                const rating = [id, 4]
+                onRating(rating)
+            }}><i className="fas fa-star"></i></span>
+
+            <span onClick={event => {
+                event.preventDefault()
+                const rating = [id, 5]
+                onRating(rating)
+            }}><i className="fas fa-star"></i></span>
+
+            <p>{`${rateAvg}/5 (${rateCount})`}</p>
             
         </div>
 
