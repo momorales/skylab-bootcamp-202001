@@ -191,12 +191,26 @@
   flex-wrap: wrap;
   list-style: none;
   text-align: center;
+  align-items: center;
+  align-content: center;
 }
 .results__card {
   width: 22%;
+  display: grid;
+  grid-template-rows: auto 1fr repeat(3, auto);
+  text-align: center;
 }
 .results__card img {
-  max-width: 90%;
+  grid-area: 2/1/2/1;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.fas {
+  font-size: 1.5em;
+}
+.fas.checked {
+  color: orange;
 }
 
 * {
