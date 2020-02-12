@@ -12,19 +12,6 @@ class App extends Component {
                 } else {
                     this.setState({ view: 'search', user, loggedIn: true, token})
                     
-                    // if (location.search) {
-                    //     const query = location.search.split('?')[1]
-                    //     debugger
-                    //     searchCards(query, token, locale, (error, cards) => {
-                    //         if (error) {
-                    //             this.__handleError__(error)
-                    //         } else {
-                    //             this.setState({ view: 'search', cards, user, query, locale })
-                    //         }
-                    //     })
-                    // } else {
-                    //     this.setState({ view: 'search', user })
-                    // }
                 }
             })
         } else {
@@ -100,26 +87,6 @@ class App extends Component {
         })
     }
 
-    handleToQualities = () => {
-        this.setState({ view: 'byqualities', cards: undefined})
-    }
-    
-    handleToClasses = () => {
-        this.setState({ view: 'byclasses', cards: undefined})
-    }
-    
-    handleToRaces = () => {
-        this.setState({ view: 'byraces', cards: undefined})
-    }
-   
-    handleToType = () => {
-        this.setState({ view: 'bytype', cards: undefined})
-    }
-  
-    handleToFaction = () => {
-        this.setState({ view: 'byfaction', cards: undefined})
-    }
-
     handleToggleWL = id => {
         try{
             const {token} = sessionStorage
@@ -157,8 +124,6 @@ class App extends Component {
                     this.handleDetails(id)
                     
                 }
-
-                    
             })
         }catch(error){
             this.__handleError__(error)
@@ -223,7 +188,6 @@ class App extends Component {
                 this.setState({ view: 'wishlisted', wishedCards })
             }
         })
-
     }
 
     handleUnwishlist = id => {
@@ -242,10 +206,7 @@ class App extends Component {
                         this.setState({ view: 'wishlisted', wishedCards })
                     }
                 })
-                
-            }
-
-                
+            }      
         })
     }
 
@@ -259,7 +220,6 @@ class App extends Component {
     }
 
     handleRating = rating => {
-        const key = Object.keys(rating)
         const { token } = sessionStorage
         toggleRating(token, rating, error => {
             if (error) {
@@ -268,8 +228,8 @@ class App extends Component {
                 const { view, locale, query } = this.state
                 if (view === 'search') {
                     this.handleSearch(query, locale)
-                } else if (view === 'detail') {
-                    this.handleDetails(key)
+                } else if (view === 'details') {
+                    this.handleDetails(rating[0])
                 } else if (view === 'wishlisted') {
                     this.handleToWishlist()
                 }
@@ -310,9 +270,9 @@ class App extends Component {
 
         { view === 'search' && loggedIn && cards && !card && <Results results={cards} onRating={handleRating} onItemClick={handleDetails} onWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
 
-        { view === 'details' && loggedIn && card && <Details detailInfo={card} onItemWL={handleToggleWLDetail} onItemDeck={handleToggleDeck} onBackClick={handleDetailBack}/>} 
+        { view === 'details' && loggedIn && card && <Details detailInfo={card} onRating={handleRating} onItemWL={handleToggleWLDetail} onItemDeck={handleToggleDeck} onBackClick={handleDetailBack}/>} 
         
-        { view === 'wishlisted' && loggedIn && wishedCards && <ResultsWL onToBack={handleBackFromWL} results={wishedCards} onItemClick={handleDetails} onWL={handleUnwishlist} onItemDeck={handleToggleDeck}/> }
+        { view === 'wishlisted' && loggedIn && wishedCards && <ResultsWL onToBack={handleBackFromWL} onRating={handleRating} results={wishedCards} onItemClick={handleDetails} onWL={handleUnwishlist} onItemDeck={handleToggleDeck}/> }
         </Fragment>
    }
 }

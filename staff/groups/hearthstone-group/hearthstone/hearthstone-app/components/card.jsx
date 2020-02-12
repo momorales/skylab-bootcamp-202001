@@ -13,31 +13,31 @@ function Card({ cardInfo: { id, name, image, isFav, rating, rateCount, rateAvg }
                 event.preventDefault()
                 const rating = [id, 1]
                 onRating(rating)
-            }}><i className="fas fa-star"></i></span>
+            }}><i className={`fas fa-star ${rating >= 1 ? 'checked' : ''}`}></i></span>
 
             <span  onClick={event => {
                 event.preventDefault()
                 const rating = [id, 2]
                 onRating(rating)
-            }}><i className="fas fa-star"></i></span>
+            }}><i className={`fas fa-star ${rating >= 2 ? 'checked' : ''}`}></i></span>
 
             <span onClick={event => {
                 event.preventDefault()
                 const rating = [id, 3]
                 onRating(rating)
-            }}><i className="fas fa-star"></i></span>
+            }}><i className={`fas fa-star ${rating >= 3 ? 'checked' : ''}`}></i></span>
 
             <span onClick={event => {
                 event.preventDefault()
                 const rating = [id, 4]
                 onRating(rating)
-            }}><i className="fas fa-star"></i></span>
+            }}><i className={`fas fa-star ${rating >= 4 ? 'checked' : ''}`}></i></span>
 
             <span onClick={event => {
                 event.preventDefault()
                 const rating = [id, 5]
                 onRating(rating)
-            }}><i className="fas fa-star"></i></span>
+            }}><i className={`fas fa-star ${rating >= 5 ? 'checked' : ''}`}></i></span>
 
             <p>{`${rateAvg}/5 (${rateCount})`}</p>
             

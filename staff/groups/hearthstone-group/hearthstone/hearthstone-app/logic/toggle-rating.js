@@ -36,7 +36,6 @@ function toggleRating(token, rating, callback) {
                 })
 
             } else {
-                debugger
                 let doesItExist = 0
 
                 for (let i = 0; i < user.rating.length; i++) {

@@ -27,7 +27,7 @@ function searchCards(query, token, locale, callback) {
             // const {error: _error} = user
             const user = JSON.parse(response.content)
             // if (_error) return callback(new Error(_error)) 
-            debugger
+            
             call('https://skylabcoders.herokuapp.com/api/v2/users/all', {
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
             },
@@ -66,7 +66,7 @@ function searchCards(query, token, locale, callback) {
                                         user.favs.includes(card.id) ? card.isFav = true : card.isFav = false
                                     })
                                 }
-                                debugger
+
                                 for (let i = 0; i < usersRating.length; i++) {
                                     let userRating = usersRating[i]
                                     
@@ -74,7 +74,7 @@ function searchCards(query, token, locale, callback) {
                                         results.map(card => {
                                             for (let j = 0; j < userRating.rating.length; j++) {
                                                 if (userRating.rating[j][0] === card.id) {
-                                                    card.rating = userRating.rating[j][1]
+                                                    // card.rating = userRating.rating[j][1]
                                                     card.rateCount++
                                                     card.rateAvg = mean(userRating.rating[j][1], card.totalValue, card.rateCount)
                                                     card.totalValue += userRating.rating[j][1]
@@ -84,9 +84,20 @@ function searchCards(query, token, locale, callback) {
                                                 
                                         })
                                     }
+                                    
                                 }
-                                console.log(results)
-                                debugger
+                                
+                                if (typeof user.rating !== 'undefined') {
+                                    for (let i = 0; i < results.length; i++) {
+                                        for (let j = 0; j < user.rating.length; j++) {
+
+                                            if (user.rating[j][0] === results[i].id) {
+                                                results[i].rating = user.rating[j][1]
+                                            }
+                                        }
+                                    }
+                                }
+ 
                                 callback(undefined, results)
                             }
                         })
