@@ -6,7 +6,7 @@ function retrieveCard(token, locale, id, callback) {
     const _token = token.split('.')
     const payload = JSON.parse(atob(_token[1])).sub
 
-    if (locale === '') locale = 'en_US'
+    if (locale === '' || typeof locale === 'undefined') locale = 'en_US'
 
     call(`https://skylabcoders.herokuapp.com/api/v2/users/${payload}`,{
 
@@ -15,11 +15,12 @@ function retrieveCard(token, locale, id, callback) {
         body: undefined
     }, (error, response) => {
         if(error) return callback(error)
-        if(response.content){
-            const {error : _error, user } = JSON.parse(response.content)
-            if (_error) return callback(new Error(_error)) 
 
-        }
+        if(response.status === 200){
+            const user  = JSON.parse(response.content)
+            // if (_error) return callback(new Error(_error)) 
+
+        
 
         call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EUNnUMPm3AYTiVNRZVQ05R4j4kka67IbEZ&id=${id}`, undefined,
          (error, response) => {
@@ -29,9 +30,16 @@ function retrieveCard(token, locale, id, callback) {
                 let detailInfo = JSON.parse(response.content)
                 detailInfo = detailInfo.cards[0]
 
-                callback(undefined, detailInfo)
+                if (typeof user.favs !== 'undefined') {
+                    user.favs.includes(id)? detailInfo.isFav = true : detailInfo.isFav = false
+                    callback(undefined, detailInfo)
+                } else {
+                    detailInfo.isFav = false
+                    callback(undefined, detailInfo)
+                }
             }
 
         })
+    }
     })
 }

@@ -1,4 +1,4 @@
-function Card({ cardInfo: { id, name, image } , onClick, onWL, onDeck}) {
+function Card({ cardInfo: { id, name, image, isFav } , onClick, onWL, onDeck}) {
     return <li className = "results__card">
         <h2>{name}</h2>
 
@@ -18,7 +18,14 @@ function Card({ cardInfo: { id, name, image } , onClick, onWL, onDeck}) {
             
         </div>
 
-        <button onClick={() => onWL(id)}>Add to wishlist</button>
+        {isFav && <button onClick={event => {
+            event.preventDefault()
+            onWL(id)}}>WISHLISTED!</button>}
+            
+        {!isFav && <button onClick={event => {
+            event.preventDefault()
+            onWL(id)}}>Add to wishlist</button>}
+
         <button onClick={() => onDeck(id)}>Add to deck</button>
     </li>
 }
