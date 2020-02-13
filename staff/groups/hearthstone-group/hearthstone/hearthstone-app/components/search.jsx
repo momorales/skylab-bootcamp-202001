@@ -18,25 +18,33 @@ function Search({ query, locale, onSubmit }) {
     }}>
 
         <h2>SEARCH CARDS</h2>
-        <input className="browser" type="text" name="query" placeholder="Type here to search of a card" />
-        <button>SEARCH</button>
+        <div className='submit-container'>
+            <input className="browser" type="text" name="query" placeholder="Type here to search of a card" />
+            <button className='submit-button'>SEARCH</button>
+        </div>
 
         <br></br>
-
-        Mana Cost: <input className="mana-cost" type="number" name="manacost" min="-1" max="10" />
-        Attack: <input className="mana-cost" type="number" name="attack" min="-1" max="100" />
-        Health: <input className="mana-cost" type="number" name="health" min="-1" max="100" />
-
-        <br></br>
-
-        <input type="radio"  name="rarity" value="basic" />Basic 
-        <input type="radio"  name="rarity" value="common" />Common 
-        <input type="radio"  name="rarity" value="rare" />Rare 
-        <input type="radio"  name="rarity" value="epic"/>Epic 
-        <input type="radio"  name="rarity" value="legendary"/>Legendary 
+        <div className='filter-container'>
+            <div>Mana Cost: <input className="mana-cost" type="number" name="manacost" min="-1" max="10" /></div>
+            <div>Attack: <input className="attack" type="number" name="attack" min="-1" max="100" /></div>
+            <div>Health: <input className="health" type="number" name="health" min="-1" max="100" /></div>
+        </div>
 
         <br></br>
+        <div className='rarity-names'>
+            <p>Basic</p> <p>Common</p><p>Rare</p> <p>Epic</p><p>Legendary</p><br></br>
 
+        </div>
+        <div className='rarity-container'>
+            <input type="radio"  name="rarity" value="basic" />
+            <input type="radio"  name="rarity" value="common" /> 
+            <input type="radio"  name="rarity" value="rare" />
+            <input type="radio"  name="rarity" value="epic"/> 
+            <input type="radio"  name="rarity" value="legendary"/> 
+        </div>
+
+        <br></br>
+    
         <input type="radio" name="byclass" value="druid" />Druid
         <input type="radio" name="byclass" value="hunter" />Hunter
         <input type="radio" name="byclass" value="mage" />Mage
@@ -50,11 +58,23 @@ function Search({ query, locale, onSubmit }) {
 
         <br></br>
 
-        <input type='submit' value="Select language" />
-        <input type='radio' name='language' value='en_US' /> English (USA)
-        <input type='radio' name='language' value='es_ES' /> Spanish
-        <input type='radio' name='language' value='de_DE' /> German
-        <input type='radio' name='language' value='fr_FR' /> French
+        <div className='language-container'>
+            <input className='language-button' type='submit' value="Select language" />
+            <div className='language-names'>
+                <p>English (USA)</p>
+                <p>Spanish</p>
+                <p>German</p>
+                <p>French</p>
+
+            </div>
+            <div className='language-filter'>
+                <input type='radio' name='language' value='en_US' />
+                <input type='radio' name='language' value='es_ES' /> 
+                <input type='radio' name='language' value='de_DE' /> 
+                <input type='radio' name='language' value='fr_FR' /> 
+
+            </div>
+        </div>
 
     </form>
 }

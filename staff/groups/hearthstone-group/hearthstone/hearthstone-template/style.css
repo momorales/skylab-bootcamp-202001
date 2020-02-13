@@ -75,7 +75,7 @@ a {
     box-shadow: inset 0 0 5em 2.5em black;
   }
 }
-.btns-logged__deck, .btns-logged__wishlist, .feedback, .accordion, .mana-cost, .search .browser, .search {
+.btns-logged__deck, .btns-logged__wishlist, .feedback {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
@@ -90,7 +90,7 @@ a {
   background-size: cover;
 }
 
-.header__deck, .register__textbox, .details__btn-deck, .details__btn-wishlist {
+.header__deck, .results__card button, .search .language-container .language-button, .search .submit-container .submit-button, .register__textbox, .details__btn-deck, .details__btn-wishlist {
   padding: 2.5% 4%;
   border-radius: 1em;
   background-image: linear-gradient(#f3e5c000, #cf9a3485);
@@ -98,7 +98,7 @@ a {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.container-types p, .register .gender-radio, .register ::placeholder, .container-register, .details {
+.results__card button, .results__card h2, .search, .container-types p, .register .gender-radio, .register ::placeholder, .container-register, .details {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
@@ -177,7 +177,7 @@ button:active {
     max-height: 383px;
   }
 }
-.btns-logged__deck, .btns-logged__wishlist, .feedback, .accordion, .mana-cost, .search .browser, .search {
+.btns-logged__deck, .btns-logged__wishlist, .feedback {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
@@ -192,7 +192,7 @@ button:active {
   background-size: cover;
 }
 
-.header__deck, .register__textbox, .details__btn-wishlist, .details__btn-deck {
+.header__deck, .results__card button, .search .language-container .language-button, .search .submit-container .submit-button, .register__textbox, .details__btn-wishlist, .details__btn-deck {
   padding: 2.5% 4%;
   border-radius: 1em;
   background-image: linear-gradient(#f3e5c000, #cf9a3485);
@@ -200,7 +200,7 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.container-types p, .register .gender-radio, .register ::placeholder, .container-register, .details {
+.results__card button, .results__card h2, .search, .container-types p, .register .gender-radio, .register ::placeholder, .container-register, .details {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
@@ -333,7 +333,7 @@ button:active {
     margin: 2% 32.5%;
   }
 }
-.btns-logged__deck, .btns-logged__wishlist, .feedback, .accordion, .mana-cost, .search .browser, .search {
+.btns-logged__deck, .btns-logged__wishlist, .feedback {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
@@ -348,7 +348,7 @@ button:active {
   background-size: cover;
 }
 
-.header__deck, .details__btn-wishlist, .details__btn-deck, .register__textbox {
+.header__deck, .results__card button, .search .language-container .language-button, .search .submit-container .submit-button, .details__btn-wishlist, .details__btn-deck, .register__textbox {
   padding: 2.5% 4%;
   border-radius: 1em;
   background-image: linear-gradient(#f3e5c000, #cf9a3485);
@@ -356,7 +356,7 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p {
+.results__card button, .results__card h2, .search, .details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
@@ -364,29 +364,124 @@ button:active {
 }
 
 .search {
-  width: 60%;
-  margin: 5% 20%;
+  background: url("background.jpg") center;
+  background-repeat: repeat-y;
+  width: 100%;
+  justify-content: center;
+  background-size: cover;
+  width: 100vw;
 }
-.search > * {
-  margin: 1.5% auto;
+.search h2 {
+  padding-top: 3%;
+  font-size: 2em;
+  text-align: center;
 }
-.search .browser {
-  width: 60%;
+.search .submit-container {
+  width: 90%;
+  margin: 2% 5%;
+  display: flex;
+  flex-direction: column;
+}
+.search .submit-container .submit-button {
+  width: 50%;
+  margin: 3% auto;
+}
+.search .filter-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.search .filter-container > * {
+  width: 70%;
+  margin: 3% auto;
+}
+.search .rarity-names {
+  display: flex;
+  justify-content: space-around;
+}
+.search .rarity-container {
+  width: 90%;
+  margin: auto 5%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+}
+.search .rarity-container input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search .rarity-container p {
+  text-align: center;
+}
+.search .language-container {
+  width: 95%;
+  margin: auto 2.5%;
+  display: flex;
+  flex-direction: column;
+}
+.search .language-container .language-button {
+  width: 80%;
+  margin: 3% 10%;
+}
+.search .language-container .language-names {
+  margin: 3% auto 0% auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.search .language-container .language-filter {
+  margin-bottom: 5%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
-.accordion, .mana-cost {
-  cursor: pointer;
+button {
+  transition: opacity 0.2s;
+}
+button:hover {
+  opacity: 0.5;
+}
+button:active {
+  background-image: linear-gradient(#5f514b, #ac8e74);
+  transform: translate(0.1em, 0.1em);
 }
 
-.container-filters > * {
-  margin: 1.5%;
-  padding: 0 18px;
-  display: none;
-  background-color: white;
-  overflow: hidden;
+@media screen and (min-width: 768px) {
+  .search .submit-container {
+    width: 40%;
+    margin: auto 30%;
+  }
+  .search .filter-container {
+    width: 60%;
+    margin: auto 20%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    text-align: center;
+  }
+  .search .rarity-names {
+    width: 50%;
+    margin: auto 25%;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+  }
+  .search .rarity-container {
+    width: 40%;
+    margin: auto 25%;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+  }
+  .search .language-container {
+    width: 40%;
+    margin: 3% 30%;
+  }
 }
-
-.btns-logged__deck, .btns-logged__wishlist, .feedback, .search, .search .browser, .accordion, .mana-cost {
+.btns-logged__deck, .btns-logged__wishlist, .feedback {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
@@ -401,7 +496,7 @@ button:active {
   background-size: cover;
 }
 
-.header__deck, .details__btn-wishlist, .details__btn-deck, .register__textbox {
+.header__deck, .results__card button, .details__btn-wishlist, .details__btn-deck, .register__textbox, .search .submit-container .submit-button, .search .language-container .language-button {
   padding: 2.5% 4%;
   border-radius: 1em;
   background-image: linear-gradient(#f3e5c000, #cf9a3485);
@@ -409,7 +504,7 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p {
+.results__card button, .results__card h2, .details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
@@ -423,7 +518,7 @@ button:active {
   color: red;
 }
 
-.btns-logged__deck, .btns-logged__wishlist, .search, .search .browser, .accordion, .mana-cost, .feedback {
+.btns-logged__deck, .btns-logged__wishlist, .feedback {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
@@ -438,7 +533,7 @@ button:active {
   background-size: cover;
 }
 
-.header__deck, .details__btn-wishlist, .details__btn-deck, .register__textbox {
+.header__deck, .results__card button, .details__btn-wishlist, .details__btn-deck, .register__textbox, .search .submit-container .submit-button, .search .language-container .language-button {
   padding: 2.5% 4%;
   border-radius: 1em;
   background-image: linear-gradient(#f3e5c000, #cf9a3485);
@@ -446,14 +541,14 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p {
+.results__card button, .results__card h2, .details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
   font-family: Optima;
 }
 
-.btns-logged__deck, .btns-logged__wishlist, .search, .search .browser, .accordion, .mana-cost, .feedback {
+.btns-logged__deck, .btns-logged__wishlist, .feedback {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
@@ -468,7 +563,7 @@ button:active {
   background-size: cover;
 }
 
-.header__deck, .details__btn-wishlist, .details__btn-deck, .register__textbox {
+.header__deck, .results__card button, .details__btn-wishlist, .details__btn-deck, .register__textbox, .search .submit-container .submit-button, .search .language-container .language-button {
   padding: 2.5% 4%;
   border-radius: 1em;
   background-image: linear-gradient(#f3e5c000, #cf9a3485);
@@ -476,7 +571,7 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p {
+.results__card button, .results__card h2, .details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
@@ -497,7 +592,7 @@ button:active {
   grid-area: 1/3/1/3;
 }
 
-.search, .search .browser, .accordion, .mana-cost, .feedback, .btns-logged__wishlist, .btns-logged__deck {
+.feedback, .btns-logged__wishlist, .btns-logged__deck {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
@@ -512,7 +607,7 @@ button:active {
   background-size: cover;
 }
 
-.header__deck, .details__btn-wishlist, .details__btn-deck, .register__textbox {
+.header__deck, .results__card button, .details__btn-wishlist, .details__btn-deck, .register__textbox, .search .submit-container .submit-button, .search .language-container .language-button {
   padding: 2.5% 4%;
   border-radius: 1em;
   background-image: linear-gradient(#f3e5c000, #cf9a3485);
@@ -520,17 +615,22 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p {
+.results__card button, .results__card h2, .details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
   font-family: Optima;
 }
 
+.results-container {
+  background-color: grey;
+  box-shadow: inset 0 0 2.25em 0.5em black;
+}
+
 .results {
+  padding: 3% auto;
   display: flex;
-  width: 90%;
-  margin-left: 5%;
+  width: 100%;
   flex-wrap: wrap;
   list-style: none;
   text-align: center;
@@ -538,15 +638,48 @@ button:active {
   align-content: center;
 }
 .results__card {
-  width: 22%;
   display: grid;
   grid-template-rows: auto 1fr repeat(3, auto);
-  text-align: center;
+  width: 95%;
+  margin: 3% 2.5%;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 1em;
+  border: 1px solid yellow;
+  box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.6);
+}
+.results__card h2 {
+  margin-top: 3%;
+  font-size: 2.5em;
 }
 .results__card img {
-  grid-area: 2/1/2/1;
   width: 90%;
-  margin-left: 5%;
+  margin: auto 5%;
+  transition: transform 0.2s;
+}
+.results__card img:hover {
+  transform: scale(1.1);
+}
+.results__card button {
+  transition: opacity 0.2s;
+  width: 85%;
+  margin: 4.45% 7.5%;
+  font-size: 1.2em;
+}
+.results__card button:hover {
+  opacity: 0.5;
+}
+.results__card button:active {
+  background-image: linear-gradient(#5f514b, #ac8e74);
+  transform: translate(0.1em, 0.1em);
+}
+.results__card button.checked-wl {
+  background-image: linear-gradient(#463b37, #8d745f);
+}
+.results__card .rating-stars {
+  text-shadow: 0 0 0.2em white;
+  font-weight: bolder;
+  font-size: 1.6em;
 }
 
 .fas {
@@ -556,7 +689,29 @@ button:active {
   color: orange;
 }
 
-.search, .search .browser, .accordion, .mana-cost, .feedback, .btns-logged__wishlist, .btns-logged__deck {
+button {
+  transition: opacity 0.2s;
+}
+button:hover {
+  opacity: 0.5;
+}
+button:active {
+  background-image: linear-gradient(#5f514b, #ac8e74);
+  transform: translate(0.1em, 0.1em);
+}
+
+@media screen and (min-width: 768px) {
+  .results {
+    width: 95%;
+    margin: auto 2.5%;
+    justify-content: space-around;
+  }
+  .results__card {
+    width: 21%;
+    margin: 0.5%;
+  }
+}
+.feedback, .btns-logged__wishlist, .btns-logged__deck {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
@@ -571,7 +726,7 @@ button:active {
   background-size: cover;
 }
 
-.header__deck, .details__btn-wishlist, .details__btn-deck, .register__textbox {
+.header__deck, .details__btn-wishlist, .details__btn-deck, .register__textbox, .search .submit-container .submit-button, .search .language-container .language-button, .results__card button {
   padding: 2.5% 4%;
   border-radius: 1em;
   background-image: linear-gradient(#f3e5c000, #cf9a3485);
@@ -579,7 +734,7 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p {
+.details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search, .results__card h2, .results__card button {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;

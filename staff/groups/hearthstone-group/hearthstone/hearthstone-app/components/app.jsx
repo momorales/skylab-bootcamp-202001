@@ -288,7 +288,7 @@ class App extends Component {
          
         return <Fragment>
 
-        {user && <BtnsLogged onWishlist={handleToWishlist} onDeck={handleToDeck}/>}
+        {user && <BtnsLogged onWishlist={handleToWishlist} onLogout={handleLogout}/>}
 
         {/* {user && <Fragment><h2>{user.name} <button onClick={handleLogout}>Logout</button></h2></Fragment>} */}
 

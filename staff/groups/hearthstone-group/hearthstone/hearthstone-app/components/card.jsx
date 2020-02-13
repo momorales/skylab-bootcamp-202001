@@ -8,7 +8,7 @@ function Card({ cardInfo: { id, name, image, isFav, rating, rateCount, rateAvg }
        { !image && <img src="https://legaldbol.com/wp-content/uploads/2019/03/48-Free-Printable-Card-Template-Hearthstone-in-Photoshop-by-Card-Template-Hearthstone.jpg"
             onClick={() => onClick(id)} />}
 
-        <div>
+        <div className='rating-stars'>
             <span onClick={event => {
                 event.preventDefault()
                 const rating = [id, 1]
@@ -43,7 +43,7 @@ function Card({ cardInfo: { id, name, image, isFav, rating, rateCount, rateAvg }
             
         </div>
 
-        {isFav && <button onClick={event => {
+        {isFav && <button className='checked-wl' onClick={event => {
             event.preventDefault()
             onWL(id)}}>WISHLISTED!</button>}
             
