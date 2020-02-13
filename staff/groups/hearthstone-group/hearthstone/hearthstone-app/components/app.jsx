@@ -232,7 +232,6 @@ class App extends Component {
                     if (error) {
                         this.__handleError__(error)
                     } else {
-                        debugger
                         if (!wishedCards.length) {
                             const { query, locale } = this.state
                             address.hash = `search/${query}`
