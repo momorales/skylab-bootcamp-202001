@@ -15,13 +15,13 @@ function call(url, options = {}, callback) {
         xhr.setRequestHeader(key, headers[key])
 
     xhr.addEventListener('load', function () {
-        callback(undefined, {
+        return callback(undefined, {
             content: this.responseText,
             status: this.status
         })
     })
 
-    xhr.addEventListener('error', () => callback(new Error('network error')))
+    xhr.addEventListener('error', () => {return callback(new Error('network error'))})
 
     xhr.send(body)
 }

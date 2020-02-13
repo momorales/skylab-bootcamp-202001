@@ -1,9 +1,11 @@
 function searchCards(query, token, locale, callback) {
+    debugger
     if (typeof query !== 'undefined') {
         if (typeof query !== 'string') throw new TypeError(`${query} is not a string`)
     }
 
     if (typeof token !== 'string') throw new TypeError(`${token} is not a string`)
+    if (typeof callback !== 'function') throw new TypeError(`${callback} is not a function`)
 
     if (locale === '' || typeof locale === 'undefined') locale = 'en_US'
 
@@ -11,7 +13,7 @@ function searchCards(query, token, locale, callback) {
     const payload = JSON.parse(atob(_token[1])).sub
 
     function mean(value1, value2, div) {
-        return parseFloat(((value1+value2)/div).toFixed(2))
+        return parseFloat(((value1 + value2) / div).toFixed(2))
     }
 
 
@@ -24,34 +26,36 @@ function searchCards(query, token, locale, callback) {
         if (error) return callback(error)
 
         if (response.status === 200) {
-            // const {error: _error} = user
             const user = JSON.parse(response.content)
-            // if (_error) return callback(new Error(_error)) 
-            
+            const {error: _error} = user
+            if (_error) return callback(new Error(_error)) 
+
             call('https://skylabcoders.herokuapp.com/api/v2/users/all', {
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
             },
                 (error, response) => {
                     if (error) return callback(error)
 
-                   
-                        const users = JSON.parse(response.content)
-                        
-                        let usersRating = []
-                        users.map(user => {
-                            (typeof user['hearthstone'] !== 'undefined') ? usersRating.push(user) : false
-                        })
 
-                        call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EU7c4yvfvI83T87hQBSii8r3IpHRQNf2c2&pageSize=9999&${query}`, {
-                            method: 'GET'
-                        }, (error, response) => {
-                            if (error) return callback(error)
+                    const users = JSON.parse(response.content)
+                    const {error: _error} = users
+                    if (_error) return callback(new Error(_error)) 
 
-                            if (response.status === 200) {
-                                let results = JSON.parse(response.content)
+                    let usersRating = []
+                    users.map(user => {
+                        (typeof user['hearthstone'] !== 'undefined') ? usersRating.push(user) : false
+                    })
 
+                    call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EU7c4yvfvI83T87hQBSii8r3IpHRQNf2c2&pageSize=9999&${query}`, {
+                        method: 'GET'
+                    }, (error, response) => {
+                        if (error) return callback(error)
 
-                                results = results.cards
+                        if (response.status === 200) {
+                            let results = JSON.parse(response.content)
+
+                            results = results.cards
+                            if (results.length) {
 
                                 results.map(card => {
                                     card.isFav = false
@@ -69,7 +73,7 @@ function searchCards(query, token, locale, callback) {
 
                                 for (let i = 0; i < usersRating.length; i++) {
                                     let userRating = usersRating[i]
-                                    
+
                                     if (typeof userRating.rating !== 'undefined') {
                                         results.map(card => {
                                             for (let j = 0; j < userRating.rating.length; j++) {
@@ -81,12 +85,12 @@ function searchCards(query, token, locale, callback) {
                                                 }
 
                                             }
-                                                
+
                                         })
                                     }
-                                    
+
                                 }
-                                
+
                                 if (typeof user.rating !== 'undefined') {
                                     for (let i = 0; i < results.length; i++) {
                                         for (let j = 0; j < user.rating.length; j++) {
@@ -97,11 +101,14 @@ function searchCards(query, token, locale, callback) {
                                         }
                                     }
                                 }
- 
-                                callback(undefined, results)
+
+                                return callback(undefined, results)
+                            } else {
+                                return callback(new Error('No results'))
                             }
-                        })
-                    
+                        }
+                    })
+
                 })
         }
     })

@@ -203,7 +203,14 @@ class App extends Component {
                     if (error) {
                         this.__handleError__(error)
                     } else {
-                        this.setState({ view: 'wishlisted', wishedCards })
+                        debugger
+                        if (!wishedCards.length) {
+                            const { query, locale } = this.state
+                            this.handleSearch(query, locale)
+                            this.setState({ view: 'search', wishedCards: undefined })
+                        } else {
+                            this.setState({ view: 'wishlisted', wishedCards })
+                        }
                     }
                 })
             }      
