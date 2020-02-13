@@ -248,7 +248,7 @@ class App extends Component {
 
         {/* {user && <Fragment><h2>{user.name} <button onClick={handleLogout}>Logout</button></h2></Fragment>} */}
 
-        { <h1>{title}</h1> }
+        {/* {logo && view !== 'details' && <h1><img src='../hearthstone-template/logo.png' className= 'logo' /></h1> } */}
 
         { view === 'login' && <Login onSubmit={handleLogin} onToRegister={handleGoToRegister} error={error}/> }
        
