@@ -1,24 +1,78 @@
 @import config
+
+.container-register
+    @extend %generic-bg
+    @extend %general-font
+    display: flex
+    color: black
+    justify-content: center
 .register
-    @extend %generic-border
     display: flex
     flex-direction: column
     width: 35%
     margin: 5% 32.5%
+    justify-content: center
     &>*
         margin-bottom: 4%
     h2
         text-align: center
-    .textbox
-        @extend %generic-border
+    &__input-container
+        display: flex
+        justify-content: center
+        flex-direction: column
+    &__textbox
+        @extend %general-buttons
         padding: 2%
-    .age
-        @extend %generic-border
-        width: 20%
+        width: 70%
+        margin: 0 auto
+        margin-bottom: 4%
+        
+    ::placeholder
+        @extend %general-font
+        color: black!important
+
     .gender-radio
         display: flex
         flex-direction: row
         font-size: 0.5em
+        @extend %general-font
+        color: black!important
+        box-shadow: none
+              
     .button, a
-        @extend %generic-border
+      
         text-align: center
+
+.container-types
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+    p 
+        @extend %general-font
+        padding-top: 3px
+        color: black!important
+.text-age
+    height: 100%
+    width: 40%
+    padding-top:20px
+    
+.container-age
+    display: flex
+    align-items: baseline
+
+.age
+    width: 40%
+    // height: vh
+    font-size: 0.8rem
+    box-shadow: none
+    padding: 3px
+
+.onToLogin
+    background-color: #418adab5
+    cursor: pointer
+    width: 40%
+    margin: auto 30%
+
+    &:hover
+        background-color: #418ada
+   

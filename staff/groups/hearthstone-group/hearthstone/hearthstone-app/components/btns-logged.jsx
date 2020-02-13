@@ -1,15 +1,31 @@
-function BtnsLogged ({user, onWishlist, onDeck}){
-    return <div className = 'btns-logged'>
-        <a href="" className="btns-logged__wishlist" onClick= {event => {
-            event.preventDefault()
-            onWishlist()
-        }}>CHECK WISHLIST</a> 
+function BtnsLogged({ onWishlist, onDeck }) {
+    return (
+        <header className='header'>
 
-    <h2>{`Hi ${user.name}! Welcome back!`}</h2>
-        
-        <a href="" className="btns-logged__deck" onClick= {event => {
-            event.preventDefault()
-            onDeck()
-            }} >CHECK YOUR VIRTUAL DECK</a> 
-    </div>
+            <section className='header__image-container'>
+                
+                    <img src='../hearthstone-template/logo.png' className='header__logo' />
+                
+            </section>
+
+            <section className='header__buttons-container'>
+
+                <div className='header__button'>
+                    <button className="header__deck"><a href="" className='header__anchor' onClick={event => {
+                        event.preventDefault()
+                        onDeck()
+                    }} >LOGOUT</a>
+                    </button>
+                </div>
+                
+                <div className='header__button'>
+                    <button className="header__deck" ><a href="" className='header__anchor' onClick={event => {
+                        event.preventDefault()
+                        onWishlist()
+                    }}>WISHLIST</a></button>
+                </div>
+
+            </section>
+        </header>
+    )
 }

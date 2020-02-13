@@ -1,19 +1,26 @@
-function Details({ detailInfo: { image, name, id, cardSetId, text, flavorText, isFav, rating, rateAvg, rateCount }, onRating, onBackClick, onItemWL, onItemDeck }) {
+function Details({ detailInfo: { image, name, id, cardSetId, text, flavorText, isFav, rating, rateAvg, rateCount },user, onRating, onBackClick, onItemWL, onItemDeck }) {
     return <div className='details'>
 
-        <a href='' onClick={event => {
+        <h2 className='details__nameuser'>{`Hi ${user.name}! Welcome back!`}</h2>
+
+        <a href=''className='details__arrow' onClick={event => {
             event.preventDefault()
             onBackClick()
-        }}>BACK</a>
-        {image && <img src={image} />}
-        {!image && <img src="https://legaldbol.com/wp-content/uploads/2019/03/48-Free-Printable-Card-Template-Hearthstone-in-Photoshop-by-Card-Template-Hearthstone.jpg" />}
-        <ul className='card-info'>
-            <li><b>Name: </b>{`${name} (${id})`}</li>
-            <li><b>Card Set: </b>{cardSetId}</li>
-            <li><b>Description: </b>{text}</li>
-            <li><b>Flavor: </b><i>{`"${flavorText}"`}</i></li>
-        </ul>
-        <div>
+        }}><i className="fas fa-arrow-left"></i></a>
+
+        {image && <img src={image} className="details__image"/>}
+        {!image && <img className="details__image" src="https://legaldbol.com/wp-content/uploads/2019/03/48-Free-Printable-Card-Template-Hearthstone-in-Photoshop-by-Card-Template-Hearthstone.jpg" />}
+       
+        <div className='details__container'>
+            <ul className='card-info'>
+                <li><b>Name: </b>{`${name} (${id})`}</li>
+                <li><b>Card Set: </b>{cardSetId}</li>
+                <li><b>Description: </b>{text}</li>
+                <li><b>Flavor: </b><i>{`"${flavorText}"`}</i></li>
+            </ul>
+        </div>
+       
+        <div className='details__container-rating'>
             <span onClick={event => {
                 event.preventDefault()
                 const rating = [id, 1]
@@ -47,22 +54,23 @@ function Details({ detailInfo: { image, name, id, cardSetId, text, flavorText, i
             <p>{`${rateAvg}/5 (${rateCount})`}</p>
             
         </div>
-        
-        {!isFav && <button className='btn-wishlist' onClick={event => {
+        <div className='details__adds'>
+        {!isFav && <button className='details__btn-wishlist' onClick={event => {
             event.preventDefault()
             onItemWL(id)
         }}>Add to wishlist</button>}
 
-        {isFav && <button className='btn-wishlist' onClick={event => {
+        {isFav && <button className='details__btn-wishlist' onClick={event => {
             event.preventDefault()
             onItemWL(id)
         }}>WISHLISTED!</button>}
+        
 
-
-        <button className='btn-deck' onClick={event => {
+        <button className='details__btn-deck' onClick={event => {
             event.preventDefault()
             onItemDeck(id)
         }}>Add to deck</button>
+        </div>
     </div>
 }
 

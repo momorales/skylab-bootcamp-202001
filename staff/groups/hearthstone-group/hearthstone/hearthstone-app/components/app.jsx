@@ -244,7 +244,7 @@ class App extends Component {
          
         return <Fragment>
 
-        {user && <BtnsLogged user={user} onWishlist={handleToWishlist} onDeck={handleToDeck}/>}
+        {user && <BtnsLogged onWishlist={handleToWishlist} onDeck={handleToDeck}/>}
 
         {/* {user && <Fragment><h2>{user.name} <button onClick={handleLogout}>Logout</button></h2></Fragment>} */}
 
@@ -270,7 +270,7 @@ class App extends Component {
 
         { view === 'search' && loggedIn && cards && !card && <Results results={cards} onRating={handleRating} onItemClick={handleDetails} onWL={handleToggleWL} onItemDeck={handleToggleDeck}/>}
 
-        { view === 'details' && loggedIn && card && <Details detailInfo={card} onRating={handleRating} onItemWL={handleToggleWLDetail} onItemDeck={handleToggleDeck} onBackClick={handleDetailBack}/>} 
+        { view === 'details' && loggedIn && card && <Details user={user} detailInfo={card} onRating={handleRating} onItemWL={handleToggleWLDetail} onItemDeck={handleToggleDeck} onBackClick={handleDetailBack}/>} 
         
         { view === 'wishlisted' && loggedIn && wishedCards && <ResultsWL onToBack={handleBackFromWL} onRating={handleRating} results={wishedCards} onItemClick={handleDetails} onWL={handleUnwishlist} onItemDeck={handleToggleDeck}/> }
         </Fragment>
