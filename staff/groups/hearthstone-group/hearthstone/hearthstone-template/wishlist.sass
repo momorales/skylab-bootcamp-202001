@@ -1,0 +1,36 @@
+.wishlist
+    @extend %generic-bg
+    display: flex
+    flex-direction: column   
+    height: 100vh
+
+    &__container-card
+        height: 100vh
+
+    &__arrow
+        text-decoration: none
+        font-size: 1.3rem
+        color:#7a3613
+        margin: 5px 0 0 20px
+        background: #00000000
+        border: none
+.btn-card
+    margin-bottom: 10px
+
+    &__fav
+        @extend %general-buttons
+        @extend %general-font
+        margin-bottom: 10px
+
+.results
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+     
+    &__card
+        @extend %item-looks
+        margin-bottom: 3%
+
+.fas
+    &__checked
+        box-shadow: none
