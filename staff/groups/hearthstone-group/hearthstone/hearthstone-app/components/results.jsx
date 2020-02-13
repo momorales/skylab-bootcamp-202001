@@ -1,4 +1,4 @@
-function Results({ results, onItemClick, onWL, onItemDeck }) { debugger
+function Results({ results, onItemClick, onWL, onItemDeck, onRating }) { debugger
     return <div>
         <ul className="results" >
             {results.map(result =>
@@ -6,7 +6,8 @@ function Results({ results, onItemClick, onWL, onItemDeck }) { debugger
                     cardInfo={result}
                     onClick={onItemClick}
                     onWL={onWL}
-                    onDeck={onItemDeck} />
+                    onDeck={onItemDeck} 
+                    onRating={onRating}/>
             )}
         </ul>
     </div>

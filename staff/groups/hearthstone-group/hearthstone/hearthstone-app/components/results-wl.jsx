@@ -1,4 +1,4 @@
-function ResultsWL({ results, onToBack, onItemClick, onWL, onItemDeck }) { debugger
+function ResultsWL({ results, onToBack, onItemClick, onWL, onItemDeck, onRating }) { debugger
     return <div>
         <button onClick={event => {
             event.preventDefault()
@@ -10,7 +10,8 @@ function ResultsWL({ results, onToBack, onItemClick, onWL, onItemDeck }) { debug
                     cardInfo={result}
                     onClick={onItemClick}
                     onWL={onWL}
-                    onDeck={onItemDeck} />
+                    onDeck={onItemDeck}
+                    onRating={onRating} />
             )}
         </ul>
     </div>
