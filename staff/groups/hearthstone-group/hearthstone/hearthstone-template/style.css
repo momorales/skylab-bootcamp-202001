@@ -59,13 +59,22 @@ input {
 a {
   padding-bottom: 5%;
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
+  color: black;
+  font-weight: bolder;
+  text-shadow: 0 0 0.25em white;
 }
 
 .login > * {
   margin-top: 2rem;
 }
 
+@media screen and (min-width: 768px) {
+  .container-login {
+    background: url("treeLogin.jpg") center no-repeat, url("background.jpg");
+    box-shadow: inset 0 0 5em 2.5em black;
+  }
+}
 .btns-logged__deck, .btns-logged__wishlist, .feedback, .accordion, .mana-cost, .search .browser, .search {
   padding: 3%;
   border: 3px solid #2c2c2c;
@@ -73,7 +82,7 @@ a {
   box-shadow: 0.3em 0.3em black;
 }
 
-.container-register, .details {
+.details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -175,7 +184,7 @@ button:active {
   box-shadow: 0.3em 0.3em black;
 }
 
-.container-register, .details {
+.details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -199,6 +208,9 @@ button:active {
 }
 
 .container-register {
+  background: url("background.jpg") center;
+  height: 110vh;
+  max-width: 100%;
   display: flex;
   color: black;
   justify-content: center;
@@ -207,25 +219,28 @@ button:active {
 .register {
   display: flex;
   flex-direction: column;
-  width: 35%;
-  margin: 5% 32.5%;
+  width: 55%;
+  margin: 5% 22.5%;
   justify-content: center;
 }
 .register > * {
   margin-bottom: 4%;
 }
 .register h2 {
+  display: flex;
+  width: 100%;
+  justify-content: center;
   text-align: center;
 }
 .register__input-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 .register__textbox {
   padding: 2%;
-  width: 70%;
-  margin: 0 auto;
+  width: 100%;
   margin-bottom: 4%;
 }
 .register ::placeholder {
@@ -239,13 +254,13 @@ button:active {
   box-shadow: none;
 }
 .register .button, .register a {
+  margin: 2% auto;
   text-align: center;
 }
 
 .container-types {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
 }
 .container-types p {
   padding-top: 3px;
@@ -260,7 +275,7 @@ button:active {
 
 .container-age {
   display: flex;
-  align-items: baseline;
+  justify-content: center;
 }
 
 .age {
@@ -270,16 +285,54 @@ button:active {
   padding: 3px;
 }
 
+.container-gender {
+  display: flex;
+  justify-content: space-between;
+  margin: auto 2%;
+}
+
 .onToLogin {
   background-color: #418adab5;
   cursor: pointer;
-  width: 40%;
-  margin: auto 30%;
+  width: 60%;
+  margin: 2% 20%;
 }
 .onToLogin:hover {
   background-color: #418ada;
 }
 
+@media screen and (min-width: 768px) {
+  .container-register {
+    background: url("background.jpg") center no-repeat;
+    width: 100%;
+    justify-content: center;
+    height: 100%;
+    background-size: cover;
+  }
+
+  .register {
+    width: 75%;
+    margin: 3% 12.5%;
+  }
+  .register h2 img {
+    max-height: 55vh;
+    height: auto;
+  }
+  .register__input-container {
+    width: 35%;
+    margin: auto 32.5%;
+  }
+
+  .container-types {
+    width: 35%;
+    margin: auto 32.5%;
+  }
+
+  .onToLogin {
+    width: 35%;
+    margin: 2% 32.5%;
+  }
+}
 .btns-logged__deck, .btns-logged__wishlist, .feedback, .accordion, .mana-cost, .search .browser, .search {
   padding: 3%;
   border: 3px solid #2c2c2c;
@@ -287,7 +340,7 @@ button:active {
   box-shadow: 0.3em 0.3em black;
 }
 
-.details, .container-register {
+.details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -340,7 +393,7 @@ button:active {
   box-shadow: 0.3em 0.3em black;
 }
 
-.details, .container-register {
+.details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -377,7 +430,7 @@ button:active {
   box-shadow: 0.3em 0.3em black;
 }
 
-.details, .container-register {
+.details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -407,7 +460,7 @@ button:active {
   box-shadow: 0.3em 0.3em black;
 }
 
-.details, .container-register {
+.details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -451,7 +504,7 @@ button:active {
   box-shadow: 0.3em 0.3em black;
 }
 
-.details, .container-register {
+.details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -510,7 +563,7 @@ button:active {
   box-shadow: 0.3em 0.3em black;
 }
 
-.details, .container-register {
+.details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;

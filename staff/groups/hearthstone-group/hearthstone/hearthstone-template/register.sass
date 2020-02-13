@@ -1,30 +1,37 @@
 @import config
 
 .container-register
-    @extend %generic-bg
+    background: url('background.jpg') center
+    height: 110vh
+    max-width: 100%
     @extend %general-font
     display: flex
     color: black
     justify-content: center
+
 .register
     display: flex
     flex-direction: column
-    width: 35%
-    margin: 5% 32.5%
+    width: 55%
+    margin: 5% 22.5%
     justify-content: center
     &>*
         margin-bottom: 4%
     h2
+        display: flex
+        width: 100%
+        justify-content: center
         text-align: center
+
     &__input-container
         display: flex
         justify-content: center
+        align-items: center
         flex-direction: column
     &__textbox
         @extend %general-buttons
         padding: 2%
-        width: 70%
-        margin: 0 auto
+        width: 100%
         margin-bottom: 4%
         
     ::placeholder
@@ -38,15 +45,14 @@
         @extend %general-font
         color: black!important
         box-shadow: none
-              
+            
     .button, a
-      
+        margin: 2% auto
         text-align: center
 
 .container-types
     display: flex
-    justify-content: space-between
-    align-items: flex-end
+    flex-direction: column
     p 
         @extend %general-font
         padding-top: 3px
@@ -58,7 +64,7 @@
     
 .container-age
     display: flex
-    align-items: baseline
+    justify-content: center
 
 .age
     width: 40%
@@ -67,12 +73,46 @@
     box-shadow: none
     padding: 3px
 
+.container-gender
+    display: flex
+    justify-content: space-between
+    margin: auto 2%
+
 .onToLogin
     background-color: #418adab5
     cursor: pointer
-    width: 40%
-    margin: auto 30%
+    width: 60%
+    margin: 2% 20%
 
     &:hover
         background-color: #418ada
-   
+
+@media screen and (min-width: 768px)
+    .container-register
+        background: url('background.jpg') center no-repeat
+        width: 100%
+        justify-content: center
+        height: 100%
+        background-size: cover
+
+    .register
+        width: 75%
+        margin: 3% 12.5%
+
+        h2
+            img
+                max-height: 55vh
+                height: auto
+
+        &__input-container
+            width: 35%
+            margin: auto 32.5%
+
+    .container-types
+        width: 35%
+        margin: auto 32.5%
+
+    .onToLogin
+        width: 35%
+        margin: 2% 32.5%
+

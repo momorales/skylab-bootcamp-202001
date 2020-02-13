@@ -9,6 +9,7 @@ function registerUser(name, surname, username, password, age, gender, callback )
     if (!password.trim().length) {throw new SyntaxError ('The password is blank or empty')}
     if (typeof parseInt(age) !== 'number') { throw new TypeError(`The age ${age} is not a number`) }
     if (typeof gender !== 'string') { throw new TypeError(`The gender ${gender} is not a string`) }
+    if (gender === '') gender = 'non-binary'
     if (typeof callback !== 'function') { throw new TypeError(`The callback ${callback} is not a function`) }
 
     call('https://skylabcoders.herokuapp.com/api/v2/users', {
