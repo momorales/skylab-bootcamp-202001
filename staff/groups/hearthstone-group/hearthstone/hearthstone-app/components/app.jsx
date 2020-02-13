@@ -43,7 +43,6 @@ class App extends Component {
                     this.__handleError__(error)
                 } else {
                     sessionStorage.token = token
-                    address.hash = "login"
                     retrieveUser(token, (error, user) => {
                         if (error) {
                             this.__handleError__(error)
@@ -96,6 +95,8 @@ class App extends Component {
                 this.__handleError__(error)
             } else {
                 address.hash = `search/${query}`
+                address.search = { q: query }
+                
                 this.setState({query, locale, cards, card: undefined})
             }
         })
@@ -156,6 +157,8 @@ class App extends Component {
                 this.__handleError__(error)
             } else {
                 address.hash = `details/${card.id}`
+                address.search = { q: `id/${card.id}` }
+                
                 this.setState({ view: 'details', card })
             }
         })
@@ -172,6 +175,7 @@ class App extends Component {
             } else {
                 this.handleSearch(query)
                 address.hash = `search/${query}`
+                address.search = { q: query }
                 this.setState({view: 'search', card: undefined })
             }
             
@@ -182,6 +186,7 @@ class App extends Component {
                 this.setState({ view: 'wishlisted', wishedCards })
             } else {
                 address.hash = `search/${query}`
+                address.search = { q: query }
                 this.setState({ view: 'search' })
             }
         }
@@ -192,9 +197,11 @@ class App extends Component {
         if (query) {
             this.handleSearch(query)
             address.hash = `search/${query}`
+            address.search = { q: query }
             this.setState({ view: 'search', wishedCards: undefined })    
         } else {
             address.hash = `search/${query}`
+            address.search = { q: query }
             this.setState({ view: 'search', wishedCards: undefined })
         }
     }
@@ -229,6 +236,7 @@ class App extends Component {
                         if (!wishedCards.length) {
                             const { query, locale } = this.state
                             address.hash = `search/${query}`
+                            address.search = { q: query }
                             this.handleSearch(query, locale)
                             this.setState({ view: 'search', wishedCards: undefined })
                         } else {
@@ -260,8 +268,10 @@ class App extends Component {
                 const { view, locale, query } = this.state
                 if (view === 'search') {
                     address.hash = `search/${query}`
+                    address.search = { q: query }
                     this.handleSearch(query, locale)
                 } else if (view === 'details') {
+                    
                     this.handleDetails(rating[0])
                 } else if (view === 'wishlisted') {
                     address.hash = 'wishlisted'
