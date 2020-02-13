@@ -228,8 +228,8 @@ class App extends Component {
                         debugger
                         if (!wishedCards.length) {
                             const { query, locale } = this.state
-                            this.handleSearch(query, locale)
                             address.hash = `search/${query}`
+                            this.handleSearch(query, locale)
                             this.setState({ view: 'search', wishedCards: undefined })
                         } else {
                             address.hash = 'wishlisted'
