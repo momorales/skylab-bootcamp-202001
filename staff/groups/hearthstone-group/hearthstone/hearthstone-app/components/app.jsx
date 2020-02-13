@@ -10,8 +10,17 @@ class App extends Component {
                 if (error) {
                     this.__handleError__(error)
                 } else {
+                    address.hash = `search`
                     this.setState({ view: 'search', user, loggedIn: true, token})
-                    
+                    if (address.search.q) {
+                        const { q: query } = address.search
+
+                        this.handleSearch(query)
+                    } else if (address.hash && address.hash.startsWith('cards/')) {
+                        const [, id] = address.hash.split('/')
+
+                        this.handleDetails(id)
+                    }
                 }
             })
         } else {
@@ -34,6 +43,7 @@ class App extends Component {
                     this.__handleError__(error)
                 } else {
                     sessionStorage.token = token
+                    address.hash = "login"
                     retrieveUser(token, (error, user) => {
                         if (error) {
                             this.__handleError__(error)
@@ -41,6 +51,7 @@ class App extends Component {
                             this.setState({ user })
                         }
                     })
+                    address.hash = 'search'
                     this.setState({ view: 'search', token, loggedIn: true })
 
                     
@@ -52,6 +63,7 @@ class App extends Component {
     }
 
     handleGoToRegister = () => {
+        address.hash = "register"
         this.setState({ view: 'register' })
     }
 
@@ -61,6 +73,7 @@ class App extends Component {
                 if (error) {
                     this.__handleError__(error)
                 } else {
+                    address.hash = "login"
                     this.setState({ view: 'login' })
                 }
             })
@@ -71,6 +84,7 @@ class App extends Component {
     }
 
     handleGoToLogin = () => {
+        address.hash = "login"
         this.setState({ view: 'login' })
     }
     
@@ -81,7 +95,7 @@ class App extends Component {
             if (error) {
                 this.__handleError__(error)
             } else {
-
+                address.hash = `search/${query}`
                 this.setState({query, locale, cards, card: undefined})
             }
         })
@@ -141,6 +155,7 @@ class App extends Component {
             if (error) {
                 this.__handleError__(error)
             } else {
+                address.hash = `details/${card.id}`
                 this.setState({ view: 'details', card })
             }
         })
@@ -152,17 +167,21 @@ class App extends Component {
         if (query) {
             if (wishedCards) {
                 this.handleToWishlist()
+                address.hash = 'wishlisted'
                 this.setState({ view: 'wishlisted', wishedCards })
             } else {
                 this.handleSearch(query)
+                address.hash = `search/${query}`
                 this.setState({view: 'search', card: undefined })
             }
             
         } else {
             if (wishedCards) {
                 this.handleToWishlist()
+                address.hash = 'wishlisted'
                 this.setState({ view: 'wishlisted', wishedCards })
             } else {
+                address.hash = `search/${query}`
                 this.setState({ view: 'search' })
             }
         }
@@ -172,8 +191,10 @@ class App extends Component {
         const { query } = this.state
         if (query) {
             this.handleSearch(query)
+            address.hash = `search/${query}`
             this.setState({ view: 'search', wishedCards: undefined })    
         } else {
+            address.hash = `search/${query}`
             this.setState({ view: 'search', wishedCards: undefined })
         }
     }
@@ -185,6 +206,7 @@ class App extends Component {
             if (error) {
                 this.__handleError__(error)
             } else {
+                address.hash = 'wishlisted'
                 this.setState({ view: 'wishlisted', wishedCards })
             }
         })
@@ -207,8 +229,10 @@ class App extends Component {
                         if (!wishedCards.length) {
                             const { query, locale } = this.state
                             this.handleSearch(query, locale)
+                            address.hash = `search/${query}`
                             this.setState({ view: 'search', wishedCards: undefined })
                         } else {
+                            address.hash = 'wishlisted'
                             this.setState({ view: 'wishlisted', wishedCards })
                         }
                     }
@@ -223,6 +247,7 @@ class App extends Component {
 
     handleLogout = () => {
         sessionStorage.clear()
+        address.hash = 'login'
         this.setState({ user: undefined, token: undefined, view: 'login', loggedIn: false })
     }
 
@@ -234,10 +259,12 @@ class App extends Component {
             } else {
                 const { view, locale, query } = this.state
                 if (view === 'search') {
+                    address.hash = `search/${query}`
                     this.handleSearch(query, locale)
                 } else if (view === 'details') {
                     this.handleDetails(rating[0])
                 } else if (view === 'wishlisted') {
+                    address.hash = 'wishlisted'
                     this.handleToWishlist()
                 }
             }
