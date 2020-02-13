@@ -18,7 +18,7 @@ function toggleFavs(id, token, callback){
         if (response.status === 200) {
             const user  = JSON.parse(response.content)
         
-            if(typeof user.favs === 'undefined'){
+            if(typeof user.favs === 'undefined' || !user.favs.length){
                 user.favs = [id]
                 
                 call(`https://skylabcoders.herokuapp.com/api/v2/users/`,{
@@ -31,8 +31,7 @@ function toggleFavs(id, token, callback){
                         
                     // const {error: _error} = JSON.parse(response.content)
                     // if (_error) return callback(new Error(_error))  
-
-                    callback()
+                    if (response.status === 204) return callback()
                 })
 
             }else{
@@ -49,7 +48,7 @@ function toggleFavs(id, token, callback){
                     // const {error: _error} = JSON.parse(response.content)
                     // if (_error) return callback(new Error(_error))  
 
-                    callback()
+                    if (response.status === 204) return callback()
                 })
 
                 }else{
@@ -65,7 +64,7 @@ function toggleFavs(id, token, callback){
                     // const {error: _error} = JSON.parse(response.content)
                     // if (_error) return callback(new Error(_error))  
 
-                    callback()
+                    if (response.status === 204) return callback()
                 })
                 }
             }

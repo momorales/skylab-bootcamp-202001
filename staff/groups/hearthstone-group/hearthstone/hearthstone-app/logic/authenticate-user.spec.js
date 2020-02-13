@@ -14,7 +14,7 @@ describe('authenticateUser', () => {
             call("https://skylabcoders.herokuapp.com/api/v2/users", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ username, password, hearthstone: 'hearthstone' })
             }, (error,response) => {
                 if (error) return done(error)
 
