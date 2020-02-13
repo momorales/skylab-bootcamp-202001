@@ -23,16 +23,17 @@ function Register({ onSubmit, onToLogin, error }) {
             <div className = 'container-age'>
                 <p className='text-age'>Age:</p> <input className="age" type="number" name="age" min="1" max="130" />
             </div>
-            
-            <label>
-                <input className="gender-radio" type="radio" name="gender" value="male" checked/><p>Male</p>
-            </label>
-            <label>
-                <input className="gender-radio" type="radio" name="gender" value="female"/><p>Female</p>
-            </label>
-            <label>
-                <input className="gender-radio" type="radio" name="gender" value="non-binary"/><p>Non-binary</p>
-            </label>
+            <div className='container-gender'>
+                <label>
+                    <input className="gender-radio" type="radio" name="gender" value="male"/><p>Male</p>
+                </label>
+                <label>
+                    <input className="gender-radio" type="radio" name="gender" value="female"/><p>Female</p>
+                </label>
+                <label>
+                    <input className="gender-radio" type="radio" name="gender" value="non-binary"/><p>Non-binary</p>
+                </label>
+            </div>
         </div>
 
         {error && <Feedback level="error" message={error}/>}
