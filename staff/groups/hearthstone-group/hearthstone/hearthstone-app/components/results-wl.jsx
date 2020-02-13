@@ -1,15 +1,15 @@
 function ResultsWL({ results, onToBack, onItemClick, onWL, onItemDeck, onRating }) {
-    return <div>
-        {!results && <div><p>No cards on wishlist. Go add some!</p>
-            <button onClick={event => {
+    return <div className='wishlist'>
+        {!results && <div className='wishlist__container-card'><p>No cards on wishlist. Go add some!</p>
+            <button className='wishlist__arrow' onClick={event => {
                 event.preventDefault()
                 onToBack()
-            }}>GO BACK</button></div>}
+            }}><i className="fas fa-arrow-left"/></button></div>}
 
-        {results && <div><button onClick={event => {
+        {results && <div className='wishlist__container-card'><button className='wishlist__arrow' onClick={event => {
             event.preventDefault()
             onToBack()
-        }}>GO BACK</button>
+        }}><i className="fas fa-arrow-left"/></button>
             <ul className="results" >
                 {results.map(result =>
                     <Card key={result.id}

@@ -1,5 +1,5 @@
 function searchCards(query, token, locale, callback) {
-    debugger
+    
     if (typeof query !== 'undefined') {
         if (typeof query !== 'string') throw new TypeError(`${query} is not a string`)
     }
