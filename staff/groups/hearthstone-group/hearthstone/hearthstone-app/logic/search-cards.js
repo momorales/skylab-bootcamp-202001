@@ -1,3 +1,12 @@
+ /**
+ * logic - searchCards
+ * @param {string} query - is value of the search
+ * @param {string} token - credentials access
+ * @param {string} locale - this string is using for get the languages of the API Blizzard
+ * @param {function} callback - function
+ * @returns {function} callback - function return results of search
+ */
+
 function searchCards(query, token, locale, callback) {
     
     if (typeof query !== 'undefined') {

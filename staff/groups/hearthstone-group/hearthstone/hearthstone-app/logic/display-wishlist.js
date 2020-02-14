@@ -1,3 +1,11 @@
+ /**
+ * logic - displayWishlist
+ * @param {string} token - credentials access
+ * @param {string} locale - this string is using for get the languages of the API Blizzard
+ * @param {function} callback - function
+ * @returns {function} callback - function return two options: list of cards or maybe an error
+ */
+
 function displayWishlist(token, locale, callback) {
 
     if (typeof token !== 'string') throw new TypeError(`${token} is not a string`)

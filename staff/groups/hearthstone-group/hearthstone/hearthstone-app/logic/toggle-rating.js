@@ -1,3 +1,10 @@
+ /**
+ * logic - toggleRating
+ * @param {string} token - credentials access
+ * @param {object} rating  - is an array of two numbers : the better is the id of the card and the later is its score from 1 to 5 
+ * @param {function} callback - function
+ * @returns {function} callback - function error is there is
+ */
 function toggleRating(token, rating, callback) {
     if (typeof token !== 'string') throw new TypeError(`${token} is not a string`)
     if (!(rating instanceof Array)) throw new TypeError(`${rating} is not an array`)

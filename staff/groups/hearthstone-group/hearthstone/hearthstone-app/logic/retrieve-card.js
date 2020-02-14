@@ -1,3 +1,12 @@
+ /**
+ * logic - retrieveCard
+ * @param {string} token - credentials access
+ * @param {string} locale - this string is using for get the languages of the API Blizzard
+ * @param {string} id - identity of the card
+ * @param {function} callback - function
+ * @returns {function} callback - function return detail of card
+ */
+
 function retrieveCard(token, locale, id, callback) {
 
     if (typeof token !== 'string') throw new TypeError(`${token} is not a string`)
