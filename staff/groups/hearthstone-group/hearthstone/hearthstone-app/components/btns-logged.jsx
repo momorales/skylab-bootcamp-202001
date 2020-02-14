@@ -1,4 +1,4 @@
-function BtnsLogged({ onWishlist, onDeck }) {
+function BtnsLogged({ onWishlist, onLogout }) {
     return (
         <header className='header'>
 
@@ -13,7 +13,7 @@ function BtnsLogged({ onWishlist, onDeck }) {
                 <div className='header__button'>
                     <button className="header__deck"><a href="" className='header__anchor' onClick={event => {
                         event.preventDefault()
-                        onDeck()
+                        onLogout()
                     }} >LOGOUT</a>
                     </button>
                 </div>

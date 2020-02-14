@@ -50,8 +50,8 @@ class App extends Component {
                             this.setState({ user })
                         }
                     })
-                    address.hash = 'search'
                     this.setState({ view: 'search', token, loggedIn: true })
+                    address.hash = 'search'
 
                     
                 }
@@ -232,6 +232,7 @@ class App extends Component {
                     if (error) {
                         this.__handleError__(error)
                     } else {
+                        
                         if (!wishedCards.length) {
                             const { query, locale } = this.state
                             address.hash = `search/${query}`
@@ -255,7 +256,7 @@ class App extends Component {
     handleLogout = () => {
         sessionStorage.clear()
         address.hash = 'login'
-        this.setState({ user: undefined, token: undefined, view: 'login', loggedIn: false })
+        this.setState({ user: undefined, token: undefined, view: 'login', loggedIn: false,cards: undefined, card: undefined })
     }
 
     handleRating = rating => {
@@ -287,7 +288,7 @@ class App extends Component {
          
         return <Fragment>
 
-        {user && <BtnsLogged onWishlist={handleToWishlist} onDeck={handleToDeck}/>}
+        {user && <BtnsLogged onWishlist={handleToWishlist} onLogout={handleLogout}/>}
 
         {/* {user && <Fragment><h2>{user.name} <button onClick={handleLogout}>Logout</button></h2></Fragment>} */}
 

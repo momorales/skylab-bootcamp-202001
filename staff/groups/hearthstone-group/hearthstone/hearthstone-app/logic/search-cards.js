@@ -55,7 +55,7 @@ function searchCards(query, token, locale, callback) {
                         (typeof user['hearthstone'] !== 'undefined') ? usersRating.push(user) : false
                     })
 
-                    call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EU7c4yvfvI83T87hQBSii8r3IpHRQNf2c2&pageSize=9999&${query}`, {
+                    call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EUkEMV4z4FlmZkQWpCWvFcbT6NEb8sntJJ&pageSize=9999&${query}`, {
                         method: 'GET'
                     }, (error, response) => {
                         if (error) return callback(error)
