@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import config
 
 .wishlist
@@ -9,8 +10,45 @@
     &__arrow
         text-decoration: none
         font-size: 1.6rem
+=======
+.wishlist
+    @extend %generic-bg
+    display: flex
+    flex-direction: column   
+    height: 100vh
+
+    &__container-card
+        height: 100vh
+
+    &__arrow
+        text-decoration: none
+        font-size: 1.3rem
+>>>>>>> 5d090092b09220c25c0dee67a4bc05c680573659
         color:#7a3613
         margin: 5px 0 0 20px
         background: #00000000
         border: none
+<<<<<<< HEAD
         text-shadow: 0 0 0.3em white
+=======
+.btn-card
+    margin-bottom: 10px
+
+    &__fav
+        @extend %general-buttons
+        @extend %general-font
+        margin-bottom: 10px
+
+.results
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+     
+    &__card
+        @extend %item-looks
+        margin-bottom: 3%
+
+.fas
+    &__checked
+        box-shadow: none
+>>>>>>> 5d090092b09220c25c0dee67a4bc05c680573659

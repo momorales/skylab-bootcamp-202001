@@ -44,7 +44,7 @@ function displayWishlist(token, locale, callback) {
                             users.map(user => {
                                 (typeof user['hearthstone'] !== 'undefined') ? usersRating.push(user) : false
                             })
-                            
+
                             let count = 0
                             const listedCards = []
     
