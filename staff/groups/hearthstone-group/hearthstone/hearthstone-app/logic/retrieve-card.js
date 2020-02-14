@@ -51,7 +51,7 @@ function retrieveCard(token, locale, id, callback) {
                         if (response.status === 200) {
                             let detailInfo = JSON.parse(response.content)
                             detailInfo = detailInfo.cards[0]
-                            detailInfo.isFav = true
+                            detailInfo.isFav = false
                             detailInfo.totalValue = 0
                             detailInfo.rating = 0
                             detailInfo.rateCount = 0

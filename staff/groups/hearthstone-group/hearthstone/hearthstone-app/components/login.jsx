@@ -5,7 +5,7 @@ function Login({ onSubmit, onToRegister, error}) {
             event.preventDefault()
 
             const username = event.target.username.value
-            const password = event.target.username.value
+            const password = event.target.password.value
 
             onSubmit(username, password)
         }}>
@@ -13,7 +13,7 @@ function Login({ onSubmit, onToRegister, error}) {
         <h2><img src='../hearthstone-template/logo.png' className= 'logo' /></h2>
 
         <input type="text" name="username" placeholder="Username" ></input>
-        <input type="text" name="password" placeholder="Password" ></input>
+        <input type="password" name="password" placeholder="Password" ></input>
         {error && <Feedback level='error' message={error} />}
         <button className = "login-button">Login</button>
         <a href=""

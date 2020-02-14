@@ -75,14 +75,14 @@ a {
     box-shadow: inset 0 0 5em 2.5em black;
   }
 }
-.btns-logged__deck, .btns-logged__wishlist, .feedback {
+.btns-logged__deck, .btns-logged__wishlist {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
   box-shadow: 0.3em 0.3em black;
 }
 
-.details {
+.wishlist, .details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -98,7 +98,7 @@ a {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.results__card button, .results__card h2, .search, .container-types p, .register .gender-radio, .register ::placeholder, .container-register, .details {
+.results__card button, .results__card h2, .feedback, .search, .container-types p, .register .gender-radio, .register ::placeholder, .container-register, .details__btn-deck, .details__btn-wishlist, .details {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
@@ -130,21 +130,27 @@ a {
   text-align: center;
   margin-bottom: 20px;
   height: 10%;
+  font-size: 2em;
 }
 .details__adds {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
   height: 5%;
 }
 .details__btn-wishlist {
   margin-bottom: 20px;
   height: fit-content;
+  font-size: 1.5em;
+}
+.details__btn-wishlist.checked-details {
+  background-image: linear-gradient(#463b37, #8d745f);
 }
 .details__btn-deck {
   margin-bottom: 20px;
   height: fit-content;
+  font-size: 1.5em;
 }
 .details__arrow {
   text-decoration: none;
@@ -176,15 +182,22 @@ button:active {
     margin: 0 auto;
     max-height: 383px;
   }
+  .details__adds {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 0 auto;
+    height: 5%;
+  }
 }
-.btns-logged__deck, .btns-logged__wishlist, .feedback {
+.btns-logged__deck, .btns-logged__wishlist {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
   box-shadow: 0.3em 0.3em black;
 }
 
-.details {
+.wishlist, .details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -200,7 +213,7 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.results__card button, .results__card h2, .search, .container-types p, .register .gender-radio, .register ::placeholder, .container-register, .details {
+.results__card button, .results__card h2, .feedback, .search, .container-types p, .register .gender-radio, .register ::placeholder, .container-register, .details, .details__btn-wishlist, .details__btn-deck {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
@@ -333,14 +346,14 @@ button:active {
     margin: 2% 32.5%;
   }
 }
-.btns-logged__deck, .btns-logged__wishlist, .feedback {
+.btns-logged__deck, .btns-logged__wishlist {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
   box-shadow: 0.3em 0.3em black;
 }
 
-.details {
+.wishlist, .details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -356,7 +369,7 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.results__card button, .results__card h2, .search, .details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p {
+.results__card button, .results__card h2, .feedback, .search, .details, .details__btn-wishlist, .details__btn-deck, .container-register, .register ::placeholder, .register .gender-radio, .container-types p {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
@@ -437,6 +450,10 @@ button:active {
   display: flex;
   justify-content: space-around;
 }
+.search .byclass-container {
+  width: 60%;
+  margin: auto 20%;
+}
 
 button {
   transition: opacity 0.2s;
@@ -481,14 +498,14 @@ button:active {
     margin: 3% 30%;
   }
 }
-.btns-logged__deck, .btns-logged__wishlist, .feedback {
+.btns-logged__deck, .btns-logged__wishlist {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
   box-shadow: 0.3em 0.3em black;
 }
 
-.details {
+.wishlist, .details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -504,7 +521,7 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.results__card button, .results__card h2, .details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search {
+.results__card button, .results__card h2, .feedback, .details, .details__btn-wishlist, .details__btn-deck, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
@@ -513,19 +530,24 @@ button:active {
 
 .feedback {
   text-align: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 1em;
+  border: 1px solid yellow;
+  box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.6);
+  padding: 1% 2rem;
 }
 .feedback--error {
   color: red;
 }
 
-.btns-logged__deck, .btns-logged__wishlist, .feedback {
+.btns-logged__deck, .btns-logged__wishlist {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
   box-shadow: 0.3em 0.3em black;
 }
 
-.details {
+.wishlist, .details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -541,21 +563,21 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.results__card button, .results__card h2, .details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search {
+.results__card button, .results__card h2, .details, .details__btn-wishlist, .details__btn-deck, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search, .feedback {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
   font-family: Optima;
 }
 
-.btns-logged__deck, .btns-logged__wishlist, .feedback {
+.btns-logged__deck, .btns-logged__wishlist {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
   box-shadow: 0.3em 0.3em black;
 }
 
-.details {
+.wishlist, .details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -571,7 +593,7 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.results__card button, .results__card h2, .details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search {
+.results__card button, .results__card h2, .details, .details__btn-wishlist, .details__btn-deck, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search, .feedback {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
@@ -592,14 +614,14 @@ button:active {
   grid-area: 1/3/1/3;
 }
 
-.feedback, .btns-logged__wishlist, .btns-logged__deck {
+.btns-logged__wishlist, .btns-logged__deck {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
   box-shadow: 0.3em 0.3em black;
 }
 
-.details {
+.wishlist, .details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -615,7 +637,7 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.results__card button, .results__card h2, .details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search {
+.results__card button, .results__card h2, .details, .details__btn-wishlist, .details__btn-deck, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search, .feedback {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
@@ -711,14 +733,14 @@ button:active {
     margin: 0.5%;
   }
 }
-.feedback, .btns-logged__wishlist, .btns-logged__deck {
+.btns-logged__wishlist, .btns-logged__deck {
   padding: 3%;
   border: 3px solid #2c2c2c;
   border-radius: 1em;
   box-shadow: 0.3em 0.3em black;
 }
 
-.details {
+.wishlist, .details {
   background: url("background.jpg") center no-repeat;
   width: 100%;
   justify-content: center;
@@ -734,7 +756,7 @@ button:active {
   box-shadow: 0 0 0.25em 0.15em #00000087;
 }
 
-.details, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search, .results__card h2, .results__card button {
+.details, .details__btn-wishlist, .details__btn-deck, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search, .feedback, .results__card h2, .results__card button {
   font-weight: bolder;
   color: black;
   text-shadow: 0 0 0.25em white;
@@ -780,6 +802,51 @@ button:active {
     width: 150px;
   }
 }
+.btns-logged__wishlist, .btns-logged__deck {
+  padding: 3%;
+  border: 3px solid #2c2c2c;
+  border-radius: 1em;
+  box-shadow: 0.3em 0.3em black;
+}
+
+.wishlist, .details {
+  background: url("background.jpg") center no-repeat;
+  width: 100%;
+  justify-content: center;
+  height: 100%;
+  background-size: cover;
+}
+
+.details__btn-wishlist, .details__btn-deck, .register__textbox, .search .submit-container .submit-button, .search .language-container .language-button, .results__card button, .header__deck {
+  padding: 2.5% 4%;
+  border-radius: 1em;
+  background-image: linear-gradient(#f3e5c000, #cf9a3485);
+  border: 0.25em solid #c8891d6e;
+  box-shadow: 0 0 0.25em 0.15em #00000087;
+}
+
+.details, .details__btn-wishlist, .details__btn-deck, .container-register, .register ::placeholder, .register .gender-radio, .container-types p, .search, .feedback, .results__card h2, .results__card button {
+  font-weight: bolder;
+  color: black;
+  text-shadow: 0 0 0.25em white;
+  font-family: Optima;
+}
+
+.wishlist {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+.wishlist__arrow {
+  text-decoration: none;
+  font-size: 1.6rem;
+  color: #7a3613;
+  margin: 5px 0 0 20px;
+  background: #00000000;
+  border: none;
+  text-shadow: 0 0 0.3em white;
+}
+
 * {
   margin: 0;
   padding: 0;

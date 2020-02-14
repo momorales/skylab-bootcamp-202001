@@ -60,7 +60,7 @@ function Details({ detailInfo: { image, name, id, cardSetId, text, flavorText, i
             onItemWL(id)
         }}>Add to wishlist</button>}
 
-        {isFav && <button className='details__btn-wishlist' onClick={event => {
+        {isFav && <button className='details__btn-wishlist checked-details' onClick={event => {
             event.preventDefault()
             onItemWL(id)
         }}>WISHLISTED!</button>}

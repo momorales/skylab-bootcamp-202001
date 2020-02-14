@@ -57,23 +57,30 @@
         text-align: center
         margin-bottom: 20px
         height: 10%
+        font-size: 2em
 
     &__adds
         display: flex
         flex-direction: column
-        width: 50%
+        width: 70%
         margin: 0 auto
         height: 5%
 
     &__btn-wishlist
         @extend %general-buttons
+        @extend %general-font
         margin-bottom: 20px
         height: fit-content
+        font-size: 1.5em
+        &.checked-details
+            background-image: linear-gradient(#463b37, #8d745f)
     
     &__btn-deck
-        @extend %general-buttons         
+        @extend %general-buttons
+        @extend %general-font
         margin-bottom: 20px
         height: fit-content
+        font-size: 1.5em
 
     &__arrow
         text-decoration: none
@@ -94,6 +101,7 @@ button
         background-image: linear-gradient(#5f514b, #ac8e74)
         transform: translate(0.1em, 0.1em)
 
+
     
 
 @media screen and (min-width: 768px)
@@ -102,3 +110,11 @@ button
             width: auto
             margin: 0 auto
             max-height: 383px
+
+        &__adds
+            display: flex
+            flex-direction: column
+            width: 30%
+            margin: 0 auto
+            height: 5%
+            

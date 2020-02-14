@@ -44,17 +44,19 @@ function Search({ query, locale, onSubmit }) {
         </div>
 
         <br></br>
-    
-        <input type="radio" name="byclass" value="druid" />Druid
-        <input type="radio" name="byclass" value="hunter" />Hunter
-        <input type="radio" name="byclass" value="mage" />Mage
-        <input type="radio" name="byclass" value="paladin" />Paladin
-        <input type="radio" name="byclass" value="priest" />Priest
-        <input type="radio" name="byclass" value="rogue" />Rogue
-        <input type="radio" name="byclass" value="shaman" />Shaman
-        <input type="radio" name="byclass" value="warlock" />Warlock
-        <input type="radio" name="byclass" value="warrior" />Warrior
-        <input type="radio" name="byclass" value="dream" />Dream
+        <div className='byclass-container'>
+
+            <input type="radio" name="byclass" value="druid" />Druid
+            <input type="radio" name="byclass" value="hunter" />Hunter
+            <input type="radio" name="byclass" value="mage" />Mage
+            <input type="radio" name="byclass" value="paladin" />Paladin
+            <input type="radio" name="byclass" value="priest" />Priest
+            <input type="radio" name="byclass" value="rogue" />Rogue
+            <input type="radio" name="byclass" value="shaman" />Shaman
+            <input type="radio" name="byclass" value="warlock" />Warlock
+            <input type="radio" name="byclass" value="warrior" />Warrior
+            <input type="radio" name="byclass" value="dream" />Dream
+        </div>
 
         <br></br>
 
