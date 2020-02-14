@@ -50,8 +50,8 @@ class App extends Component {
                             this.setState({ user })
                         }
                     })
-                    address.hash = 'search'
                     this.setState({ view: 'search', token, loggedIn: true })
+                    address.hash = 'search'
 
                     
                 }
@@ -232,10 +232,7 @@ class App extends Component {
                     if (error) {
                         this.__handleError__(error)
                     } else {
-<<<<<<< HEAD
                         
-=======
->>>>>>> 5d090092b09220c25c0dee67a4bc05c680573659
                         if (!wishedCards.length) {
                             const { query, locale } = this.state
                             address.hash = `search/${query}`
@@ -259,7 +256,7 @@ class App extends Component {
     handleLogout = () => {
         sessionStorage.clear()
         address.hash = 'login'
-        this.setState({ user: undefined, token: undefined, view: 'login', loggedIn: false })
+        this.setState({ user: undefined, token: undefined, view: 'login', loggedIn: false,cards: undefined, card: undefined })
     }
 
     handleRating = rating => {
