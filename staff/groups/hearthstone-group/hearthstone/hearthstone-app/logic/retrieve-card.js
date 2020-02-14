@@ -43,7 +43,7 @@ function retrieveCard(token, locale, id, callback) {
 
 
 
-                    call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EU7c4yvfvI83T87hQBSii8r3IpHRQNf2c2&pageSize=9999&id=${id}`, {
+                    call(`https://eu.api.blizzard.com/hearthstone/cards?locale=${locale}&access_token=EUkEMV4z4FlmZkQWpCWvFcbT6NEb8sntJJ&pageSize=9999&id=${id}`, {
                         method: 'GET'
                     }, (error, response) => {
                         if (error) return callback(error)
@@ -51,7 +51,7 @@ function retrieveCard(token, locale, id, callback) {
                         if (response.status === 200) {
                             let detailInfo = JSON.parse(response.content)
                             detailInfo = detailInfo.cards[0]
-                            detailInfo.isFav = true
+                            detailInfo.isFav = false
                             detailInfo.totalValue = 0
                             detailInfo.rating = 0
                             detailInfo.rateCount = 0
