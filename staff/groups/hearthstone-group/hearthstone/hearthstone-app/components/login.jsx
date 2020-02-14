@@ -10,7 +10,7 @@ function Login({ onSubmit, onToRegister, error}) {
             onSubmit(username, password)
         }}>
 
-        <h2><img src='../hearthstone-template/logo.png' className= 'logo' /></h2>
+        <h2><img src='/logo.png' className= 'logo' /></h2>
 
         <input type="text" name="username" placeholder="Username" ></input>
         <input type="password" name="password" placeholder="Password" ></input>

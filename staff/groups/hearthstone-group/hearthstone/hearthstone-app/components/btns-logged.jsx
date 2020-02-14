@@ -4,7 +4,7 @@ function BtnsLogged({ onWishlist, onLogout }) {
 
             <section className='header__image-container'>
                 
-                    <img src='../hearthstone-template/logo.png' className='header__logo' />
+                    <img src='/logo.png' className='header__logo' />
                 
             </section>
 

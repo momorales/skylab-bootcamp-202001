@@ -10,7 +10,7 @@ function Register({ onSubmit, onToLogin, error }) {
         const gender = event.target.gender.value
         onSubmit(name, surname, username, password, age, gender)
     }}>
-         <h2><img src='../hearthstone-template/logo.png' className= 'logo' /></h2>
+         <h2><img src='/logo.png' className= 'logo' /></h2>
 
        <div className = 'register__input-container'>
             <input className="register__textbox" type="text" name="name" placeholder="Name" />
