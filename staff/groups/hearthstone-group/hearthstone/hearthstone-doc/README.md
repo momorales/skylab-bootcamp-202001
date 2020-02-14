@@ -1,7 +1,8 @@
 # HEARTHSTONE
+![](images/manu.png)
 
 ## Introduction
-This app is an application of card's Game that an user can search of the Game of Hearthstone, the user can display a card, add them to wishlist and can rate a card
+This app is card browser of the populat Blizzard Game Hearthstone. The user can display a card, look at its additional details, add them to wishlist and can rate a card, while also checking how many people rated that card and the average rating
 
 ## Function Description
 features : 
