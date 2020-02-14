@@ -1,3 +1,11 @@
+ /**
+ * logic - toggleFavs
+ * @param {string} id - identity of the card
+ * @param {string} token - credentials access
+ * @param {function} callback - function
+ * @returns {function} callback - function error is there is
+ */
+
 function toggleFavs(id, token, callback){
     if (typeof token !== 'string') throw new TypeError(`${token} is not a string`)
     if (typeof id !== 'number') throw new TypeError(`${id} is not a number`)

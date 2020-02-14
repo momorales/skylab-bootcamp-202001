@@ -1,3 +1,15 @@
+ /**
+ * logic - registerUser
+ * @param {string} name -one of the credentials that used for to register an user
+ * @param {string} surname - one of the credentials that used for to register an user
+ * @param {string} username - one of the credentials that used for to register an user
+ * @param {string} password - one of the credentials that used for to register an user
+ * @param {string} age - one of the credentials that used for to register an user
+ * @param {string} gender - one of the credentials that used for to register an user
+ * @param {function} callback - function
+ * @returns {function} callback - function return if there is an error
+ */
+
 function registerUser(name, surname, username, password, age, gender, callback ){
     if (typeof name !== 'string') { throw new TypeError(`The username ${name} is not a string`) }
     if (!name.trim().length) {throw new SyntaxError ('The name is blank or empty')}
