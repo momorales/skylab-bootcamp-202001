@@ -9,10 +9,13 @@ const requestListener = (req, res) => {
   const path = req.url
 
   const rs = fs.createReadStream(`.${path === '/' ? '/index.html' : path}`)
-
+  
     if(path !== 'favicon.ico'){
       rs.on('data', body => {
       res.end(body);
+
+      log.info(`request from ${req.connection.remoteAddress}`)
+      console.log(req)
     })
       rs.on('error', error => {
       log.error(error)
