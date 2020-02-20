@@ -1,5 +1,10 @@
 'use strict';
 
+if(typeof require !== 'undefined'){
+    var authenticate = require('./authenticate')
+    var users = require('../utils/data')
+}
+
 describe('authenticate', function () {
     var user;
 
@@ -46,3 +51,4 @@ describe('authenticate', function () {
         users.length = 0;
     });
 });
+

@@ -1,4 +1,7 @@
-'use strict';
+
+if(typeof require !== 'undefined'){
+    var users = require('../utils/data')
+}
 
 function register(name, surname, username, password) {
     if (typeof name !== 'string') throw new TypeError('name ' + name + ' is not a string');
@@ -17,4 +20,8 @@ function register(name, surname, username, password) {
     user = { name: name, surname: surname, username: username, password: password };
 
     users.push(user);
+}
+
+if(typeof module !== 'undefined'){
+    module.exports = register
 }
