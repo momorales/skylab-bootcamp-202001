@@ -1,13 +1,12 @@
 const express = require('express')
-const logger = require('./utils/logger')
+const { logger, loggerMidWare, cookieParserMidWare } = require('./utils')
 const path = require('path')
-const loggerMidWare = require('./utils/logger-mid-ware')
-const { authenticateUser, retrieveUser, registerUser } = require('./logic')//importo todos los ficheros de logica
-const bodyParser = require('body-parser') //metodo de express para parsear el body
-const { Login, App, Home, Register, Landing } = require('./components') //importo todos los componentes
+const { authenticateUser, retrieveUser, registerUser } = require('./logic')
+const bodyParser = require('body-parser')
+const { Login, App, Home, Register, Landing } = require('./components')
 const { sessions } = require('./data')
 
-const urlencodedBodyParser = bodyParser.urlencoded({ extended: false })//?
+const urlencodedBodyParser = bodyParser.urlencoded({ extended: false })
 
 const { argv: [, , port = 8080] } = process
 
@@ -16,61 +15,74 @@ logger.path = path.join(__dirname, 'server.log')
 
 logger.debug('setting up server')
 
-const app = express() //le aplico a app el modulo express de node
+const app = express()
 
-app.use(loggerMidWare) //para dar formato a los logger
+app.use(loggerMidWare)
+app.use(cookieParserMidWare)
 
-app.use(express.static(path.join(__dirname, 'public'))) //carpetas estaticas
+app.use(express.static(path.join(__dirname, 'public')))//ahora no tiene sentido
 
 app.get('/', (req, res) => {
-    res.send(App({ title: 'My App', body: Landing() })) //como contenedor es el APP, es el componente que tiene que cargar
+    res.send(App({ title: 'My App', body: Landing() }))
 })
 
 app.get('/login', (req, res) => {
-    //if (!loggedIn) {
-        res.send(App({ title: 'Login', body: Login() }))
-    //} else res.redirect(`/home/${loggedIn}`)
+    const { cookies: { username } } = req
+
+    if (sessions.includes(username)) return res.redirect(`/home/${username}`)
+
+    res.send(App({ title: 'Login', body: Login() }))
 })
 
-app.use(urlencodedBodyParser) //parsea el body
+app.use(urlencodedBodyParser)
 
-app.post('/authenticate', (req, res) => { //hacemos el authenticate
+app.post('/login', (req, res) => {
     const { username, password } = req.body
-
     try {
         authenticateUser(username, password)
 
         sessions.push(username)
 
-        res.redirect(`/home/${username}`) //cambia lo que se pinta en la url
+        const { cookies: { username: _username } } = req
+
+        username !== _username && res.setHeader('set-cookie', `username=${username}`)
+
+        res.redirect(`/home/${username}`)
     } catch ({ message }) {
         res.send(App({ title: 'Login', body: Login({ error: message }) }))
     }
 })
 
-app.get('/home/:username', (req, res) => { //busca la ruta y si conincide actua
+
+app.get('/home/:username', (req, res) => {
     const { params: { username } } = req
 
-    if (sessions.includes(username)) { //comprueba que el usuario sea el logado
-        const { name } = retrieveUser(username) //cogemos el name del user que te retorna retrieveUser
+    if (sessions.includes(username)) {
+        const { name } = retrieveUser(username)
 
-        res.send(App({ title: 'Home', body: Home({ name, username }) }))//si estas logueado te pinta home
-    } else res.redirect('/login')//si no estas logueado te redirige a login
+        const { cookies: { username: _username } } = req
+
+        username !== _username && res.setHeader('set-cookie', `username=${username}`)
+
+        res.send(App({ title: 'Home', body: Home({ name, username }) }))
+    } else res.redirect('/login')
 })
 
-app.post('/logout', (req, res) => {//logout solo puede estar en home pq estas logueado
-    const { body: { username } } = req //en el componente home tienes un form pq necesitas coger el username de la sesion actual y enviarla con POST al apretar el boton   
+app.post('/logout', (req, res) => {
+    const { body: { username } } = req
 
-    const index = sessions.indexOf(username)//busco el index del usuario en sessions[]
+    const index = sessions.indexOf(username)
 
     sessions.splice(index, 1)
 
-    res.redirect('/login') //me cambia y redirige a login 
+    res.clearCookie('username')
+
+    res.redirect('/login')
 })
 
 app.post('/register', (req, res) => {
     const { name, surname, username, password } = req.body
-
+    
     try {
         registerUser(name, surname, username, password)
 
@@ -91,4 +103,3 @@ process.on('SIGINT', () => {
 
     process.exit(0)
 })
-

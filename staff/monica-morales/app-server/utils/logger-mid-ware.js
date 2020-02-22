@@ -1,6 +1,6 @@
 const logger = require('./logger')
 
-module.exports = (req, res, next){
+module.exports = (req, res, next) =>{
 
     const { method, url, headers, httpVersion, socket } = req
 

@@ -3,7 +3,7 @@ module.exports = function (props = {}) {
 
     return `<section class="login">
     <h1>Login</h1>
-    <form action="/authenticate" method="POST">
+    <form action="/login" method="POST">
         <input type="text" name="username" placeholder="username"><input type="password" name="password" placeholder="password"><button>Send</button>
         ${error ? `<p class="login__error">${error}</p>` : ''}
     </form>

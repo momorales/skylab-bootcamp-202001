@@ -1,6 +1,6 @@
 if (typeof require !== 'undefined') {
-    var register = require('./register')
-    var users = require('../utils/data')
+    var register = require('./register-user')
+    var users = require('../data/users')
 }
 describe('register', function (){
     beforeEach(function () {

@@ -1,9 +1,5 @@
-'use strict';
-
-if(typeof require !== 'undefined'){
-    var authenticate = require('./authenticate')
-    var users = require('../utils/data')
-}
+const authenticateUser = require('./authenticate-user')
+const users = require('../data/users')
 
 describe('authenticate', function () {
     var user;
