@@ -1,6 +1,5 @@
-module.exports ={
-  cookieParserMidWare: require('./cookie-parse-mid-ware'),
-  loggerMidWare: require('./logger-mid-ware'),
-  logger: require('./logger')
-
+module.exports = {
+    loggerMidWare: require('./logger-mid-ware'),
+    logger: require('./logger'),
+    call: require('./call')
 }
