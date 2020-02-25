@@ -1,4 +1,4 @@
-const {App, Login} = require ('../components')
+// const {App, Login} = require ('../components')
 
 module.exports = (req, res) => {
         const { session: { token } } = req
@@ -7,5 +7,6 @@ module.exports = (req, res) => {
     
     const { session: { acceptCookies } } = req
 
-    res.send(App({ title: 'Login', body: Login(), acceptCookies }))
+    // res.send(App({ title: 'Login', body: Login(), acceptCookies }))
+    res.render('login', {acceptCookies})
 }
