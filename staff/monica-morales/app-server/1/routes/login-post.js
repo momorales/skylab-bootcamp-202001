@@ -16,16 +16,16 @@ module.exports = (req, res) => {
 
                 if (fav) return res.redirect(307, `/toggle-fav/${fav}`)
 
-               res.redirect('/')
+               return res.redirect('/')
             })
 
-        }).catch((error =>{
+        }).catch(()=>{
             logger.warn(error)
 
                 const { message } = error
                 const { session: { acceptCookies } } = req
 
-            res.send(App({ title: 'Login', body: Login({ error: message, username }), acceptCookies })
+                return res.send(App({ title: 'Login', body: Login({ error: message, username }), acceptCookies }))
         })
     } catch (error) {
         logger.error(error)
