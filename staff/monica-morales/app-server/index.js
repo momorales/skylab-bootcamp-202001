@@ -11,7 +11,7 @@ const {landing, login, loginPost, search, logout, registerPost, register} = requ
 
 const urlencodedBodyParser = bodyParser.urlencoded({ extended: false })
 
-const { argv: [, , port = 8000] } = process
+const { argv: [, , port = 8080] } = process
 
 logger.level = logger.DEBUG
 logger.path = path.join(__dirname, 'server.log')

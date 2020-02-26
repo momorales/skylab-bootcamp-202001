@@ -6,16 +6,9 @@ module.exports = (req, res) => {
     const { body: { username, password }, session } = req
 
     try {
-        authenticateUser(username, password, (error, token) => {
-            if (error) {
-                logger.warn(error)
-
-                const { message } = error
-                const { session: { acceptCookies } } = req
-
-                return res.send(App({ title: 'Login', body: Login({ error: message, username }), acceptCookies }))
-            }
-
+        authenticateUser(username, password) 
+        .then( token => {
+                      
             session.token = token
 
             session.save(() => {
@@ -23,9 +16,16 @@ module.exports = (req, res) => {
 
                 if (fav) return res.redirect(307, `/toggle-fav/${fav}`)
 
-                res.redirect('/')
+               return res.redirect('/')
             })
 
+        }).catch(()=>{
+            logger.warn(error)
+
+                const { message } = error
+                const { session: { acceptCookies } } = req
+
+                return res.send(App({ title: 'Login', body: Login({ error: message, username }), acceptCookies }))
         })
     } catch (error) {
         logger.error(error)
