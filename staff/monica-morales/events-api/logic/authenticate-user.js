@@ -1,6 +1,9 @@
 const { validate } = require('../utils')
-const { database } = require('../data')
+const { users } = require('../data')
 const { NotAllowedError } = require('../errors')
+
+const fs = require('fs').promises
+const path = require('path')
 
 /**
  * Checks user credentials against the storage
@@ -19,15 +22,12 @@ module.exports = (email, password) => {
     validate.email(email)
     validate.string(password, 'password')
 
-    const users = database.collection('users')
+    const user = users.find(user => user.email === email && user.password === password)
 
-    return users.findOne({ email, password })
-        .then(user => {
-            if (!user) throw new NotAllowedError(`wrong credentials`)
+    if (!user) throw new NotAllowedError(`wrong credentials`)
 
-            const { _id } = user
+    user.authenticated = new Date
 
-            return users.updateOne({ _id }, { $set: { authenticated: new Date } })
-                .then(() => _id.toString())
-        })
+    return fs.writeFile(path.join(__dirname, '../data/users.json'), JSON.stringify(users, null, 4))
+        .then(() => user.id)
 }
