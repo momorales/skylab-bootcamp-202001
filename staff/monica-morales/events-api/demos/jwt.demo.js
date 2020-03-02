@@ -14,7 +14,7 @@ try {
     const payload = jwt.verify(token, SECRET)
     //const payload = jwt.verify(token + '-manipulation', SECRET)
 
-    debugger
+
 } catch (error) {
-    debugger
+    
 }

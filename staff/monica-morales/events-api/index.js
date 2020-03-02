@@ -4,7 +4,7 @@ const { env: { PORT = 8080, NODE_ENV: env, MONGODB_URL }, argv: [, , port = PORT
 
 const express = require('express')
 const winston = require('winston')
-const { registerUser, authenticateUser, retrieveUser } = require('./routes')
+const { registerUser, authenticateUser, retrieveUser, createEvent, retrievePublished, subscribeEvent, retrieveSubscribe, deleteEvent} = require('./routes')
 const { name, version } = require('./package')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
@@ -43,10 +43,20 @@ database.connect(MONGODB_URL)
 
         app.get('/users', jwtVerifierMidWare, retrieveUser)
 
+        app.post('/users/:id/events', [jwtVerifierMidWare,jsonBodyParser] , createEvent)
+
+        app.get('/users/:id', jwtVerifierMidWare, retrievePublished )
+
+        app.patch('/users/subscribe', [jwtVerifierMidWare,jsonBodyParser], subscribeEvent)
+
+        app.get('/users/:id/subscribe', jwtVerifierMidWare, retrieveSubscribe )
+
+        app.delete('/users/subscribe', deleteEvent)
+
         app.listen(port, () => logger.info(`server ${name} ${version} up and running on port ${port}`))
 
         process.on('SIGINT', () => {
-            logger.info('server abruptly stopped')
+            logger.info('server abruptly stopped') 
 
             process.exit(0)
         })

@@ -1,36 +1,18 @@
 require('dotenv').config()
 
-const {
-    expect
-} = require('chai')
-const {
-    ObjectId
-} = require('mongodb')
-const {
-    random
-} = Math
-const {
-    database
-} = require('../data')
-const {
-    registerUser
-} = require('../logic')
-const {
-    NotAllowedError
-} = require('../errors')
+const { expect } = require('chai')
+const { random } = Math
+const { database, database: { ObjectId } } = require('../data')
+const { registerUser } = require('../logic')
 
-const {
-    env: {
-        MONGODB_URL
-    }
-} = process
+const { env: { TEST_MONGODB_URL } } = process
 
-describe.only('registerUser', () => {
+describe('registerUser', () => {
     let name, surname, email, password, users
 
     before(() =>
-        database.connect(MONGODB_URL)
-        .then(() => users = database.collection('users'))
+        database.connect(TEST_MONGODB_URL)
+            .then(() => users = database.collection('users'))
     )
 
     beforeEach(() => {
@@ -42,40 +24,24 @@ describe.only('registerUser', () => {
 
     it('should succeed on correct user data', () =>
         registerUser(name, surname, email, password)
-        .then(result => {
-            expect(result).not.to.exist
-            expect(result).to.be.undefined
+            .then(result => {
+                expect(result).not.to.exist
+                expect(result).to.be.undefined
 
-            return users.findOne({
-                email
+                return users.findOne({ email })
             })
-        })
-        .then(user => {
-            expect(user).to.exist
-            expect(user._id).to.be.instanceOf(ObjectId)
-            expect(user.name).to.equal(name)
-            expect(user.surname).to.equal(surname)
-            expect(user.email).to.equal(email)
-            expect(user.password).to.equal(password) // TODO encrypt this field!
-            expect(user.created).to.be.instanceOf(Date)
-        })
+            .then(user => {
+                expect(user).to.exist
+                expect(user._id).to.be.instanceOf(ObjectId)
+                expect(user.name).to.equal(name)
+                expect(user.surname).to.equal(surname)
+                expect(user.email).to.equal(email)
+                expect(user.password).to.equal(password) // TODO encrypt this field!
+                expect(user.created).to.be.instanceOf(Date)
+            })
     )
 
-    it('should fail when email already exists', () => {
-        expect(() => {
-           return registerUser(name, surname, email, password)
-        }).to.throw(NotAllowedError)
-    })
-
     // TODO unhappy paths and other happies if exist
-
-    afterEach(() => {
-
-        users.deleteOne({
-            email
-        })
-
-    })
 
     after(() => database.disconnect())
 })
