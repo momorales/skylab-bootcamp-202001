@@ -4,7 +4,12 @@ const { ContentError } = require('../errors')
 module.exports = (req, res) => {
     // const { payload: { sub: id } } = req
     // idUser = req.body["idUser"]
-    idEvent = req.query["idEvent"]
+    // idEvent = req.params["idEvent"]
+    // idUser = req.query["idUser"]
+
+    // const {body: {idEvent}} = req
+
+    const { params: idEvent } = req
 
     try {
         deleteEvent(idEvent)

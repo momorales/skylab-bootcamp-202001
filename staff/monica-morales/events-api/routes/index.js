@@ -6,5 +6,7 @@ module.exports = {
     retrievePublished: require('./retrieve-published-events'),
     subscribeEvent: require('./subscribe-event'),
     retrieveSubscribe: require('./retrieve-subscribe'),
-    deleteEvent: require('./delete-event')
+    deleteEvent: require('./delete-event'),
+    retrieveLastEvents: require('./retrieve-last-event'),
+    updateEvents: require('./update-events')
 }

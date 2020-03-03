@@ -1,19 +1,13 @@
 const {validate} = require('../utils')
-const {database, database:{ObjectId}} = require('../data')
+const {models: {Event}} = require('../data')
 const { NotFoundError, NotAllowedError } = require('../errors')
 
 
-module.exports = (idUser, idEvent) =>{
+module.exports = (idUser) =>{
 
     validate.string(idUser, 'idUser')
-    validate.string(idEvent, 'idEvent')
-
-    const _idUser = ObjectId(idUser)
-    const _idEvent = ObjectId(idEvent)
-
-    const users = database.collection('users')
-    
-    return users.find({_id: ObjectId(_idUser), subscribeEvent: _idEvent }).toArray()
+        
+    return Event.find({subscribers: idUser })
         .then(result =>{
             if(result.length > 0)
                 return result

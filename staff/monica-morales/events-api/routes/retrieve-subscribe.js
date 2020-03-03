@@ -3,10 +3,10 @@ const { NotFoundError, NotAllowedError } = require('../errors')
 module.exports = (req, res) => {
     const { payload: { sub: id } } = req
     idUser = req.query["idUser"]
-    idEvent = req.query["idEvent"]
+    // idEvent = req.query["idEvent"]
     
     try {
-        retrieveSubscribe(idUser, idEvent)
+        retrieveSubscribe(idUser)
             .then(events =>
                 res.status(200).json(events)
             )
