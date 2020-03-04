@@ -4,15 +4,16 @@ const { env: { PORT = 8080, NODE_ENV: env, MONGODB_URL }, argv: [, , port = PORT
 
 const express = require('express')
 const winston = require('winston')
-const { /*registerUser,*/ authenticateUser, /*retrieveUser*/ createEvent, retrievePublished, subscribeEvent, retrieveSubscribe,deleteEvent, retrieveLastEvents, updateEvents} = require('./routes')
+const { registerUser,authenticateUser, retrieveUser, createEvent, retrievePublished, subscribeEvent, retrieveSubscribe,deleteEvent, retrieveLastEvents, updateEvents} = require('./routes')
 const { name, version } = require('./package')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const fs = require('fs')
 const path = require('path')
-const { jwtVerifierMidWare } = require('./mid-wares')
+const { jwtVerifierMidWare, cors } = require('./mid-wares')
 // const { database } = require('./data')
-const mongoose = require('mongoose')
+const {mongoose} = require('events-data')
+// const cors = require('cors')
 
 mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -32,17 +33,19 @@ mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true 
 
         const jsonBodyParser = bodyParser.json()
 
-        const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+        // const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 
         const app = express()
 
+        app.use(cors)
+
         // app.use(morgan('combined', { stream: accessLogStream }))
 
-        // app.post('/users', jsonBodyParser, registerUser)
+        app.post('/users', jsonBodyParser, registerUser)
 
         app.post('/users/auth', jsonBodyParser, authenticateUser)
 
-        // app.get('/users', jwtVerifierMidWare, retrieveUser)
+        app.get('/users', jwtVerifierMidWare, retrieveUser)
 
         app.post('/users/:id/events', [jwtVerifierMidWare,jsonBodyParser] , createEvent)
 

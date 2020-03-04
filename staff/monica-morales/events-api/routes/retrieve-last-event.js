@@ -1,5 +1,5 @@
 const { retrieveLastEvents } = require('../logic')
-const { NotFoundError } = require('../errors')
+const { NotFoundError } = require('events-errors')
 module.exports = (req, res) => {
     try {
         retrieveLastEvents()

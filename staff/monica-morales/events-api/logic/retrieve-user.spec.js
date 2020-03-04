@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const { env: { TEST_MONGODB_URL } } = process
-const { database, models: { User } } = require('../data')
+const { database, models: { User } } = require('events-data')
 const { expect } = require('chai')
 const { random } = Math
 const retrieveUser = require('./retrieve-user')

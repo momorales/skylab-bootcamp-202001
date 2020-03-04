@@ -1,5 +1,5 @@
-const {validate} = require('../utils')
-const { models: { User, Event } } = require('../data')
+const {validate} = require('events-utils')
+const { models: { User, Event } } = require('events-data')
 
 module.exports = (idEvent => {
 
@@ -15,8 +15,8 @@ module.exports = (idEvent => {
     })
 
 
-// const {validate} = require('../utils')
-// const {database, database:{ObjectId}} = require('../data')
+// const {validate} = require('events-utils')
+// const {database, database:{ObjectId}} = require('events-data')
 
 // module.exports = (idEvent =>{
 

@@ -5,10 +5,12 @@ import React, {
 import './App.sass'
 import {
   sayHello,
-  registerUser
+  registerUser,
+  authenticateUser
 } from '../logic'
 import {
-  Register
+  Register,
+  Login
 } from '../components'
 
 function App({
@@ -25,10 +27,18 @@ function App({
     count > 4 && setView('message')
   }
 
+  function handleSetToken(token) {
+    sessionStorage.token = token
+  }
+
+  function handleRetrieveToken() {
+    return sessionStorage.token
+  }
+
   function handleRegister(name, surname, email, password) {
     try {
       registerUser(name, surname, email, password)
-        .then(() => setView('register'))
+        .then(() => setView('login'))
       // console.log('OK')
 
     } catch (error) {
@@ -36,10 +46,35 @@ function App({
     }
   }
 
+  function handleLogin(email, password) {
+    try{
+      authenticateUser(email, password)
+      .then(response => {
+        const token = response
+        handleSetToken(token)
+        setView("landing")
+      })
+      .catch((error) => console.log(error))
+    }catch(error) {
+      console.log(error)
+    }
+  }
+
+  function handleGoToRegister() {
+    setView("register")
+  }
+
 useEffect(() => { sayHello(name).then(setHello) }, [])
 
 return <div className="App">
 {view === 'register' && < Register onToRegister = {handleRegister}/>}
+{view === "login" && < Login onToLogin={handleLogin} onGoToRegister={handleGoToRegister}/>}
+
+
+
+
+
+
   <h1>{hello}</h1>
   <form onSubmit={countUp}>
     <span>{count}</span>

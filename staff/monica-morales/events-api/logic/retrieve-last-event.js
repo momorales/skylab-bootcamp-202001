@@ -1,5 +1,5 @@
-const { models: {Event} } = require('../data')
-const { NotFoundError } = require('../errors')
+const { models: {Event} } = require('events-data')
+const { NotFoundError } = require('events-errors')
 module.exports = () => {
     // const events = database.collection('events')
     const now = new Date

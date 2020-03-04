@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const { expect } = require('chai')
 const { random } = Math
-const { database, database: { ObjectId } } = require('../data')
+const { database, database: { ObjectId } } = require('events-data')
 const { registerUser } = require('../logic')
 
 const { env: { TEST_MONGODB_URL } } = process
