@@ -1,5 +1,5 @@
 const authenticateUser = require('./authenticate-user')
-const { call } = require('../utils')
+const { call } = require('events-utils')
 
 describe('authenticateUser', () => {
     let name, surname, username, password

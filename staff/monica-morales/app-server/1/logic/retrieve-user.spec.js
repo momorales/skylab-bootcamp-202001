@@ -1,5 +1,5 @@
 const retrieveUser = require('./retrieve-user')
-const { call } = require('../utils')
+const { call } = require('events-utils')
 require('../specs/specs-helper.js')
 
 describe('retrieveUser', () => {

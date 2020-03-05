@@ -1,6 +1,6 @@
-const { call } = require('../utils')
+const { call } = require('events-utils')
 const atob = require('atob')
-require('../utils/array.prototype.toggle')
+require('events-utils/array.prototype.toggle')
 
 module.exports = function (token, id, callback) {
     

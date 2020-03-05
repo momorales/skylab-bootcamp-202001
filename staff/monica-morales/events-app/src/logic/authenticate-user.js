@@ -9,6 +9,7 @@ export default function (email, password) {
     validate.string(password, "password")
 
     return (async ()=> {
+        debugger
         const res = await fetch(`${API_URL}/users/auth`,{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},

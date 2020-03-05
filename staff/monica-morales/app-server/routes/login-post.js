@@ -18,14 +18,15 @@ module.exports = (req, res) => {
 
                res.redirect('/')
             })
+        })
 
-        }).catch((error =>{
+        .catch(error =>{
             logger.warn(error)
 
                 const { message } = error
                 const { session: { acceptCookies } } = req
 
-            res.send(App({ title: 'Login', body: Login({ error: message, username }), acceptCookies })
+            res.send(App({ title: 'Login', body: Login({ error: message, username }), acceptCookies }))
         })
     } catch (error) {
         logger.error(error)

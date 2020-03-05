@@ -1,7 +1,7 @@
 const searchVehicles = require('./search-vehicles')
-const { call } = require('../utils')
+const { call } = require('events-utils')
 require('../specs/specs-helper.js')
-require('../utils/array.prototype.random')
+require('events-utils/array.prototype.random')
 
 
 describe('searchVehicles', () => {
