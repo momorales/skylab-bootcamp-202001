@@ -2,7 +2,7 @@ import React from 'react'
 
 export default
 
-function({onToRegister}){
+function({onToRegister, setView}){
     return <form onSubmit={event=>{
         event.preventDefault()
 
@@ -19,6 +19,12 @@ function({onToRegister}){
         <input type="text" name="email" placeholder="Email"></input>
         <input type="password" name="password" placeholder="Password"></input>
         <button type="submit">REGISTER</button>
+        <a href = "" onClick={event=>{
+            event.preventDefault()
+            
+        setView('login')
+            
+        }}>Go to Login</a>
 
     </form>
 }

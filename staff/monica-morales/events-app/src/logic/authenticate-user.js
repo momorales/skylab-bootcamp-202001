@@ -1,4 +1,5 @@
 import {validate} from "events-utils"
+const {notAllowedError} = require('events-errors')
 
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -9,7 +10,7 @@ export default function (email, password) {
     validate.string(password, "password")
 
     return (async ()=> {
-        debugger
+       
         const res = await fetch(`${API_URL}/users/auth`,{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
