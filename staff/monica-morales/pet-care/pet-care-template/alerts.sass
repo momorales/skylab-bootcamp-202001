@@ -1,0 +1,48 @@
+@import config.sass
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates&display=swap')
+
+body
+    margin: 0
+    box-sizing: border-box
+    width: 100%
+
+.alerts
+    text-align: center
+    margin: 0 auto
+    justify-item: center
+    self-align: center
+
+    &__title
+        @include title-h2
+        margin-top: -1em
+        
+    &__container
+        margin-top: 1rem
+        display: flex
+        flex-direction: column
+        align-items: center
+
+    &__alert
+        font-family: 'Montserrat Alternates', sans-serif
+        margin-bottom: 0.5rem
+        -webkit-appearance: none
+        background-color: #f6d4f0
+        height: 8vh
+        border-radius: 0.3rem
+        box-shadow: 0 0 5px #131212
+        &:hover
+            filter: brightness(1.2)
+            cursor: pointer
+
+    &__add
+        position: fixed
+        z-index: 10
+        bottom: 2rem
+        right: 1rem
+
+
+
+
+    
+
+    
