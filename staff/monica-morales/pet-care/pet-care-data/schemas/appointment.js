@@ -1,11 +1,11 @@
 const { Schema, Types: { ObjectId } } = require('mongoose')
-const Pet = require ('./pet')
+const pet = require ('./pet')
 
 
 module.exports = new Schema({
     dateCreate: {type: Date, required: true},
+    description: { type: String, required: true },
     dateEmpointment: { type: Date, required: true },
-    description: { type: String, required: true, unique: true },
     hour: { type: String, required: true },
-    pet: [Pet]
+    pet: [pet]
 })

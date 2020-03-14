@@ -1,15 +1,11 @@
 const { Schema, Types: { ObjectId } } = require('mongoose')
-const Pet = require ('./pet')
-
+// const pet = require ('./pet')
 
 module.exports = new Schema({
-    description: { type: String, required: true, unique: true },
-    sender: { type: String, unique: true },
-    addressee: { type: String, unique: true },
-    type: { type: String, unique: true },
-    telephone: { type: String, unique: true },
-    dateCreate: {type: Date, required: true},
-    dateEvent: {type: Date, required: true},
-    subject: { type: String, unique: true },
-    pet: [Pet]
+    subject: {enum: ['vaccines', 'deworming', 'medication']},
+    description: { type: String, required: true },
+    telephone: { type: String},
+    creation: {type: Date, required: true, default: new Date},
+    EventDate: {type: Date, required: true},
+    pets: [{type: ObjectId, ref: 'Pet'}]
 })
