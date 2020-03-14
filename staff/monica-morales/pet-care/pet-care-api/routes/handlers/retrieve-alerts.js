@@ -1,19 +1,19 @@
-const { retrieveUser } = require('../../logic')
+const { retrieveAlerts } = require ('../../logic')
 const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
-    const { payload: { sub: id } } = req
+    const { body: {subject, description, telephone, creation, eventDate, petId, userId } } = req
 
     try {
-        retrieveUser(id)
-            .then(user =>
-                res.status(200).json(user)
-            )
+        
+        retrieveAlerts(subject, description, telephone, creation, eventDate, petId, userId )
+
+            .then(()=> res.status(201).end())
             .catch(error => {
                 let status = 400
 
                 if (error instanceof NotAllowedError)
-                    status = 401 
+                    status = 409 
 
                 const { message } = error
 
@@ -23,6 +23,7 @@ module.exports = (req, res) => {
                         error: message
                     })
             })
+
     } catch (error) {
         let status = 400
 
@@ -36,5 +37,6 @@ module.exports = (req, res) => {
             .json({
                 error: message
             })
+        
     }
 }
