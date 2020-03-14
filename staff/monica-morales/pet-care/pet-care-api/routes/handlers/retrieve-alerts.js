@@ -2,11 +2,11 @@ const { retrieveAlerts } = require ('../../logic')
 const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
-    const { body: {subject, description, telephone, creation, eventDate, petId, userId } } = req
+    const { query: {id } } = req
 
     try {
         
-        retrieveAlerts(subject, description, telephone, creation, eventDate, petId, userId )
+        retrieveAlerts(id )
 
             .then(()=> res.status(201).end())
             .catch(error => {

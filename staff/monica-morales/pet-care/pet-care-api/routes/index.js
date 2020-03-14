@@ -33,7 +33,9 @@ router.get('/pet', detailPet)
 
 router.get('/pet/owned', jwtVerifierMidWare, retrievePetsOwned)
 
-router.post('/pet/alert', jwtVerifierMidWare, jsonBodyParser, createAlert )
+router.post('/pet/alert', jwtVerifierMidWare, jsonBodyParser, createAlert)
+
+//router.get('/pet/alert', jwtVerifierMidWare, retrieveAlerts)
 
 
 module.exports = router
