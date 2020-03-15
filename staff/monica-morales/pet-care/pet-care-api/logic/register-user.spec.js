@@ -8,8 +8,8 @@ const bcrypt = require('bcryptjs')
 
 const { env: { TEST_MONGODB_URL } } = process
 
-describe.only('registerUser', () => {
-    let name, surname, email, password
+describe('registerUser', () => {
+    let name, username, email, password
 
     before(() =>
         mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -18,14 +18,15 @@ describe.only('registerUser', () => {
 
     beforeEach(() => {
         name = `name-${random()}`
-        surname = `surname-${random()}`
+        username = `username-${random()}`
         email = `email-${random()}@mail.com`
         password = `password-${random()}`
     })
 
     it('should succeed on correct user data', () =>
-        registerUser(name, surname, email, password)
+        registerUser(name, username, email, password)
             .then(result => {
+                debugger
                 expect(result).not.to.exist
                 expect(result).to.be.undefined
 
@@ -35,7 +36,7 @@ describe.only('registerUser', () => {
                 expect(user).to.exist
                 expect(user.id).to.be.a('string')
                 expect(user.name).to.equal(name)
-                expect(user.surname).to.equal(surname)
+                expect(user.username).to.equal(username)
                 expect(user.email).to.equal(email)
                 expect(user.created).to.be.instanceOf(Date)
 

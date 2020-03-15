@@ -12,11 +12,11 @@ describe('retrieveUser', () => {
             .then(() => User.deleteMany())
     )
 
-    let name, surname, email, password, users
+    let name, username, email, password
 
     beforeEach(() => {
         name = `name-${random()}`
-        surname = `surname-${random()}`
+        username = `username-${random()}`
         email = `email-${random()}@mail.com`
         password = `password-${random()}`
     })
@@ -25,7 +25,7 @@ describe('retrieveUser', () => {
         let _id
 
         beforeEach(() =>
-            User.create({ name, surname, email, password })
+            User.create({ name, username, email, password })
                 .then(({ id }) => _id = id)
         )
 
@@ -34,7 +34,7 @@ describe('retrieveUser', () => {
                 .then(user => {
                     expect(user.constructor).to.equal(Object)
                     expect(user.name).to.equal(name)
-                    expect(user.surname).to.equal(surname)
+                    expect(user.username).to.equal(username)
                     expect(user.email).to.equal(email)
                     expect(user.password).to.be.undefined
                 })

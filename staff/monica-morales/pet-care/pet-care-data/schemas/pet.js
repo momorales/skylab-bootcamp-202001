@@ -1,19 +1,20 @@
 const { Schema, Types: { ObjectId } } = require('mongoose')
-const Diagnostic = require ('./diagnostic')
-
+const diagnostic = require ('./diagnostic')
 
 
 module.exports = new Schema({
-    NumberChip: {type: String, required: true},
+    numberChip: {type: String, required: true},
+    owner: {type: ObjectId, required: true, ref: 'User'},
     name: { type: String, required: true },
     birthDate: { type: Date, required: true },
-    specie: { type: String, required: true, unique: true },
-    sex: { type: String, required: true, unique: true },
+    specie: { type: String, required: true },
+    sex: { type: String, required: true },
     race: { type: String, required: true },
     typeRace: { type: String, required: true},
     fur: { type: String, required: true},
     sterilized: { type: Boolean, required: true},
     weight: {type: Number},
     created: { type: Date, required: true, default: Date.now },
-    diagnostic: [Diagnostic]
+    diagnostic: [diagnostic]
 })
+
