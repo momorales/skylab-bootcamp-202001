@@ -1,21 +1,20 @@
-const { retrieveAlerts } = require ('../../logic')
+const { deleteAppointment } = require('../../logic')
 const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
-    const { payload: { sub:id } } = req
+   
+    const { params:{id, petId} } = req
 
     try {
-        
-        retrieveAlerts(id )
-
-            .then(alerts =>
-                res.json(alerts)
+        deleteAppointment(id,petId)
+            .then(alert => 
+                res.status(200).json(alert)
             )
             .catch(error => {
                 let status = 400
 
                 if (error instanceof NotAllowedError)
-                    status = 409 
+                    status = 401 
 
                 const { message } = error
 
@@ -24,8 +23,9 @@ module.exports = (req, res) => {
                     .json({
                         error: message
                     })
-            })
 
+            })
+        
     } catch (error) {
         let status = 400
 

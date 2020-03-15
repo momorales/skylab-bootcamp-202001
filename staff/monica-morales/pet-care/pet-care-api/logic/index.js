@@ -7,5 +7,9 @@ module.exports = {
     retrievePets: require('./retrieve-pets'),
     retrievePetOwned: require('./retrieve-pets-owned'),
     createAlert: require('./create-alert'),
-    retrieveAlerts: require('./retrieve-alerts')
+    retrieveAlerts: require('./retrieve-alerts'),
+    detailAlert: require('./detail-alert'),
+    createVisit: require('./create.visit'),
+    deleteAppointment: require('./delete-visit'),
+    retrieveNextAppointments: require('./retrieve-nextAppointments')
 }

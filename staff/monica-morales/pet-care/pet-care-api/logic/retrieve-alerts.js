@@ -1,17 +1,18 @@
 
-const { models: { Alert, Pet, User} } = require('pet-care-data')
+const { validate } = require('pet-care-utils')
+const { models: { User } } = require('pet-care-data')
+const { NotFoundError, NotAllowedError } = require('pet-care-errors')
 
+module.exports = id => {
+    validate.string(id, 'id')
 
-/*@params {idUSer, idPet, subject, description, telephone,creation, EventDate}*/
-/*buscar bd si el usuario existe*/
-/*buscar bd si la alerta existe*/
-/*si el usuario o la alerta no existe lanzamos un error*/
-/*si existen: 
-    devolver alerta?*/
+    const newDate = new Date
 
-module.exports = async (id) => {
+    return User.find({"_id":id, "alerts.eventDate": { "$gte" : newDate}},{alerts:1})
+        .then(user => {
+            if (!user) throw new NotFoundError(`user with id ${id} does not exist`)
+            return user
+        })
 
-    const user = await User.findById(id).populated('alerts').lean()
-
-    return user.alerts
+        
 }

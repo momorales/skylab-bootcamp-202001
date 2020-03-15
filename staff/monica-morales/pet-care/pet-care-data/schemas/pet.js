@@ -1,6 +1,6 @@
 const { Schema, Types: { ObjectId } } = require('mongoose')
 const diagnostic = require ('./diagnostic')
-
+const appointment = require ('./appointment')
 
 module.exports = new Schema({
     numberChip: {type: String, required: true},
@@ -15,6 +15,7 @@ module.exports = new Schema({
     sterilized: { type: Boolean, required: true},
     weight: {type: Number},
     created: { type: Date, required: true, default: Date.now },
-    diagnostic: [diagnostic]
+    diagnostic: [diagnostic],
+    appointments: [appointment]
 })
 

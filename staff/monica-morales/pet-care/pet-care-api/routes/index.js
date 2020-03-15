@@ -7,7 +7,12 @@ const {
     detailPet,
     retrievePets,
     retrievePetsOwned,
-    createAlert
+    createAlert,
+    retrieveAlerts,
+    detailAlert,
+    createVisit,
+    deleteAppointment,
+    retrieveNextAppointments
     
 } = require('./handlers')
 const { jwtVerifierMidWare } = require('../mid-wares')
@@ -35,7 +40,15 @@ router.get('/pet/owned', jwtVerifierMidWare, retrievePetsOwned)
 
 router.post('/pet/alert', jwtVerifierMidWare, jsonBodyParser, createAlert)
 
-//router.get('/pet/alert', jwtVerifierMidWare, retrieveAlerts)
+router.get('/pet/alert', jwtVerifierMidWare, retrieveAlerts)
+
+router.get('/pet/alert', jwtVerifierMidWare, detailAlert )
+
+router.post('/user/visit',jwtVerifierMidWare, jsonBodyParser, createVisit )
+
+router.delete('/pet/:petId/visit/delete/:id', deleteAppointment )
+
+router.get('/appointments/current', retrieveNextAppointments)
 
 
 module.exports = router
