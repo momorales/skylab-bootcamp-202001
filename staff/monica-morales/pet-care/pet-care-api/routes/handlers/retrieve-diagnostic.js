@@ -1,15 +1,17 @@
-const { retrieveNextAppointments } = require ('../../logic')
+const { retrieveDiagnostic } = require ('../../logic')
 const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
-  
+    debugger
 
+    const {params: {idDiagnostic,idPet}} = req
+  
     try {
         
-        retrieveNextAppointments()
+        retrieveDiagnostic(idDiagnostic, idPet)
 
-            .then(appointments =>
-                res.json(appointments)
+            .then(diagnostic =>
+                res.json(diagnostic)
             )
             .catch(error => {
                 let status = 400

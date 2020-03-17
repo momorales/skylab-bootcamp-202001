@@ -2,11 +2,13 @@ const { validate } = require('pet-care-utils')
 const { models: { Pet, Appointment } } = require('pet-care-data')
 const { NotAllowedError } = require('pet-care-errors')
 
-module.exports = async (description, dateAppointment, hour, petId) =>{
+module.exports = (description, dateAppointment, hour, petId) =>{
    
     validate.string(description, 'description')
     validate.type(dateAppointment, 'dateAppointment', Date)
     validate.string(hour, 'hour')
+
+    return (async()=>{
         
     const pet =  await Pet.findById(petId)
 
@@ -19,6 +21,7 @@ module.exports = async (description, dateAppointment, hour, petId) =>{
    
     await Pet.update({ _id: petId}, {$push:{appointments: newVisit}})
     
-    return
-
+    return newVisit
+    
+    })()
 }

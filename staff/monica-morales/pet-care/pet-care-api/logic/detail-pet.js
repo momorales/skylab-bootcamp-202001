@@ -1,15 +1,19 @@
 const { validate } = require('pet-care-utils')
-const { models: {  User, Pet } } = require('pet-care-data')
+const { models: { Pet } } = require('pet-care-data')
 const { NotFoundError} = require('pet-care-errors')
 
-module.exports = async (id) => {
+module.exports = id => {
+
+    return (async()=>{
 
     const pet = await Pet.findById(id)
 
     if(pet) return pet
+    
     else{
-        throw new NotAllowedError (`pet with id ${id} does not exist`)
+        throw new NotFoundError (`pet with id ${id} does not exist`)
     }
+    })()
 }
 
 

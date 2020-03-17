@@ -7,7 +7,8 @@ module.exports = (req, res) => {
     try {
         
         createVisit(description, dateAppointment, hour, petId )
-            .then(()=> res.status(201).end())
+            .then((newVisit=> 
+                res.status(201).end(newVisit))
             .catch(error => {
                 let status = 400
 
@@ -23,19 +24,19 @@ module.exports = (req, res) => {
                     })
             })
 
-    } catch (error) {
-        let status = 400
+        )} catch (error) {
+        
+            let status = 400
 
-        if (error instanceof TypeError || error instanceof ContentError)
-            status = 406 
+            if (error instanceof TypeError || error instanceof ContentError)
+                status = 406 
 
-        const { message } = error
+            const { message } = error
 
         res
             .status(status)
             .json({
                 error: message
             })
-        
-    }
+        }
 }

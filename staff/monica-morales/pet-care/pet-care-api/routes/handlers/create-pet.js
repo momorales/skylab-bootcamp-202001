@@ -7,7 +7,8 @@ module.exports = (req, res) => {
     try {
         
         createPet(numberChip, owner, name, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, diagnostic )
-            .then(()=> res.status(201).end())
+            .then((newPet=> 
+                res.status(201).end(newPet))
             .catch(error => {
                 let status = 400
 
@@ -23,19 +24,18 @@ module.exports = (req, res) => {
                     })
             })
 
-    } catch (error) {
-        let status = 400
+        )} catch (error) {
+            let status = 400
 
-        if (error instanceof TypeError || error instanceof ContentError)
-            status = 406 
+            if (error instanceof TypeError || error instanceof ContentError)
+                status = 406 
 
-        const { message } = error
+            const { message } = error
 
-        res
-            .status(status)
-            .json({
-                error: message
-            })
-        
-    }
+            res
+                .status(status)
+                .json({
+                    error: message
+                })
+            }
 }

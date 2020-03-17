@@ -12,7 +12,10 @@ const {
     detailAlert,
     createVisit,
     deleteAppointment,
-    retrieveNextAppointments
+    retrieveNextAppointments,
+    createDiagnostic,
+    retrieveDiagnostic,
+    retrieveDiagnostics
     
 } = require('./handlers')
 const { jwtVerifierMidWare } = require('../mid-wares')
@@ -49,6 +52,12 @@ router.post('/user/visit',jwtVerifierMidWare, jsonBodyParser, createVisit )
 router.delete('/pet/:petId/visit/delete/:id', deleteAppointment )
 
 router.get('/appointments/current', retrieveNextAppointments)
+
+router.post('/pet/:petId/diagnostic', jsonBodyParser, createDiagnostic)
+
+router.get('/pet/:idPet/diagnostic/:idDiagnostic', retrieveDiagnostic)
+
+router.get('/pet/:idPet/diagnostics', retrieveDiagnostics)
 
 
 module.exports = router

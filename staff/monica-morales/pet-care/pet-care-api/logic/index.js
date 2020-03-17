@@ -11,5 +11,8 @@ module.exports = {
     detailAlert: require('./detail-alert'),
     createVisit: require('./create.visit'),
     deleteAppointment: require('./delete-visit'),
-    retrieveNextAppointments: require('./retrieve-nextAppointments')
+    retrieveNextAppointments: require('./retrieve-nextAppointments'),
+    createDiagnostic: require('./create-diagnostic'),
+    retrieveDiagnostic: require('./retrieve-diagnostic'),
+    retrieveDiagnostics: require('./retrieve-diagnostics')
 }

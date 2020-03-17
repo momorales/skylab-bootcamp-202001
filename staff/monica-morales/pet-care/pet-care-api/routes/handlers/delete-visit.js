@@ -7,8 +7,8 @@ module.exports = (req, res) => {
 
     try {
         deleteAppointment(id,petId)
-            .then(alert => 
-                res.status(200).json(alert)
+            .then(appointment => 
+                res.status(200).json(appointment)
             )
             .catch(error => {
                 let status = 400

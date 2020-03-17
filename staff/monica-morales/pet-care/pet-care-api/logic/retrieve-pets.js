@@ -4,7 +4,7 @@ const { NotFoundError} = require('pet-care-errors')
 
 module.exports = ()=> {
     
-    return (async ()=> {
+    return (async()=>{
         const pets = await Pet.find()
         return pets
     })()
