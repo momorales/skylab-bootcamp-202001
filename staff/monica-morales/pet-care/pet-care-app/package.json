@@ -1,26 +1,22 @@
 {
-  "name": "events-app",
+  "name": "pet-care-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.1",
+    "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "dotenv": "^8.2.0",
-    "events-errors": "file:../events-errors",
-    "events-utils": "file:../events-utils",
+    "pet-care-errors": "file:../pet-care-errors",
+    "pet-care-utils": "file:../pet-care-utils",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache"
-    
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,10 +33,12 @@
       "last 1 safari version"
     ]
   },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
   "devDependencies": {
-    "bcryptjs": "^2.4.3",
-    "events-data": "file:../events-data",
-    "jsonwebtoken": "^8.5.1",
-    "node-sass": "^4.13.1"
-  }
+    "pet-care-data": "file:../pet-care-data"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
