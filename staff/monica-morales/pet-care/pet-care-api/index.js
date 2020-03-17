@@ -1,16 +1,15 @@
 require('dotenv').config()
-
 const { env: { PORT = 8080, NODE_ENV: env, MONGODB_URL }, argv: [, , port = PORT] } = process
-
 const express = require('express')
 const winston = require('winston')
 const { name, version } = require('./package')
 const morgan = require('morgan')
 const fs = require('fs')
 const path = require('path')
-const { cors } = require('./mid-wares')
+const cors = require('cors')
 const { mongoose } = require('pet-care-data')
 const router = require('./routes')
+mongoose.set('useFindAndModify', false);
 
 mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -27,16 +26,20 @@ mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true 
                 format: winston.format.simple()
             }))
         }
-
+       
         const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 
         const app = express()
 
-        app.use(cors)
+        app.use(cors())
 
         app.use(morgan('combined', { stream: accessLogStream }))
 
-        app.use('/api', router)
+        // app.use((req,res)=>{
+        //     res.send()
+        // })
+
+        app.use(router)
 
         app.listen(port, () => logger.info(`server ${name} ${version} up and running on port ${port}`))
 

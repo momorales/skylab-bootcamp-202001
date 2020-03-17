@@ -1,20 +1,21 @@
 const { Schema, Types: { ObjectId } } = require('mongoose')
-const Pet = require ('./pet')
-const Alert = require ('./alert')
+const pet = require ('./pet')
+const alert = require ('./alert')
 
 
 module.exports = new Schema({
-    rol: {enum:['user','vet']},
+    rol: { type: String, enum:['user','vet'], default: 'user', required: true},
     name: { type: String, required: true },
     username: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    tlf: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    address: { type: String, required: true},
-    DNI: { type: String, required: true},
-    created: { type: Date, required: true, default: Date.now },
+    email: { type: String, required: true },
+    tlf: { type: Number },
+    password: { type: String},
+    address: { type: String},
+    DNI: { type: String},
+    created: { type: Date, default: Date.now },
     authenticated: { type: Date },
     retrieved: { type: Date },
-    pets: [Pet],
-    alerts: [Alert]
+    pets: [{type: ObjectId, ref: 'Pet'}],
+    alerts: [alert]
+        
 })
