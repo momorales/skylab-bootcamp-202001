@@ -15,7 +15,7 @@ module.exports = new Schema({
     sterilized: { type: Boolean, required: true},
     weight: {type: Number},
     created: { type: Date, required: true, default: Date.now },
-    diagnostic: [diagnostic],
+    diagnostics: [diagnostic],
     appointments: [appointment]
 })
 
