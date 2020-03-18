@@ -1,15 +1,17 @@
-const { retrieveAlerts } = require ('../../logic')
+const { retrieveDiagnostic } = require ('../../logic')
 const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
-    const { payload: { sub:id } } = req
+    debugger
 
+    const {params: {idDiagnostic,idPet}} = req
+  
     try {
         
-        retrieveAlerts(id )
+        retrieveDiagnostic(idDiagnostic, idPet)
 
-            .then(alerts =>
-                res.json(alerts)
+            .then(diagnostic =>
+                res.json(diagnostic)
             )
             .catch(error => {
                 let status = 400

@@ -43,7 +43,5 @@ describe('authenticateUser', () => {
         )
     })
 
-    // TODO more happies and unhappies
-
-    after(() => User.deleteMany().then(() => mongoose.disconnect()))
+      after(() => User.deleteMany().then(() => mongoose.disconnect()))
 })

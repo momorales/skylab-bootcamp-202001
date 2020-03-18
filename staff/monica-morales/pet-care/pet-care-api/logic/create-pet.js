@@ -1,11 +1,11 @@
 const { validate } = require('pet-care-utils')
 const { models: { Pet, User,Diagnostic } } = require('pet-care-data')
-const { NotAllowedError } = require('pet-care-errors')
+const { NotAllowedError, NotFoundError } = require('pet-care-errors')
 
-module.exports = async (numberChip, owner, name, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, diagnostic, userId) =>{
+module.exports = (numberChip, owner, name, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, diagnostic, userId) =>{
    
-    validate.string(numberChip, 'owner')
-    validate.string(owner, 'numberChip')
+    validate.string(numberChip, 'numberChip')
+    validate.string(owner, 'owner')
     validate.string(name, 'name')
     validate.type(birthDate, 'birthDate', Date)
     validate.string(specie, 'specie')
@@ -18,9 +18,11 @@ module.exports = async (numberChip, owner, name, birthDate, specie, sex, race, t
     validate.type(created, 'created', Date)
 
     
+    return (async()=>{
+        
     const user =  await User.findById(owner)
         if(!user) {
-            throw new NotAllowedError (`user with id ${owner} does not exist`)
+            throw new NotFoundError (`user with id ${owner} does not exist`)
         }
 
     const pet = await Pet.findOne({numberChip})
@@ -38,8 +40,9 @@ module.exports = async (numberChip, owner, name, birthDate, specie, sex, race, t
 
     await User.update({ _id: owner}, {$push:{pets: newPet.id}})
     
-    return
+    return newPet
 
+    })()
 }
 
          

@@ -1,14 +1,14 @@
-const { createPet } = require ('../../logic')
+const { createVisit } = require ('../../logic')
 const { NotAllowedError, ContentError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
-    const { body: {numberChip, owner, name, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, diagnostic } } = req
+    const { body: {description, dateAppointment, hour, petId} } = req
 
     try {
         
-        createPet(numberChip, owner, name, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, diagnostic )
-            .then((newPet=> 
-                res.status(201).end(newPet))
+        createVisit(description, dateAppointment, hour, petId )
+            .then((newVisit=> 
+                res.status(201).end(newVisit))
             .catch(error => {
                 let status = 400
 
@@ -25,6 +25,7 @@ module.exports = (req, res) => {
             })
 
         )} catch (error) {
+        
             let status = 400
 
             if (error instanceof TypeError || error instanceof ContentError)
@@ -32,10 +33,10 @@ module.exports = (req, res) => {
 
             const { message } = error
 
-            res
-                .status(status)
-                .json({
-                    error: message
-                })
-            }
+        res
+            .status(status)
+            .json({
+                error: message
+            })
+        }
 }

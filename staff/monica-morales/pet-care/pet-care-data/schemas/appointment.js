@@ -3,9 +3,8 @@ const pet = require ('./pet')
 
 
 module.exports = new Schema({
-    dateCreate: {type: Date, required: true},
+    dateCreate: {type: Date, default: new Date},
     description: { type: String, required: true },
-    dateEmpointment: { type: Date, required: true },
-    hour: { type: String, required: true },
-    pet: [pet]
+    dateAppointment: { type: Date, required: true },
+    hour: { type: String, required: true } 
 })

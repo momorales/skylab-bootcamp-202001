@@ -1,15 +1,15 @@
-const { retrieveAlerts } = require ('../../logic')
+const { retrieveNextAppointments } = require ('../../logic')
 const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
-    const { payload: { sub:id } } = req
+  
 
     try {
         
-        retrieveAlerts(id )
+        retrieveNextAppointments()
 
-            .then(alerts =>
-                res.json(alerts)
+            .then(appointments =>
+                res.json(appointments)
             )
             .catch(error => {
                 let status = 400

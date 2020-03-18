@@ -3,6 +3,7 @@ const { models: { User } } = require('pet-care-data')
 const { NotFoundError, NotAllowedError } = require('pet-care-errors')
 
 module.exports = id => {
+    
     validate.string(id, 'id')
 
     return User.findById(id)
