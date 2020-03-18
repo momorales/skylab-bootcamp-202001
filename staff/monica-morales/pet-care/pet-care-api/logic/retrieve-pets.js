@@ -4,6 +4,8 @@ const { NotFoundError} = require('pet-care-errors')
 
 module.exports = ()=> {
     
+    //TODO: this action is made by someone logged in??
+    //Then put userId as parameter too
     return (async()=>{
         const pets = await Pet.find()
         return pets
