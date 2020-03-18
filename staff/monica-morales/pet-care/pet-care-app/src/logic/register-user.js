@@ -5,9 +5,9 @@ const { NotAllowedError } = require('pet-care-errors')
 
 const API_URL = process.env.REACT_APP_API_URL
 
-export default function (name, surname, email, password) {
+export default function (name, username, email, password) {
     validate.string(name, 'name')
-    validate.string(surname, 'surname')
+    validate.string(username, 'username')
     validate.string(email, 'email')
     validate.email(email)
     validate.string(password, 'password')
@@ -16,7 +16,7 @@ export default function (name, surname, email, password) {
         const response = await fetch(`${API_URL}/users`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, surname, email, password })
+            body: JSON.stringify({ name, username, email, password })
         })
 
         const { status } = response
