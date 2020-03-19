@@ -4,7 +4,10 @@ const { models: { Pet } } = require('pet-care-data')
 const { NotFoundError } = require('pet-care-errors')
 
 module.exports = (idPet) => {
-debugger
+
+    //TODO user
+    //diagnostic es un esquema también no?
+
     validate.string(idPet, 'idPet')   
     
     return Pet.find({_id:idPet},{ diagnostics: 1})
