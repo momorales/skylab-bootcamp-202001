@@ -75,8 +75,8 @@ describe('retrieve pets', () => {
 
         //delete no tiene sentido que devuelva el appointment
 
-        const appointment = await retrieveDiagnostics(_idAppointment, _petId)
-            expect(appointment).to.not.exist            
+        const appointmentDeleted = await deleteVisit(_idAppointment, _petId)
+            expect(appointmentDeleted).to.not.exist            
       
     
     })
