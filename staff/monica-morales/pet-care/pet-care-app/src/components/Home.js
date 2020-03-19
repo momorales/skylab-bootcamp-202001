@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 // import CreateEvent from './CreateEvent'
-import { retrieveUser, isLoggedIn, logout, publishEvent, retrieveLastEvents } from '../logic'
+import { retrieveUser, isLoggedIn, logout} from '../logic'
+import './home.sass'
 import { Context } from './ContextProvider'
 import { withRouter } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -43,17 +44,15 @@ export default withRouter(function ({ history }) {
     // }
 
     return <>
-        <h1>Hello, {name}!</h1>
+        {/* <h1>Hello, {name}!</h1> */}
         {/* <button onClick={handleLogout}>Logout</button> */}
-        <a href=""><button className="sections__button"><i className="fas fa-bell fa-3x"></i></button></a>
-        <a href=""><button className="sections__button"><i className="fas fa-calendar-alt fa-3x"></i></button></a>
-        <a href=""><button className="sections__button"><i className="fas fa-paw fa-3x"></i></button></a>
-        {/* <CreateEvent onSubmit={handleCreateEvent} /> */}
+        <div className = "sections">
+            <a href=""><button className="sections__button"><i className="fas fa-bell fa-3x"></i></button></a>
+            <a href=""><button className="sections__button"><i className="fas fa-calendar-alt fa-3x"></i></button></a>
+            <a href=""><button className="sections__button"><i className="fas fa-paw fa-3x"></i></button></a>
+            {/* <CreateEvent onSubmit={handleCreateEvent} /> */}
+
+        </div>
     </>
 })
 
-{/* <section class="sections">
-<a href="alerts.html"><button class="sections__button"><i class="fas fa-bell fa-3x"></i></button></a>
-<a href="visits.html"><button class="sections__button"><i class="fas fa-calendar-alt fa-3x"></i></button></a>
-<a href="pets.html"><button class="sections__button"><i class="fas fa-paw fa-3x"></i></button></a>
-</section> */}

@@ -6,6 +6,7 @@ const { NotAllowedError } = require('pet-care-errors')
 const API_URL = process.env.REACT_APP_API_URL
 
 export default function (name, username, email, password) {
+
     validate.string(name, 'name')
     validate.string(username, 'username')
     validate.string(email, 'email')

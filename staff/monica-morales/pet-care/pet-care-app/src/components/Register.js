@@ -4,7 +4,7 @@ import './config.sass'
 import Logo from'./logo.png'
 
 
-export default function ({ onSubmit, onGoToLogin, error, onMount }) {
+export default function ({ onSubmit, error, onMount }) {
     useEffect(() => {
         onMount()
     }, [])
@@ -22,12 +22,6 @@ export default function ({ onSubmit, onGoToLogin, error, onMount }) {
         onSubmit(name, username, email, password)
     }
 
-    function handleGoToLogin(event) {
-        event.preventDefault()
-
-        onGoToLogin()
-    }
-
     return <>
         <div className="register">
             <figure className='register__logo'>
@@ -38,15 +32,12 @@ export default function ({ onSubmit, onGoToLogin, error, onMount }) {
 
             <form className="register__form" onSubmit={handleSubmit}>
                
-                <input className="register__input" type="text" id="fname" name="fname" placeholder="Name"/>
-                <input className="register__input" type="text" id="lname" name="lname" placeholder= "username"/>
-                <input className="register__input" type="text" id="lname" name="lname" placeholder="Email"/>
-                <input className="register__input" type="text" id="lname" name="lname" placeholder="Password"/>
+                <input className="register__input" type="text" name="name" placeholder="Name"/>
+                <input className="register__input" type="text" name="username" placeholder= "username"/>
+                <input className="register__input" type="email" name="email" placeholder="Email"/>
+                <input className="register__input" type="password" name="password" placeholder="Password"/>
+                <button type="submit" className="register__accept fas fa-check"></button>
             </form>
-            <div>
-                <button className ="register__accept">Register</button>
-                <a href="" className="fas fa-check" onClick = {handleGoToLogin}/>
-            </div>
         </div>
     </>
 }

@@ -1,29 +1,34 @@
 import React, { useEffect,  useState } from 'react'
+import { Link, withRouter } from "react-router-dom";
+import { logout } from '../logic'
 import './header.sass'
 import Logo from './logo.png'
 
-export default ({ user }, onMount) => {
-    const {name} = user
+export default withRouter (function ({ user,history }) {
+    const { name } = user
 
-    useEffect(() => {
-        onMount()
-    }, [])
-    
-    
+    function handleLogout(event){
+        event.preventDefault()
+        logout()
+        history.push('/')
+    }
+
     return <>
 
-        <section class ="login">
+        <section className ="login">
         
-        <div className = "login__header">
-           <i className="fas fa-arrow-left"></i>
-           <img className="login__logo" src = {Logo}/>
-           <i className="fas fa-power-off fa-3x_login"></i>
-         </div>
-            <div className = 'login__username'>
-                <p>Hello {user}</p>
-        </div>
+            <div className = "login__header">
+                <a className=" fas fa-arrow-left"></a>
+                <img className="login__logo" src = {Logo}/>
+                <a onClick = {handleLogout}>
+                    <i className="fas fa-power-off fa-3x_login"></i>
+                </a>
+            </div>
+            <div className = 'login__username'>                    
+                <span>Hello, {name}!</span>
+            </div>
            
          </section>
  
     </>
-}
+})
