@@ -9,7 +9,8 @@ module.exports = id => {
     return (async()=>{
 
         const user = await User.findById(id).populate('pets').lean()
-   
+
+      
     return user.pets
 
     })()

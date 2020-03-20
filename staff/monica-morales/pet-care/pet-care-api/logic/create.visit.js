@@ -4,6 +4,8 @@ const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (description, dateAppointment, hour, petId) =>{
    
+    //TODO userID
+
     validate.string(description, 'description')
     validate.type(dateAppointment, 'dateAppointment', Date)
     validate.string(hour, 'hour')
@@ -18,8 +20,13 @@ module.exports = (description, dateAppointment, hour, petId) =>{
 
     const newVisit = new Appointment({description, dateAppointment, hour})
    
-   
-    await Pet.update({ _id: petId}, {$push:{appointments: newVisit}})
+    pet.appointments.push(newVisit)
+    
+
+    await pet.save()
+
+    // await Pet.update({ _id: petId}, {$push:{appointments: newVisit}})
+    
     
     return newVisit
     

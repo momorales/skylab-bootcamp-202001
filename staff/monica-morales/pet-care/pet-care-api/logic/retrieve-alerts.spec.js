@@ -45,7 +45,7 @@ describe('retrieveAlerts', () => {
         return Pet.create({owner, numberChip, name:petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created})
             .then((pet) => _petId = pet.id)
     }) 
-debugger
+
     beforeEach(()=>{
         subject = 'deworming'
         description = `description-${random()}`

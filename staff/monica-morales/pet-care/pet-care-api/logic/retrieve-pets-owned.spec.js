@@ -2,13 +2,13 @@ require('dotenv').config()
 
 const { expect } = require('chai')
 const { mongoose, models: { User, Pet } } = require('pet-care-data')
-const retrievePets = require('./retrieve-pets')
+const retrievePetsOwned = require('./retrieve-pets-owned')
 const {random } = Math
 
 
 const { env: { TEST_MONGODB_URL } } = process
 
-describe('retrieve pets', () => {
+describe('retrieve pets owned', () => {
     
     before(() =>
     mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -16,6 +16,7 @@ describe('retrieve pets', () => {
     )
     let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, id, _petId
     let petsContainer
+
     beforeEach ( async ()=>{
 
         //data to create user
@@ -50,7 +51,11 @@ describe('retrieve pets', () => {
         for(let i = 0; i <= petsToCreate; i++) {
 
             let pet = await Pet.create({owner, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created: new Date()})
+
+
             petsContainer.push(pet)
+            user.pets.push(pet)
+            await user.save()
 
         }
        
@@ -58,14 +63,19 @@ describe('retrieve pets', () => {
  
     
     it('should succeed retrieving all pets', async ()=> {
-        const pets = await retrievePets()
+        const pets = await retrievePetsOwned(id)
             expect(pets).to.exist
             expect(pets).to.have.lengthOf(petsContainer.length)
+
+        const user = await User.findById(id)
                 
-        pets.forEach(pet => {
-            expect(pet.id).to.be.a('string')
+        pets.forEach(pet => {debugger
+            _petId = pet._id
+            expect (user.pets).includes(_petId)
+            expect(_petId.toString()).to.be.a('string')
+            expect(pet.owner.toString()).to.be.a('string')
             expect(pet.owner.toString()).to.equal(owner)
-        })  
+        })         
     
     })
 

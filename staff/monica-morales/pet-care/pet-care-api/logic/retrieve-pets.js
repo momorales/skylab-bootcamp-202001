@@ -21,7 +21,7 @@ module.exports = ()=> {
 // module.exports = (numberChip, userId )=> {
 //     validate.string(numberChip, 'numberChip')
 //     validate.string(userId, 'userId')
-// debugger
+// 
 //     return Pet.findOne(numberChip)
 //         .then(pet => {
 //             if(!pet) throw new NotFoundError(`pet with Number Chip ${numberChip} does not exist`)

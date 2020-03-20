@@ -12,10 +12,10 @@ describe('createVisit', () => {
     
     before(() =>
     mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-        .then(() => User.deleteMany())
-        .then(() => Pet.deleteMany())
+        // .then(() => User.deleteMany())
+        // .then(() => Pet.deleteMany())
     )
-    let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, _userId, _petId
+    let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, userId, petId
 
     beforeEach(()=>{
         name = `name-${random()}`
@@ -25,10 +25,10 @@ describe('createVisit', () => {
 
         return bcrypt.hash(password, 10)
         .then((password) => User.create({name, username, email, password, created: new Date }))
-        .then((user) => _userId = user.id)
+        .then((user) => userId = user.id)
     })   
 
-    beforeEach(()=>{
+    beforeEach( async ()=>{
         numberChip = `numberChip-${random()}`
         petName = `name-${random()}@gmail.com`
         birthDate = `2020/01/01`
@@ -40,24 +40,33 @@ describe('createVisit', () => {
         sterilized = true
         weight = 40
         created = `2020/01/01`
-        owner = _userId
+        owner = userId
 
         description = `description-${random()}`
         dateAppointment = new Date
         hour = `hour-${random()}`
         
 
-        return Pet.create({owner, numberChip, name:petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created})
-            .then((pet) => _petId = pet.id)
+        const pet = await Pet.create({owner, numberChip, name:petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created})
+        
+        petId = pet.id
+        
     }) 
     
     it('should succeed on correct new appointment', async ()=> {
-        const newAppointment = await createVisit( description, dateAppointment, hour, _petId)
+
+        //TODO insert userID
+
+        const newAppointment = await createVisit( description, dateAppointment, hour, petId)
         
-        expect(newAppointment).to.be.exist
-              
+        expect(newAppointment).to.exist
+
+        const pet = await Pet.findById(petId) 
+        debugger
+        expect(pet.appointments).to.be.an('array')
+        expect((pet.appointments[0]._id).toString()).to.equal(newAppointment.id)       
         
     })
 
-    after(() => Promise.all([User.deleteMany(), Pet.deleteMany()]).then(() => mongoose.disconnect()))
+    after(() => mongoose.disconnect())
 })

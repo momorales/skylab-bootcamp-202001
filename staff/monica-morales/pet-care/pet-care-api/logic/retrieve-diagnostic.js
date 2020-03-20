@@ -4,7 +4,7 @@ const { models: { Pet } } = require('pet-care-data')
 const { NotFoundError } = require('pet-care-errors')
 
 module.exports = (idDiagnostic, idPet) => {
-debugger
+
     validate.string(idDiagnostic, 'idDiagnostic')
     validate.string(idPet, 'idPet')
     

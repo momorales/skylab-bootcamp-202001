@@ -2,23 +2,22 @@ require('dotenv').config()
 
 const { expect } = require('chai')
 const { mongoose, models: { User, Pet, Appointment } } = require('pet-care-data')
+const { NotFoundError, ContentError } = require('pet-care-errors')
 const deleteVisit = require('./delete-visit')
 const {random } = Math
 
 
 const { env: { TEST_MONGODB_URL } } = process
 
-describe('retrieve pets', () => {
+describe.only('delete visit', () => {
     
     before(() =>
     mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
         .then(() => Promise.all([User.deleteMany(), Pet.deleteMany(), Appointment.deleteMany()]))
     )
-    let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, id, _petId
-    let _idAppointment, description, dateAppointment, hour
-    
-
-
+    let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, id, petId
+    let appointmentId, description, dateAppointment, hour
+   
 
     beforeEach ( async ()=>{
 
@@ -56,30 +55,52 @@ describe('retrieve pets', () => {
 
         //create pet
 
-        const pet = await Pet.create({owner, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created: new Date()})
+        const pet = await Pet.create({owner: id, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created: new Date()})
 
-        _petId = pet.id
+        petId = pet.id
 
 
-        //create appointment
+
+
+        //create appointment and push to pet
         
-        const newAppointment = await new Appointment({petChip,dateAppointment, hour})
-
-        _idAppointment = newAppointment.id
-
+        const newAppointment = await new Appointment({description,dateAppointment, hour, petId})
+        appointmentId = newAppointment.id
        
+        pet.appointments.push(newAppointment)
+
+        await pet.save()
     })   
  
     
     it('should succeed deleting appointment pet', async ()=> {
 
-        //delete no tiene sentido que devuelva el appointment
+        const response = await deleteVisit(appointmentId, petId, id)
+        
+        expect(response).to.not.exist
+               
+        const _pet = await Pet.findById(petId)
+        const appointment = _pet.appointments.find(app => app.id === appointmentId)
 
-        const appointmentDeleted = await deleteVisit(_idAppointment, _petId)
-            expect(appointmentDeleted).to.not.exist            
-      
-    
+        expect((_pet.appointments).length).to.equal(0)
+        expect(appointment).to.not.exist
+        
     })
+
+    it('should fail on wrong user id', async () => {
+        let wrongId = '293898iujuyh'
+    
+        try {
+            await deleteVisit(appointmentId, petId, wrongId)
+    
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`user with id ${wrongId} not found`)
+        }
+    })
+
 
     after(() => Promise.all([User.deleteMany(), Pet.deleteMany()]).then(() => mongoose.disconnect()))
 })

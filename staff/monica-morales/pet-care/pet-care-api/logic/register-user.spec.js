@@ -26,7 +26,7 @@ describe('registerUser', () => {
     it('should succeed on correct user data', () =>
         registerUser(name, username, email, password)
             .then(result => {
-                debugger
+                
                 expect(result).not.to.exist
                 expect(result).to.be.undefined
 
