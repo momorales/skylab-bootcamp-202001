@@ -9,7 +9,7 @@ const {random } = Math
 
 const { env: { TEST_MONGODB_URL } } = process
 
-describe.only('delete visit', () => {
+describe('delete visit', () => {
     
     before(() =>
     mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
