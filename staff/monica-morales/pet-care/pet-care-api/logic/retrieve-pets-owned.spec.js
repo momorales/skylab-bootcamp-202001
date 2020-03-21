@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const { expect } = require('chai')
 const { mongoose, models: { User, Pet } } = require('pet-care-data')
+const { NotFoundError } = require('pet-care-errors')
 const retrievePetsOwned = require('./retrieve-pets-owned')
 const {random } = Math
 
@@ -50,7 +51,7 @@ describe('retrieve pets owned', () => {
 
         for(let i = 0; i <= petsToCreate; i++) {
 
-            let pet = await Pet.create({owner, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created: new Date()})
+            let pet = await Pet.create({owner: id, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created: new Date()})
 
 
             petsContainer.push(pet)
@@ -62,7 +63,7 @@ describe('retrieve pets owned', () => {
     })   
  
     
-    it('should succeed retrieving all pets', async ()=> {
+    it('should succeed retrieving all pets', async ()=> {debugger
         const pets = await retrievePetsOwned(id)
             expect(pets).to.exist
             expect(pets).to.have.lengthOf(petsContainer.length)
@@ -74,9 +75,22 @@ describe('retrieve pets owned', () => {
             expect (user.pets).includes(_petId)
             expect(_petId.toString()).to.be.a('string')
             expect(pet.owner.toString()).to.be.a('string')
-            expect(pet.owner.toString()).to.equal(owner)
+            expect(pet.owner.toString()).to.equal(user.id)
         })         
     
+    })
+    it('should fail on wrong user id', async () => {
+        let wrongId = '293898iujuyh'
+    
+        try {
+            await retrievePetsOwned(wrongId)
+    
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`user with id ${wrongId} not found`)
+        }
     })
 
     after(() => Promise.all([User.deleteMany(), Pet.deleteMany()]).then(() => mongoose.disconnect()))

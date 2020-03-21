@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const { expect } = require('chai')
 const { mongoose, models: { User, Pet } } = require('pet-care-data')
+const { NotFoundError } = require('pet-care-errors')
 const retrievePets = require('./retrieve-pets')
 const {random } = Math
 
@@ -14,7 +15,7 @@ describe('retrieve pets', () => {
     mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
         .then(() => Promise.all([User.deleteMany(), Pet.deleteMany()]))
     )
-    let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, id, _petId
+    let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, id, idAdmin
     let petsContainer
     beforeEach ( async ()=>{
 
@@ -43,13 +44,18 @@ describe('retrieve pets', () => {
         const user = await User.create({name, username, email, password, created: new Date })
         id = user.id
 
+        //create admin user (veterinarian)
+
+        const admin = await User.create({name, username, email, password, created: new Date })
+        idAdmin = admin.id
+
         //create pets 
         const petsToCreate = 4
         petsContainer = []
 
         for(let i = 0; i <= petsToCreate; i++) {
 
-            let pet = await Pet.create({owner, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created: new Date()})
+            let pet = await Pet.create({owner: id, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created: new Date()})
             petsContainer.push(pet)
 
         }
@@ -58,15 +64,25 @@ describe('retrieve pets', () => {
  
     
     it('should succeed retrieving all pets', async ()=> {
-        const pets = await retrievePets()
+        const pets = await retrievePets(idAdmin)
             expect(pets).to.exist
             expect(pets).to.have.lengthOf(petsContainer.length)
                 
-        pets.forEach(pet => {
-            expect(pet.id).to.be.a('string')
-            expect(pet.owner.toString()).to.equal(owner)
-        })  
     
+    })
+
+    it('should fail on wrong admin id', async () => {
+        let wrongId = '293898iujuyh'
+    
+        try {
+            await retrievePets(wrongId)
+    
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`user with id ${wrongId} not found`)
+        }
     })
 
     after(() => Promise.all([User.deleteMany(), Pet.deleteMany()]).then(() => mongoose.disconnect()))

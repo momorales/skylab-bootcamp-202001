@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const { expect } = require('chai')
 const { mongoose, models: { User, Pet } } = require('pet-care-data')
+const { NotFoundError } = require('pet-care-errors')
 const createVisit = require('./create.visit')
 const {random } = Math
 const bcrypt = require('bcryptjs')
@@ -57,16 +58,44 @@ describe('createVisit', () => {
 
         //TODO insert userID
 
-        const newAppointment = await createVisit( description, dateAppointment, hour, petId)
+        const newAppointmentId = await createVisit( description, dateAppointment, hour, petId, userId)
         
-        expect(newAppointment).to.exist
+        expect(newAppointmentId).to.exist
 
         const pet = await Pet.findById(petId) 
-        debugger
+        
         expect(pet.appointments).to.be.an('array')
-        expect((pet.appointments[0]._id).toString()).to.equal(newAppointment.id)       
+        expect((pet.appointments[0]._id).toString()).to.equal(newAppointmentId)       
         
     })
 
-    after(() => mongoose.disconnect())
+    it('should fail on wrong user id', async () => {
+        let wrongId = '293898iujuyh'
+    
+        try {
+            await createVisit(description, dateAppointment, hour, petId, wrongId)
+    
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`user with id ${wrongId} not found`)
+        }
+    })
+
+    it('should fail on wrong pet id', async () => {
+        let wrongPetId = '293898iujuyh'
+    
+        try {
+            await createVisit(description, dateAppointment, hour, wrongPetId, userId)
+    
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`pet with id ${wrongPetId} does not exist`)
+        }
+    })
+
+    after(() => Promise.all([User.deleteMany(), Pet.deleteMany()]).then(() => mongoose.disconnect()))
 })

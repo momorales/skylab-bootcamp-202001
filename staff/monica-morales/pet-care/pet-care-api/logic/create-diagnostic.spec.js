@@ -9,7 +9,7 @@ const bcrypt = require('bcryptjs')
 
 const { env: { TEST_MONGODB_URL } } = process
 
-describe.only('createDiagnostic', () => {
+describe('createDiagnostic', () => {
 
     let name, test, description, lab, dateCreate, _petId, _userId
 
@@ -45,7 +45,7 @@ describe.only('createDiagnostic', () => {
 
 
                     
-        return Pet.create({owner, numberChip, name:petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created})
+        return Pet.create({owner: _userId, numberChip, name:petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created})
         .then((pet) => _petId = pet.id)
         
         }) 
@@ -70,7 +70,7 @@ describe.only('createDiagnostic', () => {
     // })
 
     it('should succeed on correct diagnostic in pet', async () => {
-
+        debugger
         const newDiagnostic = await createDiagnostic(name, test, description, lab, dateCreate, _petId, _userId)
 
         expect(newDiagnostic).to.exist

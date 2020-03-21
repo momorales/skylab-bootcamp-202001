@@ -101,6 +101,20 @@ describe('delete visit', () => {
         }
     })
 
+    it('should fail on wrong pet id', async () => {
+        let wrongPetId = '293898iujuyh'
+    
+        try {
+            await deleteVisit(appointmentId, wrongPetId, id)
+    
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`pet with id ${wrongPetId} not found`)
+        }
+    })
+
 
     after(() => Promise.all([User.deleteMany(), Pet.deleteMany()]).then(() => mongoose.disconnect()))
 })
