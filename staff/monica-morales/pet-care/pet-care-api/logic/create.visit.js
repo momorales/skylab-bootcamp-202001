@@ -10,18 +10,15 @@ module.exports = (description, dateAppointment, hour, petId) =>{
 
     return (async()=>{
         
-    const pet =  await Pet.findById(petId)
-
+        const pet =  await Pet.findById(petId)
         if(!pet) {
             throw new NotAllowedError (`pet with id ${petId} does not exist`)
         }
-
-    const newVisit = new Appointment({description, dateAppointment, hour})
-   
-   
-    await Pet.update({ _id: petId}, {$push:{appointments: newVisit}})
+        const newVisit = new Appointment({description, dateAppointment, hour})   
     
-    return newVisit
+        await Pet.update({ _id: petId}, {$push:{appointments: newVisit}})
+        
+        return newVisit
     
     })()
 }

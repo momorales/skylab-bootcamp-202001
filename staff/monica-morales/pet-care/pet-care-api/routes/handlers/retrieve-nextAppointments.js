@@ -3,7 +3,8 @@ const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
   
-
+    const {payload: {sub: id}} = req
+    
     try {
         
         retrieveNextAppointments()

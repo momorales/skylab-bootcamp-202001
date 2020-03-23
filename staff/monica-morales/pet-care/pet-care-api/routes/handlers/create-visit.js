@@ -33,10 +33,10 @@ module.exports = (req, res) => {
 
             const { message } = error
 
-        res
-            .status(status)
-            .json({
-                error: message
-            })
-        }
+        // res
+        //     .status(status)
+        //     .json({
+        //         error: message
+        //     })
+         }
 }

@@ -51,7 +51,7 @@ router.post('/user/visit',jwtVerifierMidWare, jsonBodyParser, createVisit )
 
 router.delete('/pet/:petId/visit/delete/:id', deleteAppointment )
 
-router.get('/appointments/current', retrieveNextAppointments)
+router.get('/pet/:petId/appointments/current', jwtVerifierMidWare,retrieveNextAppointments)
 
 router.post('/pet/:petId/diagnostic', jsonBodyParser, createDiagnostic)
 
