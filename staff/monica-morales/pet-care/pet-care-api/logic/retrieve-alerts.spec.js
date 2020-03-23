@@ -16,19 +16,18 @@ describe('retrieveAlerts', () => {
 
     let name, username, email, password, subject, description, telephone, eventDate, _petId, _userId, _alertId
 
-    beforeEach(() => {
+    beforeEach( async () => {
         name = `name-${random()}`
         username = `username-${random()}`
         email = `username-${random()}@gmail.com`
         password = `password-${random()}`
 
+        //create user and extract id
 
-        return bcrypt.hash(password, 10)
-            .then((password) => User.create({ name, username, email, password, created: new Date }))
-            .then((user) => _userId = user.id)
-    })
-
-    beforeEach(() => {
+        // return bcrypt.hash(password, 10)
+        //     .then((password) => User.create({ name, username, email, password, created: new Date }))
+        //     .then((user) => _userId = user.id)
+        
         numberChip = `numberChip-${random()}`
         petName = `name-${random()}@gmail.com`
         birthDate = `2020/01/01`
@@ -41,26 +40,39 @@ describe('retrieveAlerts', () => {
         weight = 40
         created = `2020/01/01`
         owner = _userId
-
-        return Pet.create({ owner, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created })
-            .then((pet) => _petId = pet.id)
-    })
-
-    beforeEach(() => {
+        
         subject = 'deworming'
-        description = `description-${random()}`
+        description = `description`
         telephone = `telephone-${random()}`
         creation = new Date
         eventDate = new Date
+        
+        const user = await User.create({name, username, email, password, created })
+        _userId = user.id
 
-        return Alert.create({ subject, description, telephone, creation, eventDate, _petId, _userId })
-            .then((alert) => _alertId = alert.id)
+        const pet = await Pet.create({ owner: _userId, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created })
+
+        _petId = pet.id
+
+        
+        const alert = await new Alert({subject, description, telephone, creation, eventDate})
+    
+        idAlert = alert.id
+        
+
+        alert.pets.push(_petId)
+        await alert.save()
+
+        user.alerts.push(_alertId)
+
+        await user.save()
+
 
     })
 
     it('should succeed on correct and valid and right data', async () => {
 
-        const alerts = await retrieveAlerts(_userId, _alertId)
+        const alerts = await retrieveAlerts(_userId)
         debugger
         expect(alerts).to.exist
         expect(alerts.subject).to.equal(subject)

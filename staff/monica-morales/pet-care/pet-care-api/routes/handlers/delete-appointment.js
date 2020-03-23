@@ -1,22 +1,20 @@
-const { retrieveDiagnostic } = require ('../../logic')
+const { deleteAppointment } = require('../../logic')
 const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
+   
+    const { params:{id, petId, appointmentId} } = req
 
-    const {params: {idDiagnostic,idPet, id}} = req
-  
     try {
-        
-        retrieveDiagnostic(idDiagnostic, idPet, id)
-
-            .then(diagnostic =>
-                res.json(diagnostic)
+        deleteAppointment(appointmentId,petId,id)
+            .then(appointment => 
+                res.status(200).json(appointment)
             )
             .catch(error => {
                 let status = 400
 
                 if (error instanceof NotAllowedError)
-                    status = 409 
+                    status = 401 
 
                 const { message } = error
 
@@ -25,8 +23,9 @@ module.exports = (req, res) => {
                     .json({
                         error: message
                     })
-            })
 
+            })
+        
     } catch (error) {
         let status = 400
 

@@ -10,14 +10,16 @@ const {
     createAlert,
     retrieveAlerts,
     detailAlert,
-    createVisit,
+    createAppointment,
     deleteAppointment,
     retrieveNextAppointments,
     createDiagnostic,
     retrieveDiagnostic,
-    retrieveDiagnostics
+    retrieveDiagnostics,
+    retrieveVetAppointments
     
 } = require('./handlers')
+
 const { jwtVerifierMidWare } = require('../mid-wares')
 const bodyParser = require('body-parser')
 
@@ -25,7 +27,7 @@ const jsonBodyParser = bodyParser.json()
 
 const router = new Router()
 
-//rutas http
+//USERS
 
 router.post('/users', jsonBodyParser, registerUser)
 
@@ -33,31 +35,51 @@ router.post('/users/auth', jsonBodyParser, authenticateUser)
 
 router.get('/users', jwtVerifierMidWare, retrieveUser)
 
-router.post('/pet', jsonBodyParser, createPet)
+//PETS
 
-router.get('/pets', retrievePets)
+router.post('/user/:id/pet', jsonBodyParser, createPet)
 
-router.get('/pet', detailPet)
+router.get('/user/:id/mypets', jwtVerifierMidWare, retrievePetsOwned)
 
-router.get('/pet/owned', jwtVerifierMidWare, retrievePetsOwned)
+router.get('/user/:id/pet/:petId',jwtVerifierMidWare, detailPet)
 
-router.post('/pet/alert', jwtVerifierMidWare, jsonBodyParser, createAlert)
+//ALERTS
 
-router.get('/pet/alert', jwtVerifierMidWare, retrieveAlerts)
+router.post('/user/:id/pet/:petId/alert', jwtVerifierMidWare, jsonBodyParser, createAlert)
 
-router.get('/pet/alert', jwtVerifierMidWare, detailAlert )
+router.get('/user/:id/alerts/', jwtVerifierMidWare, retrieveAlerts)
 
-router.post('/user/visit',jwtVerifierMidWare, jsonBodyParser, createVisit )
+router.get('/user/:id/alerts/:idAlert', jwtVerifierMidWare, detailAlert)
 
-router.delete('/pet/:petId/visit/delete/:id', deleteAppointment )
+// DIAGNOSTICS
 
-router.get('/appointments/current', retrieveNextAppointments)
+router.post('/user/:id/pet/:petId/diagnostic', jwtVerifierMidWare,jsonBodyParser, createDiagnostic)
 
-router.post('/pet/:petId/diagnostic', jsonBodyParser, createDiagnostic)
+router.get('/user/:id/pet/:idPet/diagnostics',jwtVerifierMidWare, retrieveDiagnostics)
 
-router.get('/pet/:idPet/diagnostic/:idDiagnostic', retrieveDiagnostic)
+router.get('/user/:id/pet/:idPet/diagnostic/:idDiagnostic',jwtVerifierMidWare, retrieveDiagnostic)
 
-router.get('/pet/:idPet/diagnostics', retrieveDiagnostics)
+// APPOINTMENTS
 
+router.post('/user/:id/pet/:petId/appointment', jwtVerifierMidWare,jsonBodyParser, createAppointment)
+
+router.get('/user/:id/pets/appointments', jwtVerifierMidWare,retrieveNextAppointments)
+
+router.delete('/user/:id/pet/:petId/appointments/delete/:appointmentId', deleteAppointment )
+
+// VET
+
+router.get('/vet/:id/pets', jwtVerifierMidWare, retrievePets)
+
+router.get('/vet/:id/appointments', jwtVerifierMidWare, retrieveVetAppointments)
 
 module.exports = router
+
+
+
+
+
+
+
+
+
