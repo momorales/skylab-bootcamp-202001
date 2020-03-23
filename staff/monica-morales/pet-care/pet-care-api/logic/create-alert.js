@@ -1,5 +1,5 @@
 const { validate } = require('pet-care-utils')
-const { models: { Alert, Pet, User} } = require('pet-care-data')
+const { models: { Alert, Pet, User } } = require('pet-care-data')
 const { NotFoundError } = require('pet-care-errors')
 
 // /*@params {idUSer, idPet, subject, description, telephone,creation, EventDate}*/
@@ -18,22 +18,23 @@ module.exports = (subject, description, telephone, creation, eventDate, petId, u
     validate.type(eventDate, 'eventDate', Date)
     validate.string(petId, 'petId')
     validate.string(userId, 'userId')
-    
-    return (async()=>{
+
+    return (async () => {
+
+
+        const user = await User.findById(userId)
+        if (!user) throw new NotFoundError(`user with id ${userId} not found`)
+
         const pet = await Pet.findById(petId)
-        if(!pet) {
-            throw new NotFoundError (`pet with id ${petId} does not exist`)
-        }
-    
-    const user = await User.findById(userId)
-        if(!user) {
-            throw new NotFoundError (`user with id ${userId} does not exist`)
+        if (!pet) {
+            throw new NotFoundError(`pet with id ${petId} does not exist`)
         }
 
-    const alert = new Alert ({subject, description, telephone, creation, eventDate})
+       
+        const alert = new Alert({ subject, description, telephone, creation, eventDate })
 
         alert.pets = petId
 
-        await User.update({ _id: userId}, {$push:{alerts: alert}})
-  })()
+        await User.update({ _id: userId }, { $push: { alerts: alert } })
+    })()
 }
