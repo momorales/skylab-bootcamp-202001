@@ -3,20 +3,20 @@ require('dotenv').config()
 const { expect } = require('chai')
 const { mongoose, models: { User, Pet, Diagnostic } } = require('pet-care-data')
 const { NotFoundError } = require('pet-care-errors')
-const retrieveDiagnostics = require('./retrieve-diagnostics')
+const retrieveDiagnostic = require('./retrieve-diagnostic')
 const {random } = Math
 
 
 const { env: { TEST_MONGODB_URL } } = process
 
-describe('retrieve diagnostics', () => {
+describe('retrieve diagnostic', () => {
     
     before(() =>
     mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
         .then(() => Promise.all([User.deleteMany(), Pet.deleteMany()]))
     )
     let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, id, _petId
-    let test, description, lab, dateCreate
+    let test, description, lab, dateCreate, idDiagnostic
     
 
     beforeEach ( async ()=>{
@@ -56,38 +56,31 @@ describe('retrieve diagnostics', () => {
 
         //create pet
 
-        let pet = await Pet.create({owner, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created: new Date()})
+        let pet = await Pet.create({owner:id, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created: new Date()})
 
         _petId = pet.id
 
 
         //create diagnostics
-        const diagnosticsToCreate = 3
-        
+        debugger
+       
+        const diagnostic = await new Diagnostic({petName, test, description, lab, dateCreate})
+        user.diagnostics = []
 
-        for(let i = 0; i <= diagnosticsToCreate; i++) {
+        idDiagnostic = diagnostic.id
+        pet.diagnostics.push(idDiagnostic)
 
-            let diagnostic = await new Diagnostic({name: pet.name, test, description, lab, dateCreate})
-            pet.diagnostics.push(diagnostic)
-
-        }
         await pet.save()
+
        
     })   
  
     
     it('should succeed retrieving all diagnostics of a single pet', async ()=> {
-        const diagnostics = await retrieveDiagnostics(_petId, id)
-            expect(diagnostics).to.exist
-            expect(diagnostics).to.have.lengthOf(4)
-        
-        const pet = await Pet.findById(_petId)
-
-        diagnostics.forEach(diagnostic => {
-            expect(diagnostic.id).to.be.a('string')
-            expect(diagnostic.name).to.equal(pet.name)
+        const diagnostic = await retrieveDiagnostic(idDiagnostic,_petId, id)
+            expect(diagnostic).to.exist
            
-        })  
+                
     
     })
 
@@ -95,7 +88,7 @@ describe('retrieve diagnostics', () => {
         let wrongId = '293898iujuyh'
     
         try {
-            await retrieveDiagnostics(_petId, wrongId)
+            await retrieveDiagnostic(idDiagnostic,_petId, wrongId)
     
             throw Error('should not reach this point')
         } catch (error) {
@@ -109,7 +102,7 @@ describe('retrieve diagnostics', () => {
         let wrongPetId = '293898iujuyh'
     
         try {
-            await retrieveDiagnostics(wrongPetId, id)
+            await retrieveDiagnostic(idDiagnostic, wrongPetId, id)
     
             throw Error('should not reach this point')
         } catch (error) {
@@ -118,6 +111,20 @@ describe('retrieve diagnostics', () => {
             expect(error.message).to.equal(`pet with id ${wrongPetId} does not exist`)
         }
     })
+
+    // it('should fail on wrong diagnostic id', async () => {
+    //     let wrongDiagnostic = '293898iujuyh'
+    
+    //     try {
+    //         await retrieveDiagnostic(wrongDiagnostic, _petId, id)
+    
+    //         throw Error('should not reach this point')
+    //     } catch (error) {
+    //         expect(error).to.exist
+    //         expect(error).to.be.an.instanceOf(NotFoundError)
+    //         expect(error.message).to.equal(`diagnostic with id ${wrongDiagnostic} does not exist`)
+    //     }
+    // })
 
     after(() => Promise.all([User.deleteMany(), Pet.deleteMany()]).then(() => mongoose.disconnect()))
 })

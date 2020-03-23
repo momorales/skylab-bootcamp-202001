@@ -1,14 +1,25 @@
 const { validate } = require('pet-care-utils')
-const { models: { Pet } } = require('pet-care-data')
-const { NotFoundError} = require('pet-care-errors')
+const { models: { User, Pet } } = require('pet-care-data')
+const { NotFoundError } = require('pet-care-errors')
 
-module.exports = ()=> {
+module.exports = (id) => {
+
+    validate.string(id, 'id')
+
+    //id es del veterinario
     
     //TODO: this action is made by someone logged in??
     //Then put userId as parameter too
-    return (async()=>{
-        const pets = await Pet.find()
+
+    return (async () => {
+
+        const user = await User.findById(id)
+        if (!user) throw new NotFoundError(`user with id ${id} not found`)
+
+        const pets = await Pet.find().lean()
+        
         return pets
+
     })()
 }
 
@@ -21,7 +32,7 @@ module.exports = ()=> {
 // module.exports = (numberChip, userId )=> {
 //     validate.string(numberChip, 'numberChip')
 //     validate.string(userId, 'userId')
-// debugger
+// 
 //     return Pet.findOne(numberChip)
 //         .then(pet => {
 //             if(!pet) throw new NotFoundError(`pet with Number Chip ${numberChip} does not exist`)

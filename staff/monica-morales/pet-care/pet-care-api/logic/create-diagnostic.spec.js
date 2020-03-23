@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const { expect } = require('chai')
 const { mongoose, models: { User, Pet } } = require('pet-care-data')
+const { NotFoundError } = require('pet-care-errors')
 const createDiagnostic = require('./create-diagnostic')
 const {random } = Math
 const bcrypt = require('bcryptjs')
@@ -10,7 +11,7 @@ const { env: { TEST_MONGODB_URL } } = process
 
 describe('createDiagnostic', () => {
 
-    let name, test, description, lab, petId, dateCreate, _petId
+    let name, test, description, lab, dateCreate, _petId, _userId
 
     before(() =>
         mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -42,7 +43,9 @@ describe('createDiagnostic', () => {
         created = `2020/01/01`
         owner = _userId
 
-        return Pet.create({owner, numberChip, name:petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created})
+
+                    
+        return Pet.create({owner: _userId, numberChip, name:petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created})
         .then((pet) => _petId = pet.id)
         
         }) 
@@ -58,17 +61,20 @@ describe('createDiagnostic', () => {
 
     })
 
-    it('should succeed on correct new diagnostic', async ()=> {
+    // it('should succeed on correct new diagnostic', async ()=> {
 
-        const result = await createDiagnostic(name, test, description, lab, dateCreate, _petId)
+    //     const result = await createDiagnostic(name, test, description, lab, dateCreate, _petId, _id)
         
-        expect(result).to.be.undefined
+    //     expect(result).to.be.undefined
     
-    })
+    // })
 
     it('should succeed on correct diagnostic in pet', async () => {
+        debugger
+        const newDiagnostic = await createDiagnostic(name, test, description, lab, dateCreate, _petId, _userId)
 
-        await createDiagnostic(name, test, description, lab, dateCreate, _petId)
+        expect(newDiagnostic).to.exist
+        expect(newDiagnostic).to.be.a('string')
 
         const pet = await Pet.findById(_petId)
 
@@ -80,6 +86,34 @@ describe('createDiagnostic', () => {
         expect(pet.diagnostics[pet.diagnostics.length-1].lab).to.equal(lab)
     })
 
-    after(() => User.deleteMany().then(() => mongoose.disconnect()))
+    it('should fail on wrong user id', async () => {
+        let wrongId = '293898iujuyh'
+    
+        try {
+            await createDiagnostic(name, test, description, lab, dateCreate, _petId, wrongId)
+    
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`user with id ${wrongId} not found`)
+        }
+    })
+
+    it('should fail on wrong pet id', async () => {
+        let wrongPetId = '293898iujuyh'
+    
+        try {
+            await createDiagnostic(name, test, description, lab, dateCreate, wrongPetId, _userId)
+    
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`pet with id ${wrongPetId} does not exist`)
+        }
+    })
+
+    after(() => Promise.all([User.deleteMany(), Pet.deleteMany()]).then(() => mongoose.disconnect()))
 })
 

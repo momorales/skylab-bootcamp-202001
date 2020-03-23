@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const { expect } = require('chai')
 const { mongoose, models: { User, Pet } } = require('pet-care-data')
+const {NotFoundError} = require('pet-care-errors')
 const createAlert = require('./create-alert')
 const {random } = Math
 const bcrypt = require('bcryptjs')
@@ -53,8 +54,10 @@ describe('createAlert', () => {
     }) 
     
     it('should succeed on correct new alert', async ()=> {
-        const newAlert = await createAlert( subject, description, telephone, creation, eventDate,_petId,_userId)
-            expect(newAlert).to.be.exist
+        
+        const response = await createAlert( subject, description, telephone, creation, eventDate,_petId,_userId)
+        
+        expect(response).to.not.exist
                 
         return User.find({_id:_userId},{ alerts: { $elemMatch: { _id: _petId } }})
             .then(alert => {
@@ -62,6 +65,35 @@ describe('createAlert', () => {
                 expect(alert).to.be.an.instanceof(Object)
             })       
     
+    })
+
+
+    it('should fail on wrong user id', async () => {
+        let wrongId = '293898iujuyh'
+    
+        try {
+            await createAlert( subject, description, telephone, creation, eventDate,_petId, wrongId)
+    
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`user with id ${wrongId} not found`)
+        }
+    })
+
+    it('should fail on wrong pet id', async () => {
+        let wrongPetId = '293898iujuyh'
+    
+        try {
+            await createAlert( subject, description, telephone, creation, eventDate, wrongPetId, _userId)
+    
+            throw Error('should not reach this point')
+        } catch (error) {
+            expect(error).to.exist
+            expect(error).to.be.an.instanceOf(NotFoundError)
+            expect(error.message).to.equal(`pet with id ${wrongPetId} does not exist`)
+        }
     })
 
     after(() => Promise.all([User.deleteMany(), Pet.deleteMany()]).then(() => mongoose.disconnect()))
