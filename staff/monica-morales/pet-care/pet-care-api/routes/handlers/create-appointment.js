@@ -1,15 +1,15 @@
-const { retrieveNextAppointments } = require ('../../logic')
-const { NotAllowedError } = require('pet-care-errors')
+const { createAppointment } = require ('../../logic')
+const { NotAllowedError, ContentError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
-  
-    const {params : {id}} = req
+    
+    const { params: {id, petId}, body: {description, dateAppointment, hour} } = req
 
     try {
         
-        retrieveNextAppointments(id)
-            .then(appointments =>{
-                res.json(appointments)
+        createAppointment(description, dateAppointment, hour, petId, id)
+            .then(newVisit=> {
+                res.status(201).json({newVisit})
             })
             .catch(error => {
                 let status = 400
@@ -27,6 +27,7 @@ module.exports = (req, res) => {
             })
 
     } catch (error) {
+    
         let status = 400
 
         if (error instanceof TypeError || error instanceof ContentError)
@@ -34,11 +35,10 @@ module.exports = (req, res) => {
 
         const { message } = error
 
-        res
-            .status(status)
-            .json({
-                error: message
-            })
-        
+    res
+        .status(status)
+        .json({
+            error: message
+        })
     }
 }
