@@ -7,6 +7,7 @@ module.exports = (idDiagnostic, idPet, id) => {
 
     validate.string(idDiagnostic, 'idDiagnostic')
     validate.string(idPet, 'idPet')
+    validate.string(id, 'id')
 
     return ( async () => {
 

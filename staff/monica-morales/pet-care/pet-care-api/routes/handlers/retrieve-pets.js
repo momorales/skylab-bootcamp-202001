@@ -3,8 +3,11 @@ const { NotAllowedError } = require('pet-care-errors')
 
 
 module.exports =(req, res) => {
+
+    const { params: { id } } = req
+
     try {
-        retrievePets()
+        retrievePets(id)
             .then(pets =>
                 res.json(pets)
             )

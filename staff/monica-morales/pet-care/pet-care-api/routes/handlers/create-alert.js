@@ -2,11 +2,12 @@ const { createAlert } = require ('../../logic')
 const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
-    const { body: {subject, description, telephone, creation, eventDate, petId, userId } } = req
+
+    const { params: {petId, id}, body: {subject, description, telephone, creation, eventDate } } = req
 
     try {
         
-        createAlert(subject, description, telephone, creation, eventDate, petId, userId )
+        createAlert(subject, description, telephone, creation, eventDate, petId, id )
 
             .then(()=> res.status(201).end())
             .catch(error => {

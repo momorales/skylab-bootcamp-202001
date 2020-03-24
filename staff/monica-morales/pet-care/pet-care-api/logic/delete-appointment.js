@@ -19,13 +19,6 @@ module.exports = (idAppointment, idPet, id) => {
     if(!pet) throw new NotFoundError(`pet with id ${idPet} not found`)
 
     await Pet.updateOne({_id: ObjectId(idPet)}, {$pull: {appointments: {_id: ObjectId(idAppointment)}}})
-    
-    
-    //2 veces lo mismo??
-
-    // Pet.findByIdAndDelete(idAppointment)
-    
-    // return deleteAppointment
 
     })()
 }

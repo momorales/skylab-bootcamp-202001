@@ -61,14 +61,6 @@ describe('createDiagnostic', () => {
 
     })
 
-    // it('should succeed on correct new diagnostic', async ()=> {
-
-    //     const result = await createDiagnostic(name, test, description, lab, dateCreate, _petId, _id)
-        
-    //     expect(result).to.be.undefined
-    
-    // })
-
     it('should succeed on correct diagnostic in pet', async () => {
         debugger
         const newDiagnostic = await createDiagnostic(name, test, description, lab, dateCreate, _petId, _userId)
@@ -114,6 +106,6 @@ describe('createDiagnostic', () => {
         }
     })
 
-    after(() => Promise.all([User.deleteMany(), Pet.deleteMany()]).then(() => mongoose.disconnect()))
+    after(()  => mongoose.disconnect())
 })
 

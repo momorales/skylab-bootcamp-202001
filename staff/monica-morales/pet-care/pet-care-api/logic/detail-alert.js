@@ -1,18 +1,15 @@
 const { validate } = require('pet-care-utils')
-const { models: {  Alert} } = require('pet-care-data')
+const { models: {  User } } = require('pet-care-data')
 const { NotFoundError} = require('pet-care-errors')
 
-module.exports =  id => {
+module.exports =  (id, idAlert) => {
 
     validate.string(id, 'id')
-
-    return (async()=>{
-
-    const alert = await Alert.findById(id)
-
-    if(alert) return alert
-    else{
-        throw new NotFoundError (`alert with id ${id} does not exist`)
-    }
-    })()
+    validate.string(idAlert, 'idAlert')
+    
+    return User.find({"_id":id, "alerts._id": idAlert},{alerts:1})
+        .then(alerts => {
+            if (!alerts) throw new NotFoundError(`user with id ${id} has not alerts`)
+            return alerts
+        })
 }

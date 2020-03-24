@@ -3,13 +3,13 @@ const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
 
-    const { params: {petId}} = req
+    const { params: {id, petId}} = req
 
     const {body: {name, test, description, lab, dateCreate} } = req
 
     try {
-        debugger
-        createDiagnostic(name, test, description, lab, dateCreate, petId )
+        
+        createDiagnostic(name, test, description, lab, dateCreate, petId, id )
       
             .then( () => res.status(201).end())
             .catch(error => {

@@ -10,7 +10,7 @@ const { Types: { ObjectId } } = require('mongoose')
 
 const { env: { TEST_MONGODB_URL } } = process
 
-describe('createPet', () => {
+describe.only('createPet', () => {
     let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, _userId
     
     before(() =>
