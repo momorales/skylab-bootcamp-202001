@@ -26,7 +26,6 @@ module.exports = (name, test, description, lab, dateCreate, petId, id) => {
     pet.diagnostics.push(diagnostic)
 
     await pet.save()
-    debugger
 
     return diagnostic.id
   })()

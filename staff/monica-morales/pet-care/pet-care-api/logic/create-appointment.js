@@ -4,12 +4,11 @@ const { NotFoundError} = require('pet-care-errors')
 
 module.exports = (description, dateAppointment, hour, petId, id) =>{
    
-    //TODO userID
-
     validate.string(description, 'description')
     validate.type(dateAppointment, 'dateAppointment', Date)
     validate.string(hour, 'hour')
     validate.string(id, 'id')
+    validate.string(petId, 'petId')
 
     return (async()=>{
 

@@ -2,13 +2,13 @@ const { retrieveDiagnostics } = require ('../../logic')
 const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
-    debugger
+    
 
-    const {params: {idPet}} = req
+    const {params: {idPet, id}} = req
   
     try {
         
-        retrieveDiagnostics(idPet)
+        retrieveDiagnostics(idPet, id)
 
             .then(diagnostics =>
                 res.json(diagnostics)

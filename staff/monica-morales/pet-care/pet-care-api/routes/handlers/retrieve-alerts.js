@@ -2,11 +2,13 @@ const { retrieveAlerts } = require ('../../logic')
 const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
-    const { payload: { sub:id } } = req
+
+    // const { payload: { sub:id } } = req
+    const { params: { id } } = req
 
     try {
         
-        retrieveAlerts(id )
+        retrieveAlerts( id )
 
             .then(alerts =>
                 res.json(alerts)

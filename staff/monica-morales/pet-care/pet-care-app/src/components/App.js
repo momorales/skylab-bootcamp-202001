@@ -1,15 +1,17 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import Page from './Page'
 import Login from './Login'
 import Register from './Register'
 import Home from './Home'
+import Header from './Header'
 import { registerUser, login, isLoggedIn } from '../logic'
 import { Context } from './ContextProvider'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 
 
 export default withRouter(function ({ history }) {
-  const [state, setState] = useContext(Context)
+  const [state, setState] = useContext(Context) //context
+  const [user, setUser] = useState([]) //state
   const { page, error } = state
   
   useEffect(() => {
@@ -37,7 +39,8 @@ export default withRouter(function ({ history }) {
   async function handleLogin(email, password) {
     try {
       await login(email, password)
-
+// const user = await retrieveUser()
+  // setUser(user)
       history.push('/home')
     } catch ({ message }) {
       setState({ ...state, error: message })
@@ -69,7 +72,7 @@ export default withRouter(function ({ history }) {
       {/* <Route path="/login" render={() => <h1>Hello, Login</h1>} /> */}
       {/* <Route path="/home/:id" render={props => <h1>{props.match.params.id}</h1>} />*/}
       <Route path="/register" render={() => isLoggedIn() ? <Redirect to="/home" /> : <Register onSubmit={handleRegister} error={error} onGoToLogin={handleGoToLogin} onMount={handleMountRegister} />} />      
-      <Route path="/home" render={() => isLoggedIn() ? <Home /> : <Redirect to="/login" />} /> 
+      <Route path="/home" render={() => isLoggedIn() ? <><Header user = {user}/><Home/></> : <Redirect to="/login" />} /> 
     </Page>
   </div>
 

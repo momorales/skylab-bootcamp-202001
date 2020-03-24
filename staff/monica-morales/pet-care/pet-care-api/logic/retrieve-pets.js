@@ -8,8 +8,6 @@ module.exports = (id) => {
 
     //id es del veterinario
     
-    //TODO: this action is made by someone logged in??
-    //Then put userId as parameter too
 
     return (async () => {
 
@@ -23,20 +21,3 @@ module.exports = (id) => {
     })()
 }
 
-
-
-// const { validate } = require('pet-care-utils')
-// const { models: { Pet,User } } = require('pet-care-data')
-// const { NotFoundError} = require('pet-care-errors')
-
-// module.exports = (numberChip, userId )=> {
-//     validate.string(numberChip, 'numberChip')
-//     validate.string(userId, 'userId')
-// 
-//     return Pet.findOne(numberChip)
-//         .then(pet => {
-//             if(!pet) throw new NotFoundError(`pet with Number Chip ${numberChip} does not exist`)
-
-//             if(pet) return pet
-//         })      
-// }

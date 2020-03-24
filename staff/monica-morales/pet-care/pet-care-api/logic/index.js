@@ -5,14 +5,15 @@ module.exports = {
     createPet: require('./create-pet'),
     detailPet: require('./detail-pet'),
     retrievePets: require('./retrieve-pets'),
-    retrievePetOwned: require('./retrieve-pets-owned'),
+    retrievePetsOwned: require('./retrieve-pets-owned'),
     createAlert: require('./create-alert'),
     retrieveAlerts: require('./retrieve-alerts'),
     detailAlert: require('./detail-alert'),
-    createVisit: require('./create.visit'),
-    deleteAppointment: require('./delete-visit'),
+    createAppointment: require('./create-appointment'),
+    deleteAppointment: require('./delete-appointment'),
     retrieveNextAppointments: require('./retrieve-nextAppointments'),
     createDiagnostic: require('./create-diagnostic'),
     retrieveDiagnostic: require('./retrieve-diagnostic'),
-    retrieveDiagnostics: require('./retrieve-diagnostics')
+    retrieveDiagnostics: require('./retrieve-diagnostics'),
+    retrieveVetAppointments:require('./retrieve-vet-appointments')
 }

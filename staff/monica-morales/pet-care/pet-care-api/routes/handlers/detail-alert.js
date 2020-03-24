@@ -3,13 +3,13 @@ const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
    
-    const { query:{id} } = req
+    const { params:{id, idAlert} } = req
 
     try {
-        detailAlert(id)
-            .then(alert => 
-                res.status(200).json(alert)
-            )
+        detailAlert(id,idAlert)
+            .then(alert => {
+                res.status(200).json({alert})
+            })
             .catch(error => {
                 let status = 400
 

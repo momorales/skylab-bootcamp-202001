@@ -1,12 +1,12 @@
-const { retrievePetOwned } = require('../../logic')
+const { retrievePetsOwned } = require('../../logic')
 const { NotAllowedError } = require('pet-care-errors')
 
 module.exports =(req, res) =>{
 
-    const {payload: {sub: id}} = req
+    const { params: { id } } = req
 
     try {
-        retrievePetOwned(id)
+        retrievePetsOwned(id)
             .then(pets =>
                 res.json(pets)
             )
