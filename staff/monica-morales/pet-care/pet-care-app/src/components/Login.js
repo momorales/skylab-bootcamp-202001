@@ -3,8 +3,6 @@ import './login.sass'
 import Logo from'./logo.png'
 
 
-
-
 export default function ({ onSubmit, onGoToRegister, error,onMount }) {
     useEffect(() => {
         onMount()

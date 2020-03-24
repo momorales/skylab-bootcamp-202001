@@ -25,7 +25,7 @@ export default (function (email, password) {
             
             this.token = token
 
-            return
+            return token
         }
 
         if (status >= 400 && status < 500) {
