@@ -9,14 +9,10 @@ export default ({key,alertList}) => {
 
     return <>
 
-        <section className="container">
+        <section className="container1">
             <div className="alert">
                 <p>{subject} <Moment parse="YYYY-MM-DD">{eventDate}</Moment></p>
                
-                {/* <button className="alerts__alert" onClick={event => {
-                    event.preventDefault()
-                    onGoToDetail(id)
-                }}>View to alert</button> */}
             </div>
         </section>
         

@@ -1,31 +1,44 @@
 @import config.sass
 @import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates&display=swap')
 
-.newAlert
+.newPet
     display: flex
     flex-direction: column
     justify-content: center
-
+   
     &__title
         @include title-h2
-    
+          
     &__form
         width: 70%
-        margin: 0 auto
-
+      
     &__input
         display: flex
         padding: 8px 26px
         box-sizing: border-box
         border: none
         border-bottom: 2px solid #A569BD
-        margin-bottom: 7%
-        margin-top: 4%
-        width: 97%
+        margin-top: 1%
+        width: 79%
+        height: 2.7em
+        margin-left: 3em
+    
+    &__accept           
+        position: fixed
+        z-index: 10
+        bottom: 1.4rem
+        right: 1rem
+        background: none
+        border: none
+        font-size: 1.1em
 
-    &__select
+    h2
+        font-size: 1em
+        margin-left: 1.7em
+
+    select
         display: flex
-        height: 3em
+        height: 2.6em
         border: none
         background: white
         font-size: 15px
@@ -33,23 +46,11 @@
         box-sizing: border-box
         border: none
         border-bottom: 2px solid #A569BD
-        margin-bottom: 7%
-        margin-top: 4%
-        width: 98%
+        margin-top: 1%
+        width: 79%
         font-size: 14px
         color: grey
-        padding-left: 23px
-        
-
-    &__accept           
-        position: fixed
-        z-index: 10
-        bottom: 2rem
-        right: 1rem
-        background: none
-        border: none
-        font-size: 1.5em
-    
+        padding-left: 19px
    
      
 

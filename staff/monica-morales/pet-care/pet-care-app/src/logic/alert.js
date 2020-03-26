@@ -1,4 +1,6 @@
 import { validate } from 'pet-care-utils'
+import context from './context'
+
 const { NotFoundError } = require('pet-care-errors')
 
 const API_URL = process.env.REACT_APP_API_URL
@@ -14,10 +16,11 @@ export default (function (alert) {
    
 
     let alerts
-
-    return fetch(`${API_URL}/pet/alert`, {
+ 
+    return fetch(`${API_URL}/user/${id}/alerts`, {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.token}` }
     })
         .then(response => {
 
@@ -41,11 +44,4 @@ export default (function (alert) {
                 return alerts
             }
         })
-
-        
-        .then(alerts => {
-
-            alerts.forEach((alert) => alert.subject = `${API_URL}/portrait/${album.id}`)
-            return albums
-        })
-})
+}).bind(context)

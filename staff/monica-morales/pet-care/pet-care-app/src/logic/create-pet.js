@@ -4,17 +4,17 @@ import context from './context'
 
 const API_URL = process.env.REACT_APP_API_URL
 
-export default (function (subject, description,telephone, eventDate, petId, userId) {
+export default (function (chipNumber, Name, dateOfBirth, specie, sex,sterilized, weight, race, typeOfRace, fur, user,createdDate, diagnostic) {
 
- 
+    const {sub:id} = user
+
     return (async () => {
-        const response = await fetch(`${API_URL}/user/${userId}/pet/${petId}/alert`, {
+        const response = await fetch(`${API_URL}/user/${id}/pet`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${this.token}`
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ subject, description,telephone, eventDate, petId, userId })
+            body: JSON.stringify({ numberChip: chipNumber, name: Name, birthDate: dateOfBirth, specie, sex, race, typeRace: typeOfRace, fur, sterilized, weight, created:createdDate, diagnostic })
         })
 
         const { status } = response
