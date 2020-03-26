@@ -39,7 +39,7 @@ describe.only('createPet', () => {
         race = `race-${random()}`
         typeRace = `typeRace-${random()}`
         fur = `fur-${random()}`
-        sterilized = true
+        sterilized = "true"
         weight = 40
         created = `2020/01/01`
         owner = _userId
@@ -58,7 +58,7 @@ describe.only('createPet', () => {
             expect(newPet.sex).to.be.a('String')
             expect(newPet.race).to.be.a('String')
             expect(newPet.fur).to.be.a('String')
-            expect(newPet.sterilized).to.be.a('Boolean')
+            expect(newPet.sterilized).to.be.a('String')
             expect(newPet.weight).to.be.a('Number')
             expect(newPet.owner).to.be.an.instanceof(Object)
     })

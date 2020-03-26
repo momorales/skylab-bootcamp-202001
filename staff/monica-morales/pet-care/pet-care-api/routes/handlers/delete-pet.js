@@ -1,15 +1,15 @@
-const { detailPet } = require('../../logic')
+const { deletePet } = require('../../logic')
 const { NotAllowedError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
    
-    const { params:{id, petId} } = req
+    const { params:{id, idPet} } = req
 
     try {
-        detailPet(id,petId)
-            .then(pet => {
-                res.status(200).json( pet )
-            })
+        deletePet(id,idPet)
+            .then(pet => 
+                res.status(200).json(pet)
+            )
             .catch(error => {
                 let status = 400
 
