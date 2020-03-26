@@ -4,6 +4,13 @@ import Login from './Login'
 import Register from './Register'
 import Home from './Home'
 import Header from './Header'
+import Alert from './Alert'
+import AlertsList from './Alerts-container'
+import Pets from './Pets'
+import PetsList from './Pets-container'
+import CreateAlert from './Create-alert'
+import CreatePet from './Create-pet'
+import DetailPet from './Detail-pet'
 
 export {
     App,
@@ -11,5 +18,12 @@ export {
     Login,
     Register,
     Home,
-    Header
+    Header,
+    Alert,
+    AlertsList,
+    Pets,
+    PetsList,
+    CreateAlert,
+    CreatePet,
+    DetailPet
 }
