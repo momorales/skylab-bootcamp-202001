@@ -6,6 +6,9 @@ import logout from './logout'
 import alerts from './alerts'
 import pets from './retrieve-pets'
 import createAlert from './create-alert'
+import createPet from './create-pet'
+import detailPet from './detail-pet'
+import deletePet from './delete-pet'
 
 
 export {
@@ -16,5 +19,8 @@ export {
     logout,
     alerts,
     pets,
-    createAlert
+    createAlert,
+    createPet,
+    detailPet,
+    deletePet
 }

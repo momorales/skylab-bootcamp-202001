@@ -2,11 +2,17 @@ import React, { useEffect, useState } from 'react'
 import Pet from './Pets'
 import './pets-container.sass'
 
-export default ({pets, onMount}) =>{
+export default ({pets, onLoadDetailPet, onDelete, onMount, onGoToCreatePet}) =>{
 
     useEffect(() => {
         onMount()
     }, [])
+
+    function handleGoToCreatePet(event) {
+        event.preventDefault()
+
+        onGoToCreatePet()
+    }
 
     return <>  
     <section className = "pets">
@@ -16,11 +22,11 @@ export default ({pets, onMount}) =>{
         {pets.map(pet => {
             return (
                 <section key = {pet._id}>
-                    <Pet pet={pet}/>
+                    <Pet pet={pet} onClick={onLoadDetailPet} onDelete={onDelete}/>
                 </section>
             )
         })}
-         <a href=""><button  className="pets__add fas fa-plus"></button></a>
+         <a href="" onClick={handleGoToCreatePet}><button  className="pets__add fas fa-plus"></button></a>
         </section>
     </>
 }

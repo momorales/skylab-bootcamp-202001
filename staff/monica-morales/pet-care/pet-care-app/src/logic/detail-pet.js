@@ -4,10 +4,12 @@ import context from './context'
 
 const API_URL = process.env.REACT_APP_API_URL
 
-export default (function (user) {
+let pets
+
+export default (function (user, petId) {
     const {sub:id} = user
     return (async () => {
-        const response = await fetch(`${API_URL}/user/${id}/mypets`, {
+        const response = await fetch(`${API_URL}/user/${id}/pet/${petId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,7 +20,7 @@ export default (function (user) {
         const { status } = response
 
         if (status === 200) {
-            const pets = await response.json()
+            pets = await response.json()
             return pets
         }
 
