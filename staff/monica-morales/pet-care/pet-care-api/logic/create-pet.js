@@ -13,7 +13,7 @@ module.exports = (numberChip, id, name, birthDate, specie, sex, race, typeRace, 
     validate.string(race, 'race')
     validate.string(typeRace, 'typeRace')
     validate.string(fur, 'fur')
-    validate.type(sterilized, 'sterilized', Boolean)
+    validate.string(sterilized, 'sterilized')
     validate.type(weight, 'weight', Number)
     validate.type(created, 'created', Date)
 

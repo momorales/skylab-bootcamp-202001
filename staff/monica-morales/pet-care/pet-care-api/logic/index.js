@@ -15,5 +15,6 @@ module.exports = {
     createDiagnostic: require('./create-diagnostic'),
     retrieveDiagnostic: require('./retrieve-diagnostic'),
     retrieveDiagnostics: require('./retrieve-diagnostics'),
-    retrieveVetAppointments:require('./retrieve-vet-appointments')
+    retrieveVetAppointments: require('./retrieve-vet-appointments'),
+    deletePet: require('./delete-pet')
 }

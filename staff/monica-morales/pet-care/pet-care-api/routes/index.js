@@ -16,7 +16,8 @@ const {
     createDiagnostic,
     retrieveDiagnostic,
     retrieveDiagnostics,
-    retrieveVetAppointments
+    retrieveVetAppointments,
+    deletePet
     
 } = require('./handlers')
 
@@ -43,13 +44,17 @@ router.get('/user/:id/mypets', jwtVerifierMidWare, retrievePetsOwned)
 
 router.get('/user/:id/pet/:petId',jwtVerifierMidWare, detailPet)
 
+router.delete('/user/:id/delete/pet/:idPet', deletePet )
+
+
 //ALERTS
 
 router.post('/user/:id/pet/:petId/alert', jwtVerifierMidWare, jsonBodyParser, createAlert)
 
-router.get('/user/:id/alerts/', jwtVerifierMidWare, retrieveAlerts)
+router.get('/user/:id/alerts', jwtVerifierMidWare, retrieveAlerts)
 
 router.get('/user/:id/alerts/:idAlert', jwtVerifierMidWare, detailAlert)
+
 
 // DIAGNOSTICS
 
@@ -58,6 +63,7 @@ router.post('/user/:id/pet/:petId/diagnostic', jwtVerifierMidWare,jsonBodyParser
 router.get('/user/:id/pet/:idPet/diagnostics',jwtVerifierMidWare, retrieveDiagnostics)
 
 router.get('/user/:id/pet/:idPet/diagnostic/:idDiagnostic',jwtVerifierMidWare, retrieveDiagnostic)
+
 
 // APPOINTMENTS
 
@@ -74,9 +80,6 @@ router.get('/vet/:id/pets', jwtVerifierMidWare, retrievePets)
 router.get('/vet/:id/appointments', jwtVerifierMidWare, retrieveVetAppointments)
 
 module.exports = router
-
-
-
 
 
 
