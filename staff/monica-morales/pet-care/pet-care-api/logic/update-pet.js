@@ -1,51 +1,51 @@
 const { validate } = require('pet-care-utils')
-const { models: { Pet, User,Diagnostic } } = require('pet-care-data')
-const { NotAllowedError, NotFoundError } = require('pet-care-errors')
+const { models: { Pet, User } } = require('pet-care-data')
+const { NotFoundError } = require('pet-care-errors')
 
-module.exports = (numberChip, id, name, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created) =>{
+module.exports = (idPet, id, name, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created) =>{
    
-    validate.string(numberChip, 'numberChip')
+    validate.string(idPet, 'idPet')
     validate.string(id, 'id')
-    validate.string(name, 'name')
-    validate.type(birthDate, 'birthDate', Date)
-    validate.string(specie, 'specie')
-    validate.string(sex, 'sex')
-    validate.string(race, 'race')
-    validate.string(typeRace, 'typeRace')
-    validate.string(fur, 'fur')
-    validate.string(sterilized, 'sterilized')
-    validate.type(weight, 'weight', Number)
-    validate.type(created, 'created', Date)
 
-    return User.findById(id)
-        .then(user => {
-            if(!user) {
-                throw new NotFoundError (`user with id ${id} does not exist`)
-            }
-        })
-        .then(()=>{
-            return Pet.findOne({numberChip})
-                .then(pet=>{
-                    if(pet){
-                        throw new NotAllowedError(`pet with numberChip ${numberChip} already exists`)
-                    } 
-                })
-                .then(()=>{
-                    return Pet.findOneAndUpdate({_id: id, userId: owner}, {$set: owner, numberChip, name, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created })
-                })
-                .then(()=>{})
-        })
+    name && (validate.string(name, 'name'))
+    birthDate && (validate.type(birthDate, 'birthDate', Date))
+    specie && (validate.string(specie, 'specie'))
+    sex && (validate.string(sex, 'sex'))
+    race && (validate.string(race, 'race'))
+    typeRace && (validate.string(typeRace, 'typeRace'))
+    fur && (validate.string(fur, 'fur'))
+    sterilized && (validate.string(sterilized, 'sterilized'))
+    weight && (validate.type(weight, 'weight', Number))
+    created && (validate.type(created, 'created', Date))
+
+    return (async ()=> {
+
+        const user = await User.findById(id)
+
+        if(!user) throw new NotFoundError (`user with id: ${id} does not exist`)
+
+        const pet = await Pet.findById(idPet)
+
+        if(!pet) throw new NotFoundError (`pet with id: ${idPet} does not exist`)
+
+
+        name && (pet.name = name)
+        birthDate && (pet.birthDate = birthDate)
+        specie && (pet.specie = specie)
+        sex && (pet.sex = sex)
+        race && (pet.race = race)
+        typeRace && (pet.typeRace = typeRace)
+        fur && (pet.fur = fur)
+        sterilized && (pet.sterilized = sterilized)
+        weight && (pet.weight = weight)
+        created && (pet.created = created)
+
+        await pet.save()
+
+        return 
+
+    })()
+
 }
 
 
-
-// const { validate } = require('share-my-spot-utils')
-// const { models: { Spot } } = require('share-my-spot-data')
-
-// module.exports = (userId, body, spotId) => {
-//     validate.string(userId, 'userId')
-//     validate.string(spotId, 'spotId')
-
-//     return Spot.findOneAndUpdate({ _id: spotId, publisherId: userId }, { $set: body })
-//         .then(() => { })
-// }

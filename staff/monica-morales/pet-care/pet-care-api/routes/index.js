@@ -47,7 +47,7 @@ router.get('/user/:id/pet/:petId',jwtVerifierMidWare, detailPet)
 
 router.delete('/user/:id/delete/pet/:idPet', jwtVerifierMidWare, deletePet )
 
-router.patch('/user/:id/update/pet/:idPet', jwtVerifierMidWare, jsonBodyParser, updatePet )
+router.patch('/user/update/pet/:idPet', jwtVerifierMidWare, jsonBodyParser, updatePet )
 
 
 //ALERTS

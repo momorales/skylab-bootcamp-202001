@@ -1,14 +1,12 @@
 const { updatePet } = require('../../logic')
-const { NotAllowedError } = require('pet-care-errors')
+const { NotAllowedError, ContentError } = require('pet-care-errors')
 
 module.exports = (req, res) => {
-    const { payload: { sub: id } } = req
-
+    const { params: {idPet}, payload: { sub: id }, body: {name, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created} } = req
+    debugger
     try {
-        updatePet(numberChip, id, name, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created)
-            .then(user =>
-                res.status(200).json(user)
-            )
+        updatePet(idPet, id, name, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created)
+            .then( () => res.status(200).end())
             .catch(error => {
                 let status = 400
 
