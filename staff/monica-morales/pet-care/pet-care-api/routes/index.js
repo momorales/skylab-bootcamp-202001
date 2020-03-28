@@ -17,7 +17,8 @@ const {
     retrieveDiagnostic,
     retrieveDiagnostics,
     retrieveVetAppointments,
-    deletePet
+    deletePet,
+    updatePet
     
 } = require('./handlers')
 
@@ -44,7 +45,9 @@ router.get('/user/:id/mypets', jwtVerifierMidWare, retrievePetsOwned)
 
 router.get('/user/:id/pet/:petId',jwtVerifierMidWare, detailPet)
 
-router.delete('/user/:id/delete/pet/:idPet', deletePet )
+router.delete('/user/:id/delete/pet/:idPet', jwtVerifierMidWare, deletePet )
+
+router.patch('/user/update/pet/:idPet', jwtVerifierMidWare, jsonBodyParser, updatePet )
 
 
 //ALERTS
