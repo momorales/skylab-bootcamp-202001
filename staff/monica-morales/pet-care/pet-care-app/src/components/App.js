@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { Page,Login,Register,Home,Header,AlertsList, PetsList, CreateAlert, CreatePet, Pets, DetailPet, UpdatePet } from '../components'
-import { registerUser, login, isLoggedIn, retrieveUser,alerts,pets, createAlert, createPet, detailPet, deletePet } from '../logic'
+import { registerUser, login, isLoggedIn, retrieveUser,alerts,pets, createAlert, createPet, detailPet, deletePet, updatePet } from '../logic'
 import { Context } from './ContextProvider'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 const jwt = require('jsonwebtoken')
@@ -122,12 +122,12 @@ export default withRouter(function ({ history }) {
   }
 
     
-  async function handleUpdatePet(chipNumber, Name, dateOfBirth, specie, sex, sterilized, weight, race, typeOfRace, fur) {
+  async function handleUpdatePet(dateOfBirth, specie, sex, sterilized, weight, race, typeOfRace, fur, idPet) {
     try {
       const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET);
-      // const pet = await deletePet(user, idPet)
-      // const petsList = await pets(user)
-      // setPets(petsList)
+      await updatePet(dateOfBirth, specie, sex, sterilized, weight, race, typeOfRace, fur, idPet, user)
+      const petsList = await pets(user)
+      setPets(petsList)
       history.push('/pets/')
     } catch ({ message }) {
       setState({ ...state, error: message })

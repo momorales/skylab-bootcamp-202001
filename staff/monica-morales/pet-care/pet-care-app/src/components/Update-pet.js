@@ -5,13 +5,11 @@ import './config.sass'
 // Moment.globalFormat = 'D MMM YYYY'
 
 export default function ({pet, updatePet, error}) {
-    const { numberChip, name, dateOfBirth, specie, sex,sterilized, weight, race, typeRace, fur, user,createdDate, diagnostic } = pet
+    const { numberChip, name, dateOfBirth, specie, sex,sterilized, weight, race, typeRace, fur, _id} = pet
 
     function handleOnSubmit(event){
         event.preventDefault()
         const { target: {            
-            chipNumber: { value: chipNumber },
-            Name: { value: Name },
             dateOfBirth : { value: dateOfBirth},
             specie : { value: specie},
             sex : { value: sex},
@@ -20,11 +18,13 @@ export default function ({pet, updatePet, error}) {
             race : { value: race},
             typeOfRace : { value: typeOfRace},
             fur : { value: fur},
+            id : { value : id}
+           
             
             
         } } = event
-        
-        updatePet(chipNumber, Name, dateOfBirth, specie, sex, sterilized, Number(weight), race, typeOfRace, fur )
+
+        updatePet(dateOfBirth, specie, sex, sterilized, Number(weight), race, typeOfRace, fur, id)
     }
 
 
@@ -44,6 +44,7 @@ export default function ({pet, updatePet, error}) {
     <section>
         <form className= "newPet" onSubmit={handleOnSubmit}>
          
+                <input type="hidden" name="id" value={_id}/>
                 <input className="newPet__input" type="text" readOnly = {true} name="chipNumber"  defaultValue={numberChip} placeholder="Chip number"/>
                 <input className="newPet__input" type="text" readOnly = {true} name="Name" defaultValue={name} placeholder="Pet name"/>
                 <input className="newPet__input" type="text"  name="dateOfBirth" defaultValue={dateOfBirth} placeholder="Date of birth" onFocus = {onFocus} onBlur={onBlur} />
