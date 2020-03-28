@@ -33,11 +33,11 @@ export default function ({  createPet, error, onMount }) {
     }
 
     function onFocus(event){
-        event.currentTarget.type = "date";
+        event.currentTarget.type = "date"
     }
     function onBlur(event){
-        event.currentTarget.type = "text";
-        event.currentTarget.placeholder = "Enter a Date";
+        event.currentTarget.type = "text"
+        event.currentTarget.placeholder = "Enter a Date"
     }
 
     return <>
