@@ -11,6 +11,7 @@ import PetsList from './Pets-container'
 import CreateAlert from './Create-alert'
 import CreatePet from './Create-pet'
 import DetailPet from './Detail-pet'
+import UpdatePet from './Update-pet'
 
 export {
     App,
@@ -25,5 +26,6 @@ export {
     PetsList,
     CreateAlert,
     CreatePet,
-    DetailPet
+    DetailPet,
+    UpdatePet
 }

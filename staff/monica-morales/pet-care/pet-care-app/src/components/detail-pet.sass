@@ -1,13 +1,41 @@
-.detailPet
-    text-align: center
-    border-bottom: #efd9ea solid 0.2rem
-    font-size: 130%
-    width: 80%
-    margin: 0 auto
+@import config.sass
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates&display=swap')
+
+body
+    margin: 0
+    box-sizing: border-box
+    width: 100%
+
+.container-detail
     display: flex
-    margin-bottom: 1.5em
-    justify-content: center
-    color: #A569BD
+    flex-direction: column
+
+    &__detailPet
+        display: flex
+        text-align: center
+        border-bottom: #efd9ea solid 0.2rem
+        font-size: 130%
+        width: 80%
+        margin: 0 auto
+        margin-bottom: 1.5em
+        justify-content: center
+        color: #A569BD
+
+    &__buttonDiagnostics
+        font-family: 'Montserrat Alternates', sans-serif
+        margin-bottom: 0.5rem
+        -webkit-appearance: none
+        background-color: #f6d4f0
+        height: 5vh
+        width: 41vw
+        border-radius: 0.3rem
+        box-shadow: 0 0 5px #131212
+        &:hover
+            filter: brightness(1.2)
+            cursor: pointer
+        border: 1px solid #efd9ea
+        margin: 0 auto
+        margin-top: 3em
 
 li
     font-size: 18px
@@ -19,4 +47,6 @@ li
 
     &__span:firs-letter
         text-transform: uppercase
+
+
     
