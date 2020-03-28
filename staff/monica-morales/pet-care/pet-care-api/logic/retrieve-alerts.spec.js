@@ -7,14 +7,14 @@ const retrieveAlerts = require('./retrieve-alerts')
 const { mongoose, models: { User, Alert, Pet } } = require('pet-care-data')
 const bcrypt = require('bcryptjs')
 
-describe('retrieveAlerts', () => {
+describe.only('retrieveAlerts', () => {
 
     before(() =>
         mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-            .then(() => User.deleteMany())
+            .then(() => User.deleteMany(), Pet.deleteMany(), Alert.deleteMany)
     )
 
-    let name, username, email, password, subject, description, telephone, eventDate, _petId, _userId, _alertId
+    let name, username, email, password, subject, description, telephone, eventDate, _petId, numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, owner,_userId, _alertId, alertId2, creation, creation2, description2, telephone2, eventDate2, subject2
 
     beforeEach( async () => {
         name = `name-${random()}`
@@ -41,11 +41,17 @@ describe('retrieveAlerts', () => {
         created = `2020/01/01`
         owner = _userId
         
-        subject = 'deworming'
-        description = `description`
+        subject = 'vaccines'
+        description = 'description'
         telephone = `telephone-${random()}`
         creation = new Date
         eventDate = new Date
+
+        subject2 = 'deworming'
+        description2 = 'description2'
+        telephone2 = `telephone2-${random()}`
+        creation2 = new Date
+        eventDate2 = new Date
         
         const user = await User.create({name, username, email, password, created })
         _userId = user.id
@@ -55,34 +61,43 @@ describe('retrieveAlerts', () => {
         _petId = pet.id
 
         
-        const alert = await new Alert({subject, description, telephone, creation, eventDate})
+        const alert = await Alert.create({subject, description, telephone, creation, eventDate})
     
-        idAlert = alert.id
-        
+        _alertId = alert.id
 
+        const alert2 = await Alert.create({subject: subject2, description: 'description2', telephone: telephone2, creation: creation2, eventDate: eventDate2})
+    
+        alertId2 = alert2.id
+        
+        debugger
         alert.pets.push(_petId)
         await alert.save()
+        await alert2.pets.push(_petId)
 
-        user.alerts.push(_alertId)
+        user.alerts.push(alert)
+        user.alerts.push(alert2)
 
         await user.save()
 
 
     })
 
-    it('should succeed on correct and valid and right data', async () => {
+    it('should succeed on correct and valid and right data', async () => {debugger
 
         const alerts = await retrieveAlerts(_userId)
-        debugger
-        expect(alerts).to.exist
-        expect(alerts.subject).to.equal(subject)
-        expect(alerts.description).to.equal(description)
-        expect(alerts.telephone).to.equal(telephone)
-        expect(alerts.creation).to.equal(creation)
-        expect(alerts.eventDate).to.equal(eventDate)
-        expect(alerts).to.be.an.instanceOf(Object)
-        expect(alerts.creation).to.be.an.instanceOf(Date)
-        expect(alerts.eventDate).to.be.an.instanceOf(Date)
+        
+        
+
+            expect(alerts[0]).to.exist
+            expect(alerts[0].subject).to.equal(subject)
+            expect(alerts[0].description).to.equal(description)
+            expect(alerts[0].telephone).to.equal(telephone)
+            expect(alerts[0].creation).to.equal(creation)
+            expect(alerts[0].eventDate).to.equal(eventDate)
+            expect(alerts[0]).to.be.an.instanceOf(Object)
+            expect(alerts[0].creation).to.be.an.instanceOf(Date)
+            expect(alerts[0].eventDate).to.be.an.instanceOf(Date)
+
     })
 
 

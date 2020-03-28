@@ -3,7 +3,7 @@ const { validate } = require('pet-care-utils')
 const { models: { User } } = require('pet-care-data')
 const { NotFoundError } = require('pet-care-errors')
 
-module.exports = id => {
+module.exports = id => {debugger
 
     validate.string(id, 'id')
 
@@ -11,7 +11,7 @@ module.exports = id => {
 
     return User.find({"_id":id, "alerts.eventDate": { "$gte" : newDate}},{alerts:1})
         .then(alerts => {
-            if (!alerts) throw new NotFoundError(`user with id ${id} has not alerts`)
+            if (!alerts) throw new NotFoundError(`no alerts for this user`)
             return alerts
         })
 }

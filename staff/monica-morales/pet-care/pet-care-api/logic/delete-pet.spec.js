@@ -2,34 +2,33 @@ require('dotenv').config()
 
 const { expect } = require('chai')
 const { mongoose, models: { User, Pet } } = require('pet-care-data')
-const { NotFoundError } = require('pet-care-errors')
-const createVisit = require('./create-appointment')
+const { NotFoundError, ContentError } = require('pet-care-errors')
+const deletePet = require('./delete-pet')
 const {random } = Math
-const bcrypt = require('bcryptjs')
+
 
 const { env: { TEST_MONGODB_URL } } = process
 
-describe('createVisit', () => {
+describe('delete pet', () => {
     
     before(() =>
     mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-        // .then(() => User.deleteMany())
-        // .then(() => Pet.deleteMany())
+        .then(() => Promise.all([User.deleteMany(), Pet.deleteMany()]))
     )
-    let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, userId, petId
+    let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, id, petId
+    
+   
 
-    beforeEach(()=>{
+    beforeEach ( async ()=>{
+
+        //data to create user
         name = `name-${random()}`
         username = `username-${random()}`
         email = `username-${random()}@gmail.com`
         password = `password-${random()}`
 
-        return bcrypt.hash(password, 10)
-        .then((password) => User.create({name, username, email, password, created: new Date }))
-        .then((user) => userId = user.id)
-    })   
+        //data to create pet
 
-    beforeEach( async ()=>{
         numberChip = `numberChip-${random()}`
         petName = `name-${random()}@gmail.com`
         birthDate = `2020/01/01`
@@ -41,31 +40,35 @@ describe('createVisit', () => {
         sterilized = true
         weight = 40
         created = `2020/01/01`
-        owner = userId
 
-        description = `description-${random()}`
-        dateAppointment = new Date
-        hour = `hour-${random()}`
-        
+                
+        //create user and extract id
 
-        const pet = await Pet.create({owner, numberChip, name:petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created})
-        
+        const user = await User.create({name, username, email, password, created: new Date })
+        id = user.id
+
+        //create pet
+
+        const pet = await Pet.create({owner: id, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created: new Date()})
+
         petId = pet.id
-        
-    }) 
+
+        user.pets.push(petId)
+
+        await user.save()
+    })   
+ 
     
-    it('should succeed on correct new appointment', async ()=> {
+    it('should succeed deleting pet', async ()=> {
 
-        //TODO insert userID
-
-        const newAppointmentId = await createVisit( description, dateAppointment, hour, petId, userId)
+        const response = await deletePet(id, petId)
         
-        expect(newAppointmentId).to.exist
-
-        const pet = await Pet.findById(petId) 
+        expect(response).to.not.exist
+               
+        const _pet = await Pet.findById(petId)
         
-        expect(pet.appointments).to.be.an('array')
-        expect((pet.appointments[0]._id).toString()).to.equal(newAppointmentId)       
+        expect(_pet).to.not.exist
+        
         
     })
 
@@ -73,7 +76,7 @@ describe('createVisit', () => {
         let wrongId = '293898iujuyh'
     
         try {
-            await createVisit(description, dateAppointment, hour, petId, wrongId)
+            await deletePet(wrongId, petId)
     
             throw Error('should not reach this point')
         } catch (error) {
@@ -87,15 +90,16 @@ describe('createVisit', () => {
         let wrongPetId = '293898iujuyh'
     
         try {
-            await createVisit(description, dateAppointment, hour, wrongPetId, userId)
+            await deletePet(id, wrongPetId)
     
             throw Error('should not reach this point')
         } catch (error) {
             expect(error).to.exist
             expect(error).to.be.an.instanceOf(NotFoundError)
-            expect(error.message).to.equal(`pet with id ${wrongPetId} does not exist`)
+            expect(error.message).to.equal(`pet with id ${wrongPetId} not found`)
         }
     })
+
 
     after(() => Promise.all([User.deleteMany(), Pet.deleteMany()]).then(() => mongoose.disconnect()))
 })

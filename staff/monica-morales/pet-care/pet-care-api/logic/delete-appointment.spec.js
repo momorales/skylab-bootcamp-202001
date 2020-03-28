@@ -3,7 +3,7 @@ require('dotenv').config()
 const { expect } = require('chai')
 const { mongoose, models: { User, Pet, Appointment } } = require('pet-care-data')
 const { NotFoundError, ContentError } = require('pet-care-errors')
-const deleteVisit = require('./delete-visit')
+const deleteVisit = require('./delete-appointment')
 const {random } = Math
 
 
