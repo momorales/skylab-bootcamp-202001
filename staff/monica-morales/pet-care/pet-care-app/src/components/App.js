@@ -94,6 +94,19 @@ export default withRouter(function ({ history }) {
     }
   }
 
+    
+  async function handleUpdatePet(idPet) {
+    try {
+      const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET);
+      // const pet = await deletePet(user, idPet)
+      // const petsList = await pets(user)
+      // setPets(petsList)
+      history.push('/pets/')
+    } catch ({ message }) {
+      setState({ ...state, error: message })
+    }
+  }
+
   function handleGoToRegister() {
     history.push('/register')
   }
@@ -153,6 +166,14 @@ export default withRouter(function ({ history }) {
     }
   }
 
+  async function handleGotoUpdatePet() {
+    try {
+      history.push('/pet/update')
+    } catch ({ message }) {
+      setState({ ...state, error: message })
+    }
+  }
+
   async function handleCreatePet(chipNumber, Name, dateOfBirth, specie, sex, sterilized, weight, race, typeOfRace, fur) {
     try {
       const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET);  
@@ -194,10 +215,11 @@ export default withRouter(function ({ history }) {
       <Route path="/register" render={() => isLoggedIn() ? <Redirect to="/home" /> : <Register onSubmit={handleRegister} error={error} onMount={handleMountRegister} />} />      
       <Route path="/home" render={() => isLoggedIn() ? <><Header user = {user}/><Home user = {user} onLoadAlerts={handleAlerts} onLoadPets={handlePets} /></> : <Redirect to="/login" />} /> 
       <Route path='/alerts/' render={() => isLoggedIn() ? <><Header user = {user}/><AlertsList alerts={alertsList} onCreateAlert={handleOnGoToCreateAlert} onMount={handleMountAlerts}/></> : <Redirect to="/login" />} /> 
-      <Route path='/pets/' render={() => isLoggedIn() ? <><Header user = {user}/><PetsList pets={petsList} onLoadDetailPet={handleDetailPet} onDelete={handleDeletePet} onMount={handleMountPets} onGoToCreatePet={handleOnGoToCreatePet}/></> : <Redirect to="/login" />} /> 
+      <Route path='/pets/' render={() => isLoggedIn() ? <><Header user = {user}/><PetsList pets={petsList} onLoadDetailPet={handleDetailPet} onDelete={handleDeletePet} onUpdate={handleGotoUpdatePet} onMount={handleMountPets} onGoToCreatePet={handleOnGoToCreatePet}/></> : <Redirect to="/login" />} /> 
       <Route path='/alert/create' render={() => isLoggedIn() ? <><Header user = {user}/><CreateAlert myPets = {petsList} createAlert={handleCreateAlert} onMount={handleMountAlert}/></> : <Redirect to="/login" />} />
       <Route path='/pet/create' render={() => isLoggedIn() ? <><Header user = {user}/><CreatePet createPet={handleCreatePet} onMount={handleMountPet}/></> : <Redirect to="/login" />} />
-      <Route path='/pet/detail'render={() => isLoggedIn() ? <><Header user = {user}/><DetailPet pet={petDetail} onGoToDiagnostic={handleOnGoToDiagnostic} error={error} /></> : <Redirect to="/login" />} /> 
+      <Route path='/pet/detail'render={() => isLoggedIn() ? <><Header user = {user}/><DetailPet pet={petDetail} onGoToDiagnostic={handleOnGoToDiagnostic} error={error} /></> : <Redirect to="/login" />} />
+      <Route path='/pet/update'render={() => isLoggedIn() ? <><Header user = {user}/><UpdatePet pet={petDetail} updatePet={handleUpdatePet} error={error} /></> : <Redirect to="/login" />} /> 
     </Page>
   </div>
 
