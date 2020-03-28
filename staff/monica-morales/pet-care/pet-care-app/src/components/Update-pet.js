@@ -9,7 +9,31 @@ export default function ({pet, updatePet, error}) {
 
     function handleOnSubmit(event){
         event.preventDefault()
-        updatePet(event.target.value)
+        const { target: {            
+            chipNumber: { value: chipNumber },
+            Name: { value: Name },
+            dateOfBirth : { value: dateOfBirth},
+            specie : { value: specie},
+            sex : { value: sex},
+            sterilized : { value: sterilized},
+            weight : { value: weight},
+            race : { value: race},
+            typeOfRace : { value: typeOfRace},
+            fur : { value: fur},
+            
+            
+        } } = event
+        
+        updatePet(chipNumber, Name, dateOfBirth, specie, sex, sterilized, Number(weight), race, typeOfRace, fur )
+    }
+
+
+    function onFocus(event){
+        event.currentTarget.type = "date"
+    }
+    function onBlur(event){
+        event.currentTarget.type = "text"
+        event.currentTarget.placeholder = "Enter a Date"
     }
 
     return <>
@@ -20,9 +44,9 @@ export default function ({pet, updatePet, error}) {
     <section>
         <form className= "newPet" onSubmit={handleOnSubmit}>
          
-                <input className="newPet__input" type="text" readOnly = {true} name="chipNumber" value={numberChip} placeholder="Chip number"/>
-                <input className="newPet__input" type="text" readOnly = {true} name="Name" value={name} placeholder="Pet name"/>
-                <input className="newPet__input" type="text"  name="dateOfBirth" value={dateOfBirth} placeholder="Date of birth" onFocus = {onFocus} onBlur={onBlur} />
+                <input className="newPet__input" type="text" readOnly = {true} name="chipNumber"  defaultValue={numberChip} placeholder="Chip number"/>
+                <input className="newPet__input" type="text" readOnly = {true} name="Name" defaultValue={name} placeholder="Pet name"/>
+                <input className="newPet__input" type="text"  name="dateOfBirth" defaultValue={dateOfBirth} placeholder="Date of birth" onFocus = {onFocus} onBlur={onBlur} />
                
                 <select className="newPet__input" type="text" name="specie" defaultValue={specie}>
                     <option value ="Cat">Cat</option>
@@ -40,8 +64,8 @@ export default function ({pet, updatePet, error}) {
                     <option value ="NO">No</option>
                 </select>
                
-                <input className="newPet__input" type="text"  name="weight" value={weight} placeholder="Weight"/>
-                <input className="newPet__input" type="text"  name="race" value={race} placeholder="Race"/>
+                <input className="newPet__input" type="text"  name="weight" defaultValue={weight} placeholder="Weight"/>
+                <input className="newPet__input" type="text"  name="race" defaultValue={race} placeholder="Race"/>
                 
                 <select className="newPet__input" type="text" name="typeOfRace" defaultValue={typeRace}>
                     <option value ="Small">Small</option>

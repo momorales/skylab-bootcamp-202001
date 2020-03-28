@@ -9,6 +9,7 @@ import createAlert from './create-alert'
 import createPet from './create-pet'
 import detailPet from './detail-pet'
 import deletePet from './delete-pet'
+import updatePet from './update-pet'
 
 
 export {
@@ -22,5 +23,6 @@ export {
     createAlert,
     createPet,
     detailPet,
-    deletePet
+    deletePet,
+    updatePet
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react'
-import { Page,Login,Register,Home,Header,AlertsList, PetsList, CreateAlert, CreatePet, Pets, DetailPet } from '../components'
+import { Page,Login,Register,Home,Header,AlertsList, PetsList, CreateAlert, CreatePet, Pets, DetailPet, UpdatePet } from '../components'
 import { registerUser, login, isLoggedIn, retrieveUser,alerts,pets, createAlert, createPet, detailPet, deletePet } from '../logic'
 import { Context } from './ContextProvider'
 import { Route, withRouter, Redirect } from 'react-router-dom'
@@ -28,6 +28,8 @@ export default withRouter(function ({ history }) {
     }
   }, [])
 
+  //HANDLERS
+
   async function handleRegister(name, username, email, password) {
     try {
       await registerUser(name, username, email, password)
@@ -44,6 +46,31 @@ export default withRouter(function ({ history }) {
       const user = await retrieveUser()
       setUser(user)
       history.push('/home')
+    } catch ({ message }) {
+      setState({ ...state, error: message })
+    }
+  }
+  async function handleCreatePet(chipNumber, Name, dateOfBirth, specie, sex, sterilized, weight, race, typeOfRace, fur) {
+    try {
+      const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET) 
+      const createdDate = new Date    
+      const diagnostic = []
+      const pet = await createPet(chipNumber, Name, dateOfBirth, specie, sex,sterilized, weight, race, typeOfRace, fur, user, createdDate, diagnostic)
+      const petsList = await pets(user)
+      setPets(petsList)
+      history.push('/pets/')
+    } catch ({ message }) {
+      setState({ ...state, error: message })
+    }
+  }
+
+  async function handleCreateAlert(petId, subject, eventDate, description,telephone) {
+    try {
+      const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET)
+      const alert = await createAlert(subject, description,telephone, eventDate, petId, user.sub)
+      const alertsList = await alerts(user)
+      setAlerts(alertsList)
+      history.push('/alerts/')
     } catch ({ message }) {
       setState({ ...state, error: message })
     }
@@ -95,7 +122,7 @@ export default withRouter(function ({ history }) {
   }
 
     
-  async function handleUpdatePet(idPet) {
+  async function handleUpdatePet(chipNumber, Name, dateOfBirth, specie, sex, sterilized, weight, race, typeOfRace, fur) {
     try {
       const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET);
       // const pet = await deletePet(user, idPet)
@@ -107,6 +134,8 @@ export default withRouter(function ({ history }) {
     }
   }
 
+     
+//NAVIGATION
   function handleGoToRegister() {
     history.push('/register')
   }
@@ -115,36 +144,12 @@ export default withRouter(function ({ history }) {
     history.push('/login')
   }
   
-
-
-  function handleMountLogin() {
-    setState({ page: 'login' })
-  }
-
-  function handleMountRegister() {
-    setState({ page: 'register' })
-  }
-
-  
   async function handleOnGoToCreateAlert() {
     const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET);
     try {
       const petsList = await pets(user)
       setPets(petsList)
       history.push('/alert/create')
-    } catch ({ message }) {
-      setState({ ...state, error: message })
-    }
-  }
-  
-
-  async function handleCreateAlert(petId, subject, eventDate, description,telephone) {
-    try {
-      const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET);
-      const alert = await createAlert(subject, description,telephone, eventDate, petId, user.sub)
-      const alertsList = await alerts(user)
-      setAlerts(alertsList)
-      history.push('/alerts/')
     } catch ({ message }) {
       setState({ ...state, error: message })
     }
@@ -166,39 +171,32 @@ export default withRouter(function ({ history }) {
     }
   }
 
-  async function handleGotoUpdatePet() {
+  async function handleGotoUpdatePet(idPet) {
     try {
+      const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET)
+      const pet = await detailPet(user, idPet)
+      setPetDetail(pet)
       history.push('/pet/update')
     } catch ({ message }) {
       setState({ ...state, error: message })
     }
   }
-
-  async function handleCreatePet(chipNumber, Name, dateOfBirth, specie, sex, sterilized, weight, race, typeOfRace, fur) {
-    try {
-      const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET);  
-      const createdDate = new Date    
-      const diagnostic = []
-      const pet = await createPet(chipNumber, Name, dateOfBirth, specie, sex,sterilized, weight, race, typeOfRace, fur, user, createdDate, diagnostic)
-      const petsList = await pets(user)
-      setPets(petsList)
-      history.push('/pets/')
-    } catch ({ message }) {
-      setState({ ...state, error: message })
-    }
+//MOUNTS
+  function handleMountLogin() {
+    setState({ page: 'login' })
   }
 
+  function handleMountRegister() {
+    setState({ page: 'register' })
+  }
 
   function handleMountAlerts() {
     setState({ page: 'Alerts' })
   }
 
-
-
   function handleMountPets() {
     setState({ page: 'Pets' })
   }
-
 
   function handleMountAlert() {
     setState({ page: 'CreateAlert' })
