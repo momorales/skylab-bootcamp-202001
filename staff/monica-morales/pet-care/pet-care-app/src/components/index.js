@@ -12,6 +12,8 @@ import CreateAlert from './Create-alert'
 import CreatePet from './Create-pet'
 import DetailPet from './Detail-pet'
 import UpdatePet from './Update-pet'
+import Schedule from './Schedule'
+
 
 export {
     App,
@@ -27,5 +29,6 @@ export {
     CreateAlert,
     CreatePet,
     DetailPet,
-    UpdatePet
+    UpdatePet,
+    Schedule
 }

@@ -15,10 +15,12 @@
     "pet-care-errors": "file:../pet-care-errors",
     "pet-care-utils": "file:../pet-care-utils",
     "react": "^16.13.0",
+    "react-big-calendar": "^0.24.1",
     "react-dom": "^16.13.0",
     "react-moment": "^0.9.7",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "reactjs-popup": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
