@@ -9,6 +9,12 @@ export default ({user, onLoadAlerts,onLoadPets, onLoadAppointments}) => {
 
         onLoadAlerts()
     }
+    
+    function handleGoToAppointmetns(event){
+        event.preventDefault()
+
+        onLoadAppointments()
+    }
 
     function handleGoPets(event) {
         event.preventDefault()
@@ -16,10 +22,6 @@ export default ({user, onLoadAlerts,onLoadPets, onLoadAppointments}) => {
         onLoadPets()
     }
 
-    function handleGoToAppointmetns(event){
-        event.preventDefault()
-        onLoadAppointments()
-    }
 
     return <>
         <div className = "sections">

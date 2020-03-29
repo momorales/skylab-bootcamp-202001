@@ -1,11 +1,11 @@
 import React from 'react'
-import './alerts.sass'
+import './alert.sass'
 import Moment from 'react-moment'
 Moment.globalFormat = 'D MMM YYYY'
 
 
-export default ({key,alertList}) => {
-    const {subject, description, telephone, creation, eventDate, id} = alertList
+export default ({key,alert}) => {
+    const {subject, description, telephone, creation, eventDate, id} = alert
 
     return <>
 

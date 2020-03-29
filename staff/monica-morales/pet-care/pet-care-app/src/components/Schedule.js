@@ -5,11 +5,11 @@ import 'react-big-calendar/lib/sass/styles.scss'
 import './schedule.sass'
 import Popup from "reactjs-popup"
 
-export default ({appointmentList, onGoToCreateAppointment, onGoToDeleteAppointment}) =>{
+export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAppointment}) =>{
     const localizer = momentLocalizer(moment)
     const [appointments, setAppointments] = useState([])
     const [appointmetSelected, setAppointmentSelected] = useState("")
-    const [idPet, setIdPet]= useState("")
+    const [petId , setPetId] = useState()
 
     useEffect(() => {
         const myEventsList = []
@@ -37,13 +37,18 @@ export default ({appointmentList, onGoToCreateAppointment, onGoToDeleteAppointme
           
         } } = event
 
-        onGoToCreateAppointment(subject, dateAppointment, hour, idPet)
+        onGoToCreateAppointment(subject, dateAppointment, hour, petId)
     }
 
     function handleGoToCancelAppointment(event) {
         event.preventDefault()
+        
+        appointmentList.forEach(item=>{
+            if (item._id===appointmetSelected)
+                setPetId(item.petId)
+        })
 
-        onGoToDeleteAppointment(appointmetSelected)
+        onGoToDeleteAppointment(petId,appointmetSelected)
     }
 
     function onFocus(event){
@@ -58,6 +63,12 @@ export default ({appointmentList, onGoToCreateAppointment, onGoToDeleteAppointme
         event.preventDefault()
         setAppointmentSelected(event.target.value)
     }
+
+    function handleSelectPetId(event){
+        event.preventDefault()
+        setPetId(event.target.value)
+    }
+
   
     return <>  
         <div  className="bigCalendar-container">
@@ -70,10 +81,18 @@ export default ({appointmentList, onGoToCreateAppointment, onGoToDeleteAppointme
             ></Calendar>
         </div>
 
-        <Popup trigger={
+        <Popup key={1} trigger={
             <button className="buttonAppointments">New visit</button>
         }>
-            <form onSubmit={handleGoToCreateAppointment} className="popup">
+            <form key={1} onSubmit={handleGoToCreateAppointment} className="popup">
+                <select className="newPet__input" onChange={handleSelectPetId} name = "pet">
+                    <option disabled selected>Select Pet</option>
+                    {myPets.map(pet => {
+                        return (
+                            <option key={pet._id} value={pet._id}>{pet.name}</option>
+                        )
+                    })}
+                </select>
                 <input className="newPet__input" type="text"  name="subject" placeholder="Subject"/>
                 <input className="newPet__input" type="text"  name="dateAppointment" placeholder="Date Appointment" onFocus = {onFocus} onBlur={onBlur} />
                 <select className="newPet__input" type="text" name="hour">
@@ -92,15 +111,15 @@ export default ({appointmentList, onGoToCreateAppointment, onGoToDeleteAppointme
             </form>
         </Popup>
 
-        <Popup trigger={
+        <Popup key={2} trigger={
             <button className="buttonAppointments">Cancel visit</button>
         } position="center center">
-            <form onSubmit={handleGoToCancelAppointment}>
+            <form key={2} onSubmit={handleGoToCancelAppointment}>
                 <select className="newAlert__select" name = "subject" onChange={handleSelectAppointment}>
                     <option disabled selected>Select Appointment</option>
                     {appointmentList.map(appointment => {
                         return (
-                            <option value={appointment._id}>{appointment.description}</option>
+                            <option value={appointment._id}>{appointment.dateAppointment} - {appointment.description}</option>
                         )
                     })}
                 </select>
