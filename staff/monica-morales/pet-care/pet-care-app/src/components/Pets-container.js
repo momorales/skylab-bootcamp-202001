@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Pet from './Pets'
 import './pets-container.sass'
 
-export default ({pets, onLoadDetailPet, onDelete, onMount, onGoToCreatePet}) =>{
+export default ({pets, onLoadDetailPet, onDelete, onUpdate, onMount, onGoToCreatePet}) =>{
 
     useEffect(() => {
         onMount()
@@ -22,7 +22,7 @@ export default ({pets, onLoadDetailPet, onDelete, onMount, onGoToCreatePet}) =>{
         {pets.map(pet => {
             return (
                 <section key = {pet._id}>
-                    <Pet pet={pet} onClick={onLoadDetailPet} onDelete={onDelete}/>
+                    <Pet pet={pet} onClick={onLoadDetailPet} onDelete={onDelete} onUpdate={onUpdate}/>
                 </section>
             )
         })}
