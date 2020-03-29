@@ -7,7 +7,7 @@ const retrieveAlerts = require('./retrieve-alerts')
 const { mongoose, models: { User, Alert, Pet } } = require('pet-care-data')
 const bcrypt = require('bcryptjs')
 
-describe.only('retrieveAlerts', () => {
+describe('retrieveAlerts', () => {
 
     before(() =>
         mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
