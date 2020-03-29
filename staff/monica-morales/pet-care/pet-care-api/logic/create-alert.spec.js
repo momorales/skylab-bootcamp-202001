@@ -9,7 +9,7 @@ const bcrypt = require('bcryptjs')
 
 const { env: { TEST_MONGODB_URL } } = process
 
-describe('createAlert', () => {
+describe.only('createAlert', () => {
     
     before(() =>
     mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -60,7 +60,7 @@ describe('createAlert', () => {
         expect(response).to.not.exist
                 
         return User.find({_id:_userId},{ alerts: { $elemMatch: { _id: _petId } }})
-            .then(alert => {
+            .then(alert => {debugger
                 expect(alert).to.exist
                 expect(alert).to.be.an.instanceof(Object)
             })       

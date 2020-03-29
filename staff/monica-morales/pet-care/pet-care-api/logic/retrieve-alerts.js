@@ -6,11 +6,12 @@ const { NotFoundError } = require('pet-care-errors')
 module.exports = id => {debugger
 
     validate.string(id, 'id')
+    
 
     const newDate = new Date
 
     return User.find({"_id":id, "alerts.eventDate": { "$gte" : newDate}},{alerts:1})
-        .then(alerts => {
+        .then(alerts => {debugger
             if (!alerts) throw new NotFoundError(`no alerts for this user`)
             return alerts
         })
