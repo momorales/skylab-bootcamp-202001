@@ -19,7 +19,16 @@ module.exports = (id) => {
                     result =[]
                     pets.pets.filter((item)=>{
                         item.appointments.filter(ap=>{
-                            if (ap.dateAppointment>=newDate)result.push(ap)
+                            if (ap.dateAppointment>=newDate){
+                                const appoint = {
+                                    petId: item._id,
+                                    appointmentId : ap._id,
+                                    description : ap.description,
+                                    hour : ap.hour,
+                                    dateAppointment : ap.dateAppointment
+                                }
+                                result.push(appoint)
+                            }
                         })
                     })
                     return result
