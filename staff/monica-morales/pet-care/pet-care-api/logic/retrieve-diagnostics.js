@@ -5,9 +5,6 @@ const { NotFoundError } = require('pet-care-errors')
 
 module.exports = (idPet, id) => {
 
-    //TODO user
-    //diagnostic es un esquema también no?
-
     validate.string(idPet, 'idPet')
     validate.string(id, 'id')
 
@@ -20,15 +17,25 @@ module.exports = (idPet, id) => {
         const pet = await Pet.findById(idPet)
         if (!pet) throw new NotFoundError(`pet with id ${idPet} does not exist`)
 
-        // return Pet.find({ _id: idPet }, { diagnostics: 1 })
-        //     .then(diagnostics => {
-        //         if (diagnostics) return diagnostics
-        //         else throw new NotFoundError(`diagnostic with id ${idDiagnostic} does not exist`)
-        //     })
+        result =[]
 
+        pet.diagnostics.filter((diagnostic=>{
+            const diagnos = {
+                idPet: pet._id,
+                name: pet.name,
+                idDiagnostic: diagnostic._id,
+                name: diagnostic.name,
+                test: diagnostic.test,
+                description: diagnostic.description,
+                lab: diagnostic.lab,
+                            }
+            result.push(diagnos)
+        }))
+
+        
         const diagnostics = pet.diagnostics
 
-        return diagnostics
+        return result
 
     })()
 }
