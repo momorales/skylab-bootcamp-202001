@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Alert from './Alert'
 import './alerts-container.sass'
 
-export default ({alerts,onCreateAlert, onMount}) =>{
+export default ({alerts, onCreateAlert, onMount}) =>{
 
     useEffect(() => {
         onMount()
@@ -23,7 +23,7 @@ export default ({alerts,onCreateAlert, onMount}) =>{
             {alerts.map(alert => {
                 return (
                     <section key = {alert._id}>
-                        <Alert key={alert._id} alertList={alert}/>
+                        <Alert key={alert._id} alert={alert}/>
                     </section>
                 )
             })}
