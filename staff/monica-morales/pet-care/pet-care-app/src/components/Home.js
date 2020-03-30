@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './home.sass'
 
-export default ({user, onLoadAlerts,onLoadPets, onLoadAppointments}) => {
+export default ({user, onLoadAlerts,onLoadPets, error, onLoadAppointments}) => {
 
 
     function handleGoAlerts(event) {

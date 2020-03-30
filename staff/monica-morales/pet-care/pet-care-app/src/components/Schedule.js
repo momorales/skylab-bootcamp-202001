@@ -5,18 +5,21 @@ import 'react-big-calendar/lib/sass/styles.scss'
 import './schedule.sass'
 import Popup from "reactjs-popup"
 
-export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAppointment}) =>{
+export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAppointment, onMount}) =>{
     const localizer = momentLocalizer(moment)
     const [appointments, setAppointments] = useState([])
     const [appointmetSelected, setAppointmentSelected] = useState("")
-    const [petId , setPetId] = useState()
+    const [petId , setPetId] = useState("")
 
     useEffect(() => {
+        onMount()
         const myEventsList = []
         appointmentList.forEach(data => {
-            var previousShortDate = moment(data.dateAppointment).format("YYYY-MM-DD")
-            var startDateAppointment = moment(previousShortDate + " " + data.hour)
-            var endDateAppointment = moment(startDateAppointment).add(1, 'hours')
+            // let previousShortDate = moment(data.dateAppointment).format("YYYY-MM-DD")
+            // let startDateAppointment = moment(previousShortDate + "T" + data.hour + ":00.000Z")
+            // let endDateAppointment = moment(startDateAppointment).add(1, 'hours')
+            let startDateAppointment = moment(data.dateAppointment).set("hour",data.hour.split(':')[0]).set("minute",data.hour.split(':')[1])
+            let endDateAppointment = moment(startDateAppointment).add(1, 'hours')
             const appointment = {
                 title: data.description,
                 start: startDateAppointment,
@@ -42,13 +45,14 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
 
     function handleGoToCancelAppointment(event) {
         event.preventDefault()
-        
+        let idPet=undefined
         appointmentList.forEach(item=>{
-            if (item._id===appointmetSelected)
-                setPetId(item.petId)
+            if (item.appointmentId===appointmetSelected){
+                idPet= item.petId
+            }
         })
 
-        onGoToDeleteAppointment(petId,appointmetSelected)
+        onGoToDeleteAppointment(idPet,appointmetSelected)
     }
 
     function onFocus(event){
@@ -69,15 +73,52 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
         setPetId(event.target.value)
     }
 
+    const handleSelectSlot = ({start,end,resourceId}) => {
+        console.log("Selected", start, end);
+        
+    }
+
+    function handleSelectEvent ({start,end,resourceId}){
+        console.log("Selected", start, end)    
+    }
+
+    function EventAgenda({ event }) {
+        return <span>
+        <em style={{ color: 'magenta'}}>{event.title}</em>
+        <p>{ event.desc }</p>
+      </span>
+    }
+
+    function Event({ event }) {
+        // return (
+        //     <span>
+        //     <strong>
+        //     {event.title}
+        //     </strong>
+        //         { event.desc && (':  ' + event.desc)}
+        //     </span>
+        // )
+    }
   
     return <>  
         <div  className="bigCalendar-container">
             <Calendar 
+                popup
                 selectable
+                defaultView='month'
+                views={['month','agenda']}
                 localizer={localizer}
                 events = {appointments}
                 startAccessor="start"
                 endAccessor = "end"
+                onSelectSlot={handleSelectSlot}
+                onSelectEvent={handleSelectEvent}
+                components={{
+                    //event: Event,
+                    agenda: {
+                        event: EventAgenda
+                    }
+                }}
             ></Calendar>
         </div>
 
@@ -96,14 +137,14 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
                 <input className="newPet__input" type="text"  name="subject" placeholder="Subject"/>
                 <input className="newPet__input" type="text"  name="dateAppointment" placeholder="Date Appointment" onFocus = {onFocus} onBlur={onBlur} />
                 <select className="newPet__input" type="text" name="hour">
-                    <option disabled selected>Select Hour</option>
-                    <option value ="9:00">9:00</option>
-                    <option value ="10:00">10:00</option>
-                    <option value ="12:00">12:00</option>
-                    <option value ="13:00">13:00</option>
-                    <option value ="15:00">15:00</option>
-                    <option value ="16:00">16:00</option>
-                    <option value ="17:00">17:00</option>
+                    <option key={0} disabled selected>Select Hour</option>
+                    <option key={1} value ="09:00">9:00</option>
+                    <option key={2} value ="10:00">10:00</option>
+                    <option key={3} value ="12:00">12:00</option>
+                    <option key={4} value ="13:00">13:00</option>
+                    <option key={5} value ="15:00">15:00</option>
+                    <option key={6} value ="16:00">16:00</option>
+                    <option key={7} value ="17:00">17:00</option>
                 </select>
                 <div className = "newPet__accept">
                     <button className="newPet__accept fas fa-check" type="submit"></button>
@@ -119,7 +160,7 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
                     <option disabled selected>Select Appointment</option>
                     {appointmentList.map(appointment => {
                         return (
-                            <option value={appointment._id}>{appointment.dateAppointment} - {appointment.description}</option>
+                            <option key={appointment.appointmentId} value={appointment.appointmentId}>{appointment.dateAppointment} - {appointment.description}</option>
                         )
                     })}
                 </select>
