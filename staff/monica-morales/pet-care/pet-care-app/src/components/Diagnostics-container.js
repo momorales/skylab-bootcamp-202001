@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Diagnostic from './Diagnostic'
 // import './alerts-container.sass'
 
-export default ({diagnostics,  onMount}) =>{
-
-    useEffect(() => {
-        onMount()
-    }, [])
-
+export default ({diagnostics}) =>{
 
     return <>  
         <section className = "diagnostic">

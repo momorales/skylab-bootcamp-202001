@@ -5,7 +5,19 @@ import './config.sass'
 // Moment.globalFormat = 'D MMM YYYY'
 
 export default function ({pet, onGoToDiagnostic, error}) {
-    const { numberChip, name, dateOfBirth, specie, sex,sterilized, weight, race, typeRace, fur, user,createdDate, diagnostic } = pet
+    const { numberChip, name, dateOfBirth, specie, sex,sterilized, weight, race, typeRace, fur, user,createdDate, diagnostic, _id} = pet
+
+    const [petId , setPetId] = useState()
+
+    useEffect(() => {
+       setPetId(_id)
+    }, [])    
+
+    function handleDiagnostic(event) {
+        event.preventDefault()
+
+        onGoToDiagnostic(petId)
+    }
 
     return <>
         <section className = "container-detail">
@@ -19,7 +31,7 @@ export default function ({pet, onGoToDiagnostic, error}) {
                 <li><span> Sterilized: {sterilized}</span></li>
                 <li><span> Weight: {weight} Kg</span></li>
             </ul>
-            <button onClick= {onGoToDiagnostic} className= "container-detail__buttonDiagnostics">Diagnostics</button>
+            <button onClick= {handleDiagnostic} className= "container-detail__buttonDiagnostics">Diagnostics</button>
         </section>
 
     </>

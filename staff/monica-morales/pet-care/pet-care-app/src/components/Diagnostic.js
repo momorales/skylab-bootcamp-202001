@@ -1,21 +1,23 @@
 import React from 'react'
 // import './alert.sass'
-// import Moment from 'react-moment'
-// Moment.globalFormat = 'D MMM YYYY'
+import Moment from 'react-moment'
+Moment.globalFormat = 'D MMM YYYY'
 
 
-export default ({key,diagnostic}) => {
+export default ({diagnostic}) => {
     const {name, test, description, lab, dateCreate, petId, id} = diagnostic
 
     return <>
 
         <section className="container1">
             <div className="diagnostic">
-                {/* <p>{subject} <Moment parse="YYYY-MM-DD">{eventDate}</Moment></p> */}
-               
+                <span>{name}</span>
+                <span><Moment parse="YYYY-MM-DD">{dateCreate}</Moment></span>
+                <span>{test}</span>
+                <span>{lab}</span>
+                <span>{description}</span>
             </div>
         </section>
-        
     </>
 }
 
