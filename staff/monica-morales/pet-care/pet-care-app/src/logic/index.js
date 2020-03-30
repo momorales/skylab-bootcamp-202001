@@ -13,7 +13,8 @@ import updatePet from './update-pet'
 import createAppointment from './create-appointment'
 import retrieveAppointment from './retrieve-appointment'
 import deleteAppointment from './delete-appointment'
-
+import createDiagnostic from './create-diagnostic'
+import retrieveDiagnostics from './retrieve-diagnostics'
 
 export {
     registerUser,
@@ -30,5 +31,7 @@ export {
     updatePet,
     createAppointment,
     retrieveAppointment,
-    deleteAppointment
+    deleteAppointment,
+    createDiagnostic,
+    retrieveDiagnostics
 }
