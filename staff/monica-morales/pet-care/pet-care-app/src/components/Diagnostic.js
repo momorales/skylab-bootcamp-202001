@@ -5,17 +5,20 @@ Moment.globalFormat = 'D MMM YYYY'
 
 
 export default ({diagnostic}) => {
-    const {name, test, description, lab, dateCreate, idPet, id} = diagnostic
+    const {namePet, test, description, lab, dateCreate, nameDiagnostic, idPet, id} = diagnostic
 
     return <>
 
         <section className="container1">
             <div className="diagnostic">
-                <span>{name}</span>
-                <span><Moment parse="YYYY-MM-DD">{dateCreate}</Moment></span>
-                <span>{test}</span>
-                <span>{lab}</span>
-                <span>{description}</span>
+                <ul>
+                    <li><span>Pet: {namePet}</span></li>
+                    <li><span>Title: {nameDiagnostic}</span></li>
+                    <li><span><Moment parse="YYYY-MM-DD">Date: {dateCreate}</Moment></span></li>
+                    <li> <span>Type test: {test}</span></li>
+                    <li><span>Laboratory: {lab}</span></li>
+                    <li><span>Valoration: {description}</span></li>
+                </ul>
             </div>
         </section>
     </>
