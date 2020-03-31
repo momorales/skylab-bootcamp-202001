@@ -12,9 +12,12 @@ import CreateAlert from './Create-alert'
 import CreatePet from './Create-pet'
 import DetailPet from './Detail-pet'
 import UpdatePet from './Update-pet'
+
+
 import Schedule from './Schedule'
 import Diagnostic from './Diagnostic'
 import DiagnosticList from './Diagnostics-container'
+
 
 export {
     App,
@@ -30,8 +33,10 @@ export {
     CreateAlert,
     CreatePet,
     DetailPet,
+
     UpdatePet,
     Schedule,
     Diagnostic,
     DiagnosticList
+
 }

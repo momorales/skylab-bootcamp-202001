@@ -16,12 +16,16 @@ export default (function (dateOfBirth, specie, sex, sterilized, weight, race, ty
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${this.token}`
             },
+
             body: JSON.stringify({ birthDate: dateOfBirth, specie, sex, race, typeRace: typeOfRace, fur, sterilized, weight, created: updateDate })
+
         })
 
         const { status } = response
 
-        if (status === 200) return
+
+        if (status === 201) return
+
 
         if (status >= 400 && status < 500) {
             const { error } = await response.json()

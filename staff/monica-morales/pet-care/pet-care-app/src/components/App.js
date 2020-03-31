@@ -1,7 +1,9 @@
 import React, { useEffect, useContext, useState } from 'react'
+
 import { Page,Login,Register,Home,Header,AlertsList, PetsList, CreateAlert, CreatePet, Pets, DetailPet, UpdatePet,Schedule, DiagnosticList } from '../components'
 import { registerUser, login, isLoggedIn, retrieveUser,alerts,pets, createAlert, createPet, detailPet, deletePet, updatePet, createAppointment,
   retrieveAppointment, deleteAppointment, retrieveDiagnostics} from '../logic'
+
 import { Context } from './ContextProvider'
 import { Route, withRouter, Redirect } from 'react-router-dom'
 const jwt = require('jsonwebtoken')
@@ -148,6 +150,14 @@ export default withRouter(function ({ history }) {
     } catch ({ message }) {
       setState({ ...state, error: message })
     }
+
+  }
+
+     
+//NAVIGATION
+  function handleGoToRegister() {
+    history.push('/register')
+
   }
 
   async function handleCreateAppointment(description, dateAppointment, hour, idPet) {
@@ -163,6 +173,8 @@ export default withRouter(function ({ history }) {
       setState({ ...state, error: message })
     }
   }
+
+
 
 
   async function handleDeleteAppointment(idPet, idAppointment) {
@@ -192,6 +204,7 @@ export default withRouter(function ({ history }) {
   function handleGoToLogin() {
     history.push('/login')
   }
+
   
   async function handleOnGoToCreateAlert() {
     const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET);
@@ -274,8 +287,10 @@ export default withRouter(function ({ history }) {
       <Route path='/pet/create' render={() => isLoggedIn() ? <><Header user = {user}/><CreatePet createPet={handleCreatePet} onMount={handleMountPet}/></> : <Redirect to="/login" />} />
       <Route path='/pet/detail'render={() => isLoggedIn() ? <><Header user = {user}/><DetailPet pet={petDetail} onGoToDiagnostic={handleOnGoToDiagnostic} error={error} /></> : <Redirect to="/login" />} />
       <Route path='/pet/update'render={() => isLoggedIn() ? <><Header user = {user}/><UpdatePet pet={petDetail} updatePet={handleUpdatePet} error={error} /></> : <Redirect to="/login" />} /> 
-      <Route path='/user/appointments' render={() => isLoggedIn() ? <><Header user = {user}/><Schedule myPets = {petsList} appointmentList={appointmentList} onGoToCreateAppointment={handleCreateAppointment} onGoToDeleteAppointment ={handleDeleteAppointment} error={error} onMount={handleMountSchedule} /></> : <Redirect to="/login" />} />  
+ 
+     <Route path='/user/appointments' render={() => isLoggedIn() ? <><Header user = {user}/><Schedule myPets = {petsList} appointmentList={appointmentList} onGoToCreateAppointment={handleCreateAppointment} onGoToDeleteAppointment ={handleDeleteAppointment} error={error} onMount={handleMountSchedule} /></> : <Redirect to="/login" />} />  
       <Route path='/user/diagnostics' render={() => isLoggedIn() ? <><Header user = {user}/><DiagnosticList diagnostics = {diagnostics}/></> : <Redirect to="/login" />} />     
+
     </Page>
   </div>
 

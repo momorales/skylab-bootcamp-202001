@@ -31,7 +31,9 @@ export default function ({pet, onGoToDiagnostic, error}) {
                 <li><span> Sterilized: {sterilized}</span></li>
                 <li><span> Weight: {weight} Kg</span></li>
             </ul>
+
             <button onClick= {handleDiagnostic} className= "container-detail__buttonDiagnostics">Diagnostics</button>
+
         </section>
 
     </>
