@@ -4,33 +4,28 @@ import context from './context'
 
 const API_URL = process.env.REACT_APP_API_URL
 
-export default (function (dateOfBirth, specie, sex, sterilized, weight, race, typeOfRace, fur, idPet, user) {
-
+export default (function (user) {
     const {sub:id} = user
-    const updateDate = new Date
-    
     return (async () => {
-        const response = await fetch(`${API_URL}/user/update/pet/${idPet}`, {
-            method: 'PATCH',
+        const response = await fetch(`${API_URL}/user/${id}/pets/appointments`, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${this.token}`
-            },
-
-            body: JSON.stringify({ birthDate: dateOfBirth, specie, sex, race, typeRace: typeOfRace, fur, sterilized, weight, created: updateDate })
-
+            }
         })
 
         const { status } = response
 
-
-        if (status === 201) return
-
+        if (status === 200) {
+            const appointments = await response.json()
+            return appointments
+        }
 
         if (status >= 400 && status < 500) {
             const { error } = await response.json()
 
-            if (status === 409) {
+            if (status === 401) {
                 throw new NotAllowedError(error)
             }
 

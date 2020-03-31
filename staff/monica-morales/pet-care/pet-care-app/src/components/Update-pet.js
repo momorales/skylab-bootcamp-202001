@@ -61,8 +61,10 @@ export default function ({pet, updatePet, error}) {
                 </select>
                
                 <select className="newPet__input" type="text" name="sterilized" defaultValue={sterilized}>
-                    <option value ="Yes">Yes</option>
-                    <option value ="NO">No</option>
+
+                    <option value ="yes">Yes</option>
+                    <option value ="no">No</option>
+
                 </select>
                
                 <input className="newPet__input" type="text"  name="weight" defaultValue={weight} placeholder="Weight"/>

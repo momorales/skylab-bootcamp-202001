@@ -56,7 +56,7 @@ describe('retrieve diagnostics', () => {
 
         //create pet
 
-        let pet = await Pet.create({owner, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created: new Date()})
+        let pet = await Pet.create({owner: id, numberChip, name: petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created: new Date()})
 
         _petId = pet.id
 

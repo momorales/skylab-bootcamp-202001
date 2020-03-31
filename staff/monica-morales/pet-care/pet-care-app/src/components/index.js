@@ -13,6 +13,12 @@ import CreatePet from './Create-pet'
 import DetailPet from './Detail-pet'
 import UpdatePet from './Update-pet'
 
+
+import Schedule from './Schedule'
+import Diagnostic from './Diagnostic'
+import DiagnosticList from './Diagnostics-container'
+
+
 export {
     App,
     Page,
@@ -27,5 +33,10 @@ export {
     CreateAlert,
     CreatePet,
     DetailPet,
-    UpdatePet
+
+    UpdatePet,
+    Schedule,
+    Diagnostic,
+    DiagnosticList
+
 }
