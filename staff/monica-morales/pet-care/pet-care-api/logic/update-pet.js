@@ -14,7 +14,7 @@ module.exports = (idPet, id, name, birthDate, specie, sex, race, typeRace, fur, 
     race && (validate.string(race, 'race'))
     typeRace && (validate.string(typeRace, 'typeRace'))
     fur && (validate.string(fur, 'fur'))
-    sterilized && (validate.type(sterilized, 'sterilized', Boolean))
+    sterilized && (validate.string(sterilized, 'sterilized'))
     weight && (validate.type(weight, 'weight', Number))
     created && (validate.type(created, 'created', Date))
 
