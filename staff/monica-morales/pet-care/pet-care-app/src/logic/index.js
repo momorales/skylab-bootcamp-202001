@@ -10,9 +10,12 @@ import createPet from './create-pet'
 import detailPet from './detail-pet'
 import deletePet from './delete-pet'
 import updatePet from './update-pet'
+
 import createAppointment from './create-appointment'
 import retrieveAppointment from './retrieve-appointment'
 import deleteAppointment from './delete-appointment'
+import createDiagnostic from './create-diagnostic'
+import retrieveDiagnostics from './retrieve-diagnostics'
 
 
 export {
@@ -27,8 +30,12 @@ export {
     createPet,
     detailPet,
     deletePet,
+
     updatePet,
     createAppointment,
     retrieveAppointment,
-    deleteAppointment
+    deleteAppointment,
+    createDiagnostic,
+    retrieveDiagnostics
+
 }
