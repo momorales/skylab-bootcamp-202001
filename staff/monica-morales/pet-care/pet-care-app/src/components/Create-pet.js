@@ -68,7 +68,7 @@ export default function ({  createPet, error, onMount }) {
                     <select className="newPet__input" type="text" name="sterilized">
                         <option disabled selected>Sterilized</option>
                         <option value ="Yes">Yes</option>
-                        <option value ="NO">No</option>
+                        <option value ="No">No</option>
                     </select>
                    
                     <input className="newPet__input" type="text"  name="weight" placeholder="Weight"/>

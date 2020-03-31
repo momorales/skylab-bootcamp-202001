@@ -12,7 +12,7 @@ module.exports = new Schema({
     race: { type: String, required: true },
     typeRace: { type: String, required: true},
     fur: { type: String, required: true},
-    sterilized: { type: Boolean, required: true},
+    sterilized: { type: String, required: true},
     weight: {type: Number},
     created: { type: Date, required: true, default: Date.now },
     diagnostics: [diagnostic],

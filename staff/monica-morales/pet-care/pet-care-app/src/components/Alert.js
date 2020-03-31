@@ -6,11 +6,13 @@ Moment.globalFormat = 'D MMM YYYY'
 
 export default ({key,alert}) => {
     const {subject, description, telephone, creation, eventDate, id} = alert
+    const {name} = alert.pets[0]
 
     return <>
 
         <section className="container1">
             <div className="alert">
+                <p>{name}</p>
                 <p>{subject} <Moment parse="YYYY-MM-DD">{eventDate}</Moment></p>
                
             </div>
