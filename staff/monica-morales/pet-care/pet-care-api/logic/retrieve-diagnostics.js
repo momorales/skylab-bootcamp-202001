@@ -22,9 +22,9 @@ module.exports = (idPet, id) => {
         pet.diagnostics.filter((diagnostic=>{
             const diagnos = {
                 idPet: pet._id,
-                name: pet.name,
+                namePet: pet.name,
                 idDiagnostic: diagnostic._id,
-                name: diagnostic.name,
+                nameDiagnostic: diagnostic.name,
                 test: diagnostic.test,
                 description: diagnostic.description,
                 lab: diagnostic.lab,
