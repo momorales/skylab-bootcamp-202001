@@ -60,7 +60,7 @@ describe('createAlert', () => {
         expect(response).to.not.exist
                 
         return User.find({_id:_userId},{ alerts: { $elemMatch: { _id: _petId } }})
-            .then(alert => {
+            .then(alert => {debugger
                 expect(alert).to.exist
                 expect(alert).to.be.an.instanceof(Object)
             })       
