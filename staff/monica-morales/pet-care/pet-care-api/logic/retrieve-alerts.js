@@ -13,5 +13,6 @@ module.exports = id => {
         .then(alerts => {debugger
             if (!alerts) throw new NotFoundError(`no alerts for this user`)
             return alerts
+            
         })
 }
