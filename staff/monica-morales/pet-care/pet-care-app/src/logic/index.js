@@ -10,7 +10,6 @@ import createPet from './create-pet'
 import detailPet from './detail-pet'
 import deletePet from './delete-pet'
 import updatePet from './update-pet'
-
 import createAppointment from './create-appointment'
 import retrieveAppointment from './retrieve-appointment'
 import deleteAppointment from './delete-appointment'
@@ -30,7 +29,6 @@ export {
     createPet,
     detailPet,
     deletePet,
-
     updatePet,
     createAppointment,
     retrieveAppointment,

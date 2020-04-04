@@ -19,7 +19,7 @@ export default ({alerts, onCreateAlert, onMount}) =>{
             <div className= "alerts__title">
                 <p>My alerts</p>
             </div>
-
+            
             {alerts.map(alert => {
                 return (
                     <section key = {alert._id}>

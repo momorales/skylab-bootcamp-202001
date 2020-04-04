@@ -3,14 +3,15 @@ import './detail-pet.sass'
 import './config.sass'
 // import Moment from 'react-moment'
 // Moment.globalFormat = 'D MMM YYYY'
+import moment from 'moment'
 
 export default function ({pet, updatePet, error}) {
-    const { numberChip, name, dateOfBirth, specie, sex,sterilized, weight, race, typeRace, fur, _id} = pet
+    const { numberChip, name, birthDate, specie, sex,sterilized, weight, race, typeRace, fur, _id} = pet
 
     function handleOnSubmit(event){
         event.preventDefault()
         const { target: {            
-            dateOfBirth : { value: dateOfBirth},
+            birthDate : { value: birthDate},
             specie : { value: specie},
             sex : { value: sex},
             sterilized : { value: sterilized},
@@ -24,7 +25,7 @@ export default function ({pet, updatePet, error}) {
             
         } } = event
 
-        updatePet(dateOfBirth, specie, sex, sterilized, Number(weight), race, typeOfRace, fur, id)
+        updatePet(birthDate, specie, sex, sterilized, Number(weight), race, typeOfRace, fur, id)
     }
 
 
@@ -47,7 +48,7 @@ export default function ({pet, updatePet, error}) {
                 <input type="hidden" name="id" value={_id}/>
                 <input className="newPet__input" type="text" readOnly = {true} name="chipNumber"  defaultValue={numberChip} placeholder="Chip number"/>
                 <input className="newPet__input" type="text" readOnly = {true} name="Name" defaultValue={name} placeholder="Pet name"/>
-                <input className="newPet__input" type="text"  name="dateOfBirth" defaultValue={dateOfBirth} placeholder="Date of birth" onFocus = {onFocus} onBlur={onBlur} />
+                <input className="newPet__input" type="text"  name="birthDate" defaultValue={birthDate} placeholder="Date of birth" onFocus = {onFocus} onBlur={onBlur} />
                
                 <select className="newPet__input" type="text" name="specie" defaultValue={specie}>
                     <option value ="Cat">Cat</option>
@@ -62,8 +63,8 @@ export default function ({pet, updatePet, error}) {
                
                 <select className="newPet__input" type="text" name="sterilized" defaultValue={sterilized}>
 
-                    <option value ="yes">Yes</option>
-                    <option value ="no">No</option>
+                    <option value ="Yes">Yes</option>
+                    <option value ="No">No</option>
 
                 </select>
                

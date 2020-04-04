@@ -5,7 +5,7 @@ import './config.sass'
 // Moment.globalFormat = 'D MMM YYYY'
 
 export default function ({pet, onGoToDiagnostic, error}) {
-    const { numberChip, name, dateOfBirth, specie, sex,sterilized, weight, race, typeRace, fur, user,createdDate, diagnostic, _id} = pet
+    const { numberChip, name, dateOfBirth, specie, sex, sterilized, weight, race, typeRace, fur, user,createdDate, diagnostic, _id} = pet
 
     const [petId , setPetId] = useState()
 
