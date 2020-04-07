@@ -1,5 +1,5 @@
-import React, { useEffect,useState } from 'react'
-import './detail-pet.sass'
+import React from 'react'
+import './update-pet.sass'
 import './config.sass'
 // import Moment from 'react-moment'
 // Moment.globalFormat = 'D MMM YYYY'
@@ -38,51 +38,56 @@ export default function ({pet, updatePet, error}) {
     }
 
     return <>
-    <div className="newPet__title">
-        <p>Update Pet</p>  
+    <div className="updatePet__title">
+        <p>Update {name}</p>  
     </div>
 
     <section>
-        <form className= "newPet" onSubmit={handleOnSubmit}>
+        <form className= "updatePet" onSubmit={handleOnSubmit}>
          
                 <input type="hidden" name="id" value={_id}/>
-                <input className="newPet__input" type="text" readOnly = {true} name="chipNumber"  defaultValue={numberChip} placeholder="Chip number"/>
-                <input className="newPet__input" type="text" readOnly = {true} name="Name" defaultValue={name} placeholder="Pet name"/>
-                <input className="newPet__input" type="text"  name="birthDate" defaultValue={birthDate} placeholder="Date of birth" onFocus = {onFocus} onBlur={onBlur} />
+                <input className="updatePet__input" type="hidden" readOnly = {true} name="chipNumber"  defaultValue={numberChip} placeholder="Chip number"/>
+                <input className="updatePet__input" type="hidden" readOnly = {true} name="Name" defaultValue={name} placeholder="Pet name"/>
+                <input className="updatePet__input" type="hidden"  name="birthDate" defaultValue={moment(birthDate).format('D MMM YYYY')} placeholder="Date of birth" onFocus = {onFocus} onBlur={onBlur} />
                
-                <select className="newPet__input" type="text" name="specie" defaultValue={specie}>
+                <span className="updatePet__span">Specie</span>
+                <select className="updatePet__input" type="text" name="specie" defaultValue={specie}>
                     <option value ="Cat">Cat</option>
                     <option value ="Dog">Dog</option>
                     <option value ="Rabbit">Rabbit</option>
                 </select>
                 
-                <select className="newPet__input" type="text" name="sex" defaultValue={sex}>
+                <span className="updatePet__span">Sex</span>
+                <select className="updatePet__input" type="text" name="sex" defaultValue={sex}>
                     <option value ="Male">Male</option>
                     <option value ="Famele">Famele</option>
                 </select>
                
-                <select className="newPet__input" type="text" name="sterilized" defaultValue={sterilized}>
-
+                <span className="updatePet__span">Sterilized</span>
+                <select className="updatePet__input" type="text" name="sterilized" defaultValue={sterilized}>
                     <option value ="Yes">Yes</option>
                     <option value ="No">No</option>
-
                 </select>
-               
-                <input className="newPet__input" type="text"  name="weight" defaultValue={weight} placeholder="Weight"/>
-                <input className="newPet__input" type="text"  name="race" defaultValue={race} placeholder="Race"/>
-                
-                <select className="newPet__input" type="text" name="typeOfRace" defaultValue={typeRace}>
+
+                <span className="updatePet__span">Type of Race</span>
+                <select className="updatePet__input" type="text" name="typeOfRace" defaultValue={typeRace}>
                     <option value ="Small">Small</option>
                     <option value ="Medium">Medium</option>
                     <option value ="Big">Big</option>
                 </select>
                
-                <select className="newPet__input" type="text" name="fur" defaultValue={fur}>
+                <span className="updatePet__span">Fur</span>
+                <select className="updatePet__input" type="text" name="fur" defaultValue={fur}>
                     <option value ="Short">Short</option>
                     <option value ="Medium">Medium</option>
                     <option value ="Long">Long</option>
                 </select>
-            <div className = "newPet__accept">
+
+                <span className="updatePet__span">Weight</span>
+                <input className="updatePet__input" type="text"  name="weight" defaultValue={weight}/>
+                <input className="updatePet__input" type="hidden"  name="race" defaultValue={race}/>
+
+            <div className = "updatePet__accept">
                 <button className="newPet__accept fas fa-check" type="submit"></button>
             </div>
         </form>

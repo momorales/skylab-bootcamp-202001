@@ -1,11 +1,9 @@
 import React, { useEffect,useState } from 'react'
 import './detail-pet.sass'
 import './config.sass'
-// import Moment from 'react-moment'
-// Moment.globalFormat = 'D MMM YYYY'
 
 export default function ({pet, onGoToDiagnostic, error}) {
-    const { numberChip, name, dateOfBirth, specie, sex, sterilized, weight, race, typeRace, fur, user,createdDate, diagnostic, _id} = pet
+    const { numberChip, name, specie, sterilized, weight, _id} = pet
 
     const [petId , setPetId] = useState()
 

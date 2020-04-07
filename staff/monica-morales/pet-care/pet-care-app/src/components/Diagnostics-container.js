@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Diagnostic from './Diagnostic'
 // import './alerts-container.sass'
 

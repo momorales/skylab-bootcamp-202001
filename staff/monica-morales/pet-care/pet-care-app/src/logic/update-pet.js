@@ -6,7 +6,7 @@ const API_URL = process.env.REACT_APP_API_URL
 
 export default (function (dateOfBirth, specie, sex, sterilized, weight, race, typeOfRace, fur, idPet, user) {
 
-    const {sub:id} = user
+    // const {sub:id} = user
     const updateDate = new Date
     
     return (async () => {
@@ -24,7 +24,7 @@ export default (function (dateOfBirth, specie, sex, sterilized, weight, race, ty
         const { status } = response
 
 
-        if (status === 201) return
+        if (status === 200) return
 
 
         if (status >= 400 && status < 500) {

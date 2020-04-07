@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import Pet from './Pets'
 import './pets-container.sass'
 

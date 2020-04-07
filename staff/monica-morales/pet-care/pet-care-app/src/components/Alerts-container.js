@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import Alert from './Alert'
 import './alerts-container.sass'
 

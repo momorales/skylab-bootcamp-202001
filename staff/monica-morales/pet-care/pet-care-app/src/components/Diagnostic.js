@@ -5,7 +5,7 @@ Moment.globalFormat = 'D MMM YYYY'
 
 
 export default ({diagnostic}) => {
-    const {namePet, test, description, lab, dateCreate, nameDiagnostic, idPet, id} = diagnostic
+    const {namePet, test, description, lab, dateCreate, nameDiagnostic} = diagnostic
 
     return <>
 

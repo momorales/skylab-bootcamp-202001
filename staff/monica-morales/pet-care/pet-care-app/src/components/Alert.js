@@ -5,7 +5,7 @@ Moment.globalFormat = 'D MMM YYYY'
 
 
 export default ({alert}) => {
-    const {subject, description, telephone, creation, eventDate, id} = alert
+    const {subject, eventDate} = alert
     const {name} = alert.pets[0]
 
     return <>
