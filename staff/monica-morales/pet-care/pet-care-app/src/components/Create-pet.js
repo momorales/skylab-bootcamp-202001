@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect } from 'react'
 import './create-pet.sass'
 import './config.sass'
 import Moment from 'react-moment'
@@ -70,10 +70,7 @@ export default function ({  createPet, error, onMount }) {
                         <option value ="Yes">Yes</option>
                         <option value ="No">No</option>
                     </select>
-                   
-                    <input className="newPet__input" type="text"  name="weight" placeholder="Weight"/>
-                    <input className="newPet__input" type="text"  name="race" placeholder="Race"/>
-                    
+                                                
                     <select className="newPet__input" type="text" name="typeOfRace">
                         <option disabled selected>Type of race</option>
                         <option value ="Small">Small</option>
@@ -87,6 +84,9 @@ export default function ({  createPet, error, onMount }) {
                         <option value ="Medium">Medium</option>
                         <option value ="Long">Long</option>
                     </select>
+
+                    <input className="newPet__input" type="text"  name="weight" placeholder="Weight"/>
+                    <input className="newPet__input" type="text"  name="race" placeholder="Race"/>
                 <div className = "newPet__accept">
                     <button className="newPet__accept fas fa-check" type="submit"></button>
                 </div>

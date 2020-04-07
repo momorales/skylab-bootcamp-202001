@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import Alert from './Alert'
 import './alerts-container.sass'
 
@@ -19,7 +19,7 @@ export default ({alerts, onCreateAlert, onMount}) =>{
             <div className= "alerts__title">
                 <p>My alerts</p>
             </div>
-
+            
             {alerts.map(alert => {
                 return (
                     <section key = {alert._id}>

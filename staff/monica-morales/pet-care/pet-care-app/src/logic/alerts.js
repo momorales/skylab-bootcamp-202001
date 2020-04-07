@@ -18,8 +18,9 @@ export default (function (user) {
         const { status } = response
 
         if (status === 200) {
-            const alerts = await response.json()
-            return alerts[0].alerts
+            const result = await response.json()
+            if(result.length>0)return result[0].alerts
+            else return result
         }
 
         if (status >= 400 && status < 500) {

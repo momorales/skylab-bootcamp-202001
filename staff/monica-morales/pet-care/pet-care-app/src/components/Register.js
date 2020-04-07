@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react'
+import { withRouter } from "react-router-dom";
 import './register.sass'
 import './config.sass'
 import Logo from'./logo.png'
 
 
-export default function ({ onSubmit, error, onMount }) {
+export default withRouter (function ({ onSubmit, error, onMount, history }) {
     useEffect(() => {
         onMount()
     }, [])
+
+    function handleBack(event){
+        event.preventDefault()
+        history.push('/login')
+    }
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -24,14 +30,14 @@ export default function ({ onSubmit, error, onMount }) {
 
     return <>
         <div className="register">
-            <figure className='register__logo'>
+            <div className='register__logo'>
+                <a onClick={handleBack} className=" fas fa-arrow-left"></a>
                 <img className='register__imageLogo' src = {Logo }/>
-            </figure>
+            </div>
             
             <h2 className='register__title'>Register</h2>
 
             <form className="register__form" onSubmit={handleSubmit}>
-               
                 <input className="register__input" type="text" name="name" placeholder="Name"/>
                 <input className="register__input" type="text" name="username" placeholder= "username"/>
                 <input className="register__input" type="email" name="email" placeholder="Email"/>
@@ -40,6 +46,6 @@ export default function ({ onSubmit, error, onMount }) {
             </form>
         </div>
     </>
-}
+})
 
 
