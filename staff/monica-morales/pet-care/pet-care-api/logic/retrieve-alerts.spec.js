@@ -22,12 +22,7 @@ describe('retrieveAlerts', () => {
         email = `username-${random()}@gmail.com`
         password = `password-${random()}`
 
-        //create user and extract id
-
-        // return bcrypt.hash(password, 10)
-        //     .then((password) => User.create({ name, username, email, password, created: new Date }))
-        //     .then((user) => _userId = user.id)
-        
+               
         numberChip = `numberChip-${random()}`
         petName = `name-${random()}@gmail.com`
         birthDate = `2020/01/01`
@@ -36,7 +31,7 @@ describe('retrieveAlerts', () => {
         race = `race-${random()}`
         typeRace = `typeRace-${random()}`
         fur = `fur-${random()}`
-        sterilized = true
+        sterilized = 'true'
         weight = 40
         created = `2020/01/01`
         owner = _userId
@@ -44,14 +39,14 @@ describe('retrieveAlerts', () => {
         subject = 'vaccines'
         description = 'description'
         telephone = `telephone-${random()}`
-        creation = new Date
-        eventDate = "Mon Mar 30 2020 11:31:27 GMT+0200"
+        creation = new Date()
+        eventDate = "Mon Mar 30 2021 11:31:27 GMT+0200"
 
         subject2 = 'deworming'
         description2 = 'description2'
         telephone2 = `telephone2-${random()}`
-        creation2 = new Date
-        eventDate2 = "Mon Mar 30 2020 11:31:27 GMT+0200"
+        creation2 = new Date()
+        eventDate2 = "Mon Mar 30 2021 11:31:27 GMT+0200"
         
         const user = await User.create({name, username, email, password, created })
         _userId = user.id
@@ -71,9 +66,7 @@ describe('retrieveAlerts', () => {
     
         alertId2 = alert2.id
         
-     
-        debugger
-       
+          
         await alert.save()
         await alert2.save()
 
@@ -82,10 +75,9 @@ describe('retrieveAlerts', () => {
         user.alerts.push(alert2)
         await user.save()
 
-
     })
 
-    it('should succeed on correct and valid and right data', async () => {debugger
+    it('should succeed on correct and valid and right data', async () => {
 
         const alertsObject = await retrieveAlerts(_userId)
         
@@ -98,9 +90,7 @@ describe('retrieveAlerts', () => {
             expect(alerts[0]).to.be.an.instanceOf(Object)
             expect(alerts[0].creation).to.be.an.instanceOf(Date)
             expect(alerts[0].eventDate).to.be.an.instanceOf(Date)
-
     })
-
 
 after(() => Promise.all([User.deleteMany(), Pet.deleteMany(), Alert.deleteMany()]).then(() => mongoose.disconnect()))
 })
