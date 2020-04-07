@@ -44,10 +44,10 @@ describe('retrieve diagnostics', () => {
         //data to create diagnostics
 
         
-        test: `test-${random()}`
-        description: `description-${random()}`
-        lab: `lab-${random()}`
-        dateCreate: new Date()
+        test = `test-${random()}`
+        description = `description-${random()}`
+        la = `lab-${random()}`
+        dateCreate = new Date()
 
         //create user and extract id
 
@@ -84,8 +84,8 @@ describe('retrieve diagnostics', () => {
         const pet = await Pet.findById(_petId)
 
         diagnostics.forEach(diagnostic => {
-            expect(diagnostic.id).to.be.a('string')
-            expect(diagnostic.name).to.equal(pet.name)
+            expect(diagnostic.idPet.toString()).to.equal(pet.id)
+            expect(diagnostic.namePet).to.equal(pet.name)
            
         })  
     

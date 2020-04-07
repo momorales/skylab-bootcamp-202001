@@ -27,7 +27,6 @@ describe('update pet', () => {
         password = `password-${random()}`
 
         //data to create pet
-
         numberChip = `numberChip-${random()}`
         petName = `name-${random()}@gmail.com`
         birthDate = new Date()
@@ -36,11 +35,11 @@ describe('update pet', () => {
         race = `race-${random()}`
         typeRace = `typeRace-${random()}`
         fur = `fur-${random()}`
-        sterilized = false
+        sterilized = 'false'
         weight = 30
         created = new Date()
 
-        debugger
+      
         newPetName = `newName-${random()}@gmail.com`
         newBirthDate = 'Sun, 29 Mar 2020 17:26:13 GMT'
         newSpecie = `newSpecie-${random()}`
@@ -48,7 +47,7 @@ describe('update pet', () => {
         newRace = `newRace-${random()}`
         newTypeRace = `newTypeRace-${random()}`
         newFur = `newFur-${random()}`
-        newSterilized = true
+        newSterilized = 'true'
         newWeight = 40
         newCreated = 'Sun, 29 Mar 2021 17:26:13 GMT'
         
@@ -67,8 +66,6 @@ describe('update pet', () => {
 
     it('should succeed on correct user and pet id', async () => {
          
- 
-
         const response = await updatePet(petId, id, newPetName, newBirthDate, newSpecie, newSex, newRace, newTypeRace, newFur, newSterilized, newWeight, newCreated)
 
         expect(response).to.not.exist
@@ -82,8 +79,7 @@ describe('update pet', () => {
         expect(updatedPet.fur).to.equal(newFur)
         expect(updatedPet.sterilized).to.equal(newSterilized)
         expect(updatedPet.weight).to.equal(newWeight)
-        
-        
+                
     })
     it('should fail on wrong user id', async () => {
         

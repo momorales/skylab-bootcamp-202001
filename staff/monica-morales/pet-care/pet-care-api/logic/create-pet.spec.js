@@ -60,7 +60,7 @@ describe('createPet', () => {
             expect(newPet.sex).to.be.a('String')
             expect(newPet.race).to.be.a('String')
             expect(newPet.fur).to.be.a('String')
-            expect(newPet.sterilized).to.equal(true)
+            expect(newPet.sterilized).to.be.a('String')
             expect(newPet.weight).to.be.a('Number')
             expect(newPet.owner).to.be.an.instanceof(Object)
     })

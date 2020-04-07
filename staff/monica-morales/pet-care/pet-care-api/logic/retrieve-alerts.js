@@ -10,7 +10,7 @@ module.exports = id => {
     const newDate = new Date
    
     return User.find({"_id":id, "alerts.eventDate": { "$gte" : newDate}},{alerts:1}).populate("alerts.pets").exec()
-        .then(alerts => {debugger
+        .then(alerts => {
             if (!alerts) throw new NotFoundError(`no alerts for this user`)
             return alerts
             
