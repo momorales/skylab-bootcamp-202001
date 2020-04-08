@@ -10,11 +10,11 @@ const { NotFoundError } = require('pet-care-errors')
 //     devolver alerta?*/
 
 
-module.exports = (subject, description, telephone, creation, eventDate, petId, userId) => {
+module.exports = (subject, description, hour, creation, eventDate, petId, userId) => {
 
     validate.string(subject, 'subject')
     validate.string(description, 'description')
-    validate.string(telephone, 'telephone')
+    validate.string(hour, 'hour')
     validate.type(eventDate, 'eventDate', Date)
     validate.string(petId, 'petId')
     validate.string(userId, 'userId')
@@ -31,7 +31,7 @@ module.exports = (subject, description, telephone, creation, eventDate, petId, u
         }
 
        
-        const alert = new Alert({ subject, description, telephone, creation, eventDate })
+        const alert = new Alert({ subject, description, hour, creation, eventDate })
 
         alert.pets = petId
 
