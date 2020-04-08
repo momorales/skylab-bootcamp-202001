@@ -8,17 +8,15 @@ const bcrypt = require('bcryptjs')
 
 
 
-const { env: { TEST_MONGODB_URL } } = process
+describe('petDelete', () => {
 
-describe('createPet', () => {
-    let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, _userId, owner
-    
-    before(() =>
-    mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-        .then(() => User.deleteMany())
-        .then(() => Pet.deleteMany())
+    beforeAll(() =>
+        mongoose.connect(TEST_MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+            .then(() => Promise.all([User.deleteMany(), Pet.deleteMany()]))
     )
+    let name, username, email, password,numberChip, petName, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created, _userId, owner
 
+    
     beforeEach(()=>{
         name = `name-${random()}`
         username = `username-${random()}`

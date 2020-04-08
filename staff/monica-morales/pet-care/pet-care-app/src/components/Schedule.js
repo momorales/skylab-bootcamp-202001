@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {Calendar,momentLocalizer} from "react-big-calendar"
 import moment from "moment"
-import 'react-big-calendar/lib/sass/styles.scss'
+import './scheduler-sass/styles.scss'
 import './schedule.sass'
 import Modal from 'react-modal';
 export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAppointment, onMount}) =>{
@@ -128,7 +128,7 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
                 views={['week','agenda']}
                 localizer={localizer}
                 events = {appointments}
-                longPressThreshold ={250}
+                longPressThreshold ={150}
                 onSelectSlot={openModalNewVisit}
                 onSelectEvent={openModalDeleteVisit}
                 scrollToTime={new Date}
