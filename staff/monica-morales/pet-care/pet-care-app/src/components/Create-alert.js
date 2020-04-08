@@ -42,8 +42,11 @@ export default function ({ myPets, createAlert, error, onMount }) {
     }
 
     return <>
+        <div>
+            <p className='newAlert__title'>New alert</p>
+        </div>
+
         <section className = "newAlert">
-            <h2 className='newAlert__title'>New alert</h2>
 
             <form className="newAlert__form" onSubmit={handleSubmit}>
                 
