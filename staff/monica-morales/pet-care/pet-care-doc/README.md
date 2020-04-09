@@ -12,4 +12,11 @@ The application allows pet owners to keep track of all their pets, being able to
 ![use cases](./images/useCase.png)
 
 ### Work Flow
-![work-flow](./images/workFlow.png   
+![work-flow](./images/workFlow.png)   
+
+## TECHNICAL DESCRIPTION
+### Blocks
+![blocks](./images/blocks.png)   
+
+## CODE COVERAGE
+### Server Side
