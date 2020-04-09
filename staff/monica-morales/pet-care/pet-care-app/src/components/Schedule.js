@@ -144,7 +144,7 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
         <Modal 
                 key = {1}
                 isOpen={modalIsOpen}
-                // contentLabel="New Appointment" 
+                contentLabel="New Appointment" 
                 onRequestClose={closeModal}
                 style={customStyles}
             > 
