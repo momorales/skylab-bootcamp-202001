@@ -6,7 +6,7 @@
   box-shadow: none;
   margin: 0;
   padding: $event-padding;
-  background-color: greenyellow;
+  background-color: rgb(172, 47, 255);
   border-radius: $event-border-radius;
   color: $event-color;
   cursor: pointer;
@@ -15,7 +15,7 @@
 
   .rbc-slot-selecting & {
     cursor: inherit;
-    pointer-events: none;
+    pointer-events: none; 
   }
 
   &.rbc-selected {

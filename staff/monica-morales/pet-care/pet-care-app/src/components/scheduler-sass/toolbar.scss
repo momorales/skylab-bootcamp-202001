@@ -9,7 +9,7 @@ $active-border: darken($btn-border, 12%);
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  font-size: 12px;
+  font-size: 17px;
 
   .rbc-toolbar-label {
     flex-grow:1;
@@ -19,13 +19,13 @@ $active-border: darken($btn-border, 12%);
 
   & button {
     color: $btn-color;
+    border: 1px solid #A569BD;
     display: inline-block;
     margin: 0;
     text-align: center;
     vertical-align: middle;
     background: none;
     background-image: none;
-    border: 1px solid $btn-border;
     padding: .375rem 1rem;
     border-radius: 4px;
     line-height: normal;
@@ -33,6 +33,7 @@ $active-border: darken($btn-border, 12%);
 
     &:active,
     &.rbc-active {
+      background-color: #A569BD;
       background-image: none;
       box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
       background-color: $active-background;

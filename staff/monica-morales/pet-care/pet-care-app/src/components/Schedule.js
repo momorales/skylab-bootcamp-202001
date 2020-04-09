@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import {Calendar,momentLocalizer} from "react-big-calendar"
 import moment from "moment"
+import './modal.sass'
 import './scheduler-sass/styles.scss'
-import './schedule.sass'
 import Modal from 'react-modal';
 export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAppointment, onMount}) =>{
     const localizer = momentLocalizer(moment)
@@ -20,15 +20,16 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
     // Section Modal
     const customStyles = {
         content : {
-          top                   : '50%',
+          top                   : '30%',
           left                  : '50%',
           right                 : 'center',
           bottom                : 'center',
           left                  : 'center',
           width                 : '100%',
           heigth                : '100%',
-          background            :   'white'
-        }
+          background            :   'white',
+          border                : 'none',
+       }
       }
     useEffect(() => {
         onMount()
@@ -137,17 +138,22 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
                         event: EventAgenda
                     }
                 }}
-            />
-            <Modal 
+            />           
+           
+        </div>  
+        <Modal 
                 key = {1}
                 isOpen={modalIsOpen}
-                contentLabel="New Appointment"
+                // contentLabel="New Appointment" 
                 onRequestClose={closeModal}
                 style={customStyles}
-            >                
-                <form key={1} onSubmit={openModalAcceptVisit}>
-                    <p>New Appointment</p>
-                    <select className="newPet__input" onChange={handleSelectPetId} name = "pet">
+            > 
+            
+            <div className="newAppointment">
+                               
+                <form className="newAppointment__modal" key={1} onSubmit={openModalAcceptVisit}>
+                    <p className="newAppointment__title">New Appointment</p>
+                    <select className="newAppointment__select" onChange={handleSelectPetId} name = "pet">
                         <option disabled selected>Select Pet</option>
                         {myPets.map(pet => {
                             return (
@@ -155,50 +161,70 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
                             )
                         })}
                     </select>
-                    <select className="newAlert__select" onChange={handleSelectSubject} name = "subject">
+                    <select className="newAppointment__select" onChange={handleSelectSubject} name = "subject">
                         <option disabled selected>Subject</option>
                         <option value ="vaccines">Vaccines</option>
                         <option value ="deworming">Deworming</option>
                         <option value ="medication">Medication</option>
                         <option value ="appointment">Appointment</option>
                     </select>
-                    <input className="newPet__input" type="text"  name="description" placeholder="Description"/>                   
-                    <div className = "newPet__accept">
-                        <button className="newPet__accept fas fa-check" type="submit"></button>
+                    <input className="newAppointment__input" type="text"  name="description" placeholder="Description"/>                   
+                    <div className = "newAppointment__accept">
+                        <button className="newAppointment__accept fas fa-check" type="submit"></button>
                     </div>
                 </form>
+            </div>
             </Modal>
+
             <Modal 
                 key = {2}
                 isOpen={modalDeleteIsOpen}
                 contentLabel="Delete Appointment"
                 style={customStyles}
             >
-                <p>Delete Appointment</p>
-                <p>Are you sure to delete appointment?</p>
-                <button onClick={handleGoToCancelAppointment}>Yes</button>
-                <button onClick={closeModalDeleteVisit}>No</button>
+                <section className="newAppointment">
+                    <div className="newAppointment__modal">
+                        <p className="newAppointment__title">Delete Appointment</p>
+                        <p className="newAppointment__errorMessage">Are you sure to delete appointment?</p>
+                        <button className="newAppointment__acceptConditions" onClick={handleGoToCancelAppointment}>Yes</button>
+                        <button className="newAppointment__acceptConditions" onClick={closeModalDeleteVisit}>No</button>
+                    </div>
+                    
+                </section>
+                
             </Modal>
+
             <Modal 
                 key = {3}
                 isOpen={modalAcceptVisit}
                 contentLabel="Save Appointment"
                 style={customStyles}
             >
-                <p>Save Appointment</p>
-                <p>Are you sure to save new appointment?</p>
-                <button onClick={handleGoToCreateAppointment}>Yes</button>
-                <button onClick={closeModalAcceptVisit}>No</button>
+                <section className="newAppointment">
+                    <div className="newAppointment__modal">
+                        <p className="newAppointment__title">Save Appointment</p>
+                        <p className="newAppointment__errorMessage">Are you sure to save new appointment?</p>
+                        <button className="newAppointment__acceptConditions" onClick={handleGoToCreateAppointment}>Yes</button>
+                        <button className="newAppointment__acceptConditions" onClick={closeModalAcceptVisit}>No</button>
+                    </div>
+                </section>
+                
             </Modal>
+
             <Modal 
                 key = {4}
                 isOpen={modalError}
                 style={customStyles}
             >
-                <p>Validation Error</p>
-                <p>{errorMessage}</p>
-                <button onClick={closeModalError}>Accept</button>
+                <section className="newAppointment">
+                    <div className="newAppointment__modal">
+                        <p className="newAppointment__title">Validation Error</p>
+                        <p className="newAppointment__errorMessage">{errorMessage}</p>
+                        <button className="newAppointment__acceptConditions" onClick={closeModalError}>OK</button>
+                    </div>
+                </section>
+               
             </Modal>
-        </div>   
+
     </>
 }

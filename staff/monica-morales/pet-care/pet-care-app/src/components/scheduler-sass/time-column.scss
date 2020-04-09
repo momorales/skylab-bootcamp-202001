@@ -28,7 +28,7 @@
 // }
 
 .rbc-label {
-  font-size: 10px;
+  font-size: 11px;
   padding: 0 5px;
 }
 
@@ -89,6 +89,7 @@
     border-right: 1px solid $cell-border;
     z-index: 10;
     margin-right: -1px;
+    width: 60px;
   }
 
   .rbc-time-header {
