@@ -1,6 +1,9 @@
 import React, { useEffect} from 'react'
 import Alert from './Alert'
 import './alerts-container.sass'
+import Moment from 'react-moment'
+import moment from 'moment'
+Moment.globalFormat = 'D MMM YYYY'
 
 export default ({alerts, onCreateAlert, onMount}) =>{
 
@@ -21,11 +24,14 @@ export default ({alerts, onCreateAlert, onMount}) =>{
             </div>
             
             {alerts.map(alert => {
-                return (
-                    <section key = {alert._id}>
-                        <Alert key={alert._id} alert={alert}/>
-                    </section>
-                )
+                if(moment(new Date(alert.eventDate),"YYYY-MM-DD")>=moment(new Date(),"YYYY-MM-DD")){
+                    return (
+                        <section key = {alert._id}>
+                            <Alert key={alert._id} alert={alert}/>
+                        </section>
+                    )
+                }
+                
             })}
         
             <a href="" onClick={handleGoToCreateAlert}><button  className="alerts__add fas fa-plus"></button></a>
@@ -33,3 +39,5 @@ export default ({alerts, onCreateAlert, onMount}) =>{
         </section>
     </>
 }   
+
+
