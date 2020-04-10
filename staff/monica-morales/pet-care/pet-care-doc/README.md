@@ -9,14 +9,27 @@ The application allows pet owners to keep track of all their pets, being able to
 ## FUNCTIONAL DESCRIPTION
 ### Use Cases
 
-![use cases](./images/useCase.png)
+![use cases](./images/usecase.png)
 
 ### Work Flow
-![work-flow](./images/workFlow.png)   
+![work-flow](./images/workflow.png)   
 
 ## TECHNICAL DESCRIPTION
 ### Blocks
 ![blocks](./images/blocks.png)   
 
-## CODE COVERAGE
-### Server Side
+### API coverage
+![coverage](./images/coverage.png) 
+
+### Data Model
+![data model](./images/datamodel.png)
+
+## Technologies
+JavaScript, ReactJS, Node.js, Express, MongoDB, Mongoose, SASS & BEM. Testing: Jest & Mocha/Chai
+
+## TO DO
+Improve inputs
+
+- Add rol of veterinay
+- when the alert is created it is vinculated to the schedule
+- Work more in the schedule
