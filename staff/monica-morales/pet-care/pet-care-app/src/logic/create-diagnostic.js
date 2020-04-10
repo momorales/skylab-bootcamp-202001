@@ -4,7 +4,7 @@ import context from './context'
 
 const API_URL = process.env.REACT_APP_API_URL
 
-export default (function (name, test, description, lab, petId, user) {
+export default (function (name, test, description, lab, dateCreate, petId, user) {
 
 
     const {sub:id} = user
@@ -16,7 +16,7 @@ export default (function (name, test, description, lab, petId, user) {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${this.token}`
             },
-            body: JSON.stringify({ name, test, description, lab})
+            body: JSON.stringify({ name, test, description, lab, dateCreate})
         })
 
         const { status } = response

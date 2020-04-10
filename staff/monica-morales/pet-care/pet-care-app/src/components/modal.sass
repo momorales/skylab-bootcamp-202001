@@ -1,35 +1,32 @@
 @import config.sass
 @import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates&display=swap')
 
-.newAlert
+.newAppointment
     display: flex
     flex-direction: column
     justify-content: center
-
-    &__title
-        border-bottom: #efd9ea solid 0.2rem
-        font-size: 130%
-        width: 65%
-        margin: 0 auto
-        display: flex
-        margin-bottom: 1.5em
-        justify-content: center
-        padding: 1em
-        color: #A569BD
+  
+    &__modal
+        width: 82%
+        background-color: #F5EEF8
+        border-radius: 3%
+        padding: 10px
+        height: 17em
     
-    &__form
-        width: 70%
-        margin: 0 auto
-
+    &__title
+        font-size: 20px
+        text-align: center
+   
     &__input
         display: flex
-        padding: 8px 26px
+        padding: 8px 4px
         box-sizing: border-box
         border: none
         border-bottom: 2px solid #A569BD
         margin-bottom: 7%
         margin-top: 4%
-        width: 105%
+        width: 84%
+        margin-left: 2em
 
     &__select
         display: flex
@@ -42,11 +39,11 @@
         border-bottom: 2px solid #A569BD
         margin-bottom: 7%
         margin-top: 4%
-        width: 105%
+        width: 84%
         font-size: 14px
         color: grey
+        margin-left: 2em
         
-
     &__accept           
         position: fixed
         z-index: 10
@@ -54,9 +51,17 @@
         right: 1rem
         background: none
         border: none
-        font-size: 1.5em
-    
-   
-     
+        font-size: 1em
 
+    &__errorMessage
+        font-size: 18px
+        margin-left: 2em
+        font-family: 'EB Garamond', serif
 
+    &__acceptConditions
+        background-color: #A569BD
+        border-radius: 17%
+        width: 4em
+        height: 2.5em
+        margin-left: 9.5em
+        margin-top: 1em

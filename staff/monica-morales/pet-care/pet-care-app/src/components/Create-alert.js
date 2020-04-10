@@ -42,8 +42,11 @@ export default function ({ myPets, createAlert, error, onMount }) {
     }
 
     return <>
+        <div>
+            <p className='newAlert__title'>New alert</p>
+        </div>
+
         <section className = "newAlert">
-            <h2 className='newAlert__title'>New alert</h2>
 
             <form className="newAlert__form" onSubmit={handleSubmit}>
                 
@@ -65,7 +68,7 @@ export default function ({ myPets, createAlert, error, onMount }) {
                                       
                 <input className="newAlert__input" type="text" name="eventDate" placeholder="Event date" onFocus = {onFocus} onBlur={onBlur}/>
                 <input className="newAlert__input" type="text" name="description" placeholder="Description"/>
-                <input className="newAlert__input" type="text" name="telephone" placeholder="Telephone"/>
+                <input className="newAlert__input" type="text" name="telephone" placeholder="Hour"/>
                 <button className="newAlert__accept fas fa-check" type="submit"></button>
             </form>
         </section>

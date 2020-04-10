@@ -1,12 +1,12 @@
 import React from 'react'
 import Diagnostic from './Diagnostic'
-// import './alerts-container.sass'
+import './diagnostics-container.sass'
 
 export default ({diagnostics}) =>{
 
     return <>  
-        <section className = "diagnostic">
-            <div className= "diagnostic__title">
+        <section className = "container-diagnostic">
+            <div className= "container-diagnostic__title">
                 <p>Diagnostics</p>
             </div>
 
