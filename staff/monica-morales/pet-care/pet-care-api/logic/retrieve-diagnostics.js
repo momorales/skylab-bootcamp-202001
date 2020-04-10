@@ -28,6 +28,7 @@ module.exports = (idPet, id) => {
                 test: diagnostic.test,
                 description: diagnostic.description,
                 lab: diagnostic.lab,
+                dateCreated: diagnostic.dateCreate,
                             }
             result.push(diagnos)
         }))
