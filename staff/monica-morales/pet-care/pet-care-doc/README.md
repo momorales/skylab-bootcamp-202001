@@ -30,6 +30,7 @@ JavaScript, ReactJS, Node.js, Express, MongoDB, Mongoose, SASS & BEM. Testing: J
 ## TO DO
 Improve inputs
 
-- Add rol of veterinay
+- Add rol of veterinary
 - when the alert is created it is vinculated to the schedule
 - Work more in the schedule
+- Add chat with veterinary
