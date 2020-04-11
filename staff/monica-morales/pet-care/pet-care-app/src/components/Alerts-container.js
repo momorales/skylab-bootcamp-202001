@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { useEffect, useState} from 'react'
 import Alert from './Alert'
 import './alerts-container.sass'
 import Moment from 'react-moment'
@@ -23,7 +23,8 @@ export default ({alerts, onCreateAlert, onMount}) =>{
                 <p>My alerts</p>
             </div>
             
-            {alerts.map(alert => {
+            {alerts.sort((a,b)=> (a.eventDate > b.eventDate) ? 1 : ((b.eventDate > a.eventDate) ? -1 : 0))
+                .map(alert => {
                 if(moment(new Date(alert.eventDate)).add(23,'hours').isSameOrAfter(new Date())){
                     return (
                         <section key = {alert._id}>
