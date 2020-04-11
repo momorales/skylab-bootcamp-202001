@@ -24,7 +24,7 @@ export default ({alerts, onCreateAlert, onMount}) =>{
             </div>
             
             {alerts.map(alert => {
-                if(moment(new Date(alert.eventDate),"YYYY-MM-DD")>=moment(new Date(),"YYYY-MM-DD")){
+                if(moment(new Date(alert.eventDate)).add(23,'hours').isSameOrAfter(new Date())){
                     return (
                         <section key = {alert._id}>
                             <Alert key={alert._id} alert={alert}/>
