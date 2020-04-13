@@ -18,7 +18,8 @@ const {
     retrieveDiagnostics,
     retrieveVetAppointments,
     deletePet,
-    updatePet
+    updatePet,
+    deleteAlert
     
 } = require('./handlers')
 
@@ -57,6 +58,8 @@ router.post('/user/:id/pet/:petId/alert', jwtVerifierMidWare, jsonBodyParser, cr
 router.get('/user/:id/alerts', jwtVerifierMidWare, retrieveAlerts)
 
 router.get('/user/:id/alerts/:idAlert', jwtVerifierMidWare, detailAlert)
+
+router.delete('/user/:id/deleteAlert/:eventDate', jwtVerifierMidWare, deleteAlert )
 
 
 // DIAGNOSTICS
