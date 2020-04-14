@@ -5,7 +5,7 @@ import Moment from 'react-moment'
 import moment from 'moment'
 Moment.globalFormat = 'D MMM YYYY'
 
-export default ({alerts, onCreateAlert, onMount}) =>{
+export default ({alerts, onCreateAlert, onDelete, onMount}) =>{
 
     useEffect(() => {
         onMount()
@@ -20,7 +20,7 @@ export default ({alerts, onCreateAlert, onMount}) =>{
     return <>  
         <section className = "alerts">
             <div className= "alerts__title">
-                <p>My alerts</p>
+                <p>My Alerts</p>
             </div>
             
             {alerts.sort((a,b)=> (a.eventDate > b.eventDate) ? 1 : ((b.eventDate > a.eventDate) ? -1 : 0))
@@ -28,7 +28,7 @@ export default ({alerts, onCreateAlert, onMount}) =>{
                 if(moment(new Date(alert.eventDate)).add(23,'hours').isSameOrAfter(new Date())){
                     return (
                         <section key = {alert._id}>
-                            <Alert key={alert._id} alert={alert}/>
+                            <Alert key={alert._id} alert={alert} onDelete={onDelete}/>
                         </section>
                     )
                 }

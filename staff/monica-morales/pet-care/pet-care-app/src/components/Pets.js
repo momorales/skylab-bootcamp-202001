@@ -44,10 +44,10 @@ export default ({pet, onClick, onDelete, onUpdate}) => {
             <a href="" onClick={handleGoDetailPet}><button className="pet" name={_id} >{name}</button></a>
             <a href="" onClick= {handleGoToUpdatePet}><button className="update fas fa-pencil-alt" name={_id}></button></a>
             <button onClick={openModal} className="delete far fa-trash-alt" name={_id}></button>
+            
             <Modal className='container__modal'
                 isOpen = {modalIsOpen}             
-                // onRequestClose={closeModal}
-                        
+                         
             >
                 <div>
                     <p>Are you sure to delete {name}?</p>

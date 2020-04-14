@@ -27,7 +27,7 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
           left                  : 'center',
           width                 : '100%',
           heigth                : '100%',
-          background            :   'white',
+          background            : 'white',
           border                : 'none',
        }
       }
@@ -55,12 +55,14 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
     function handleGoToCancelAppointment(event) {
         event.preventDefault()
         let idPet=undefined
+        let dateAppointment=undefined
         appointmentList.forEach(item=>{
             if (item.appointmentId===deleteAppointmentId){
                 idPet= item.petId
+                dateAppointment=item.dateAppointment
             }
         })
-        onGoToDeleteAppointment(idPet,deleteAppointmentId)
+        onGoToDeleteAppointment(idPet,deleteAppointmentId,dateAppointment)
     }
     function handleSelectPetId(event){
         event.preventDefault()
@@ -164,8 +166,8 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
                     <select className="newAppointment__select" onChange={handleSelectSubject} name = "subject">
                         <option disabled selected>Subject</option>
                         <option value ="vaccines">Vaccines</option>
-                        <option value ="deworming">Deworming</option>
-                        <option value ="medication">Medication</option>
+                        {/* <option value ="deworming">Deworming</option>
+                        <option value ="medication">Medication</option> */}
                         <option value ="appointment">Appointment</option>
                     </select>
                     <input className="newAppointment__input" type="text"  name="description" placeholder="Description"/>                   
@@ -214,6 +216,7 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
             <Modal 
                 key = {4}
                 isOpen={modalError}
+                contentLabel="Validate Error"
                 style={customStyles}
             >
                 <section className="newAppointment">

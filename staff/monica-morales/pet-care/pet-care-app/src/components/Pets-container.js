@@ -17,7 +17,7 @@ export default ({pets, onLoadDetailPet, onDelete, onUpdate, onMount, onGoToCreat
     return <>  
     <section className = "pets">
             <div className= "pets__title">
-                <p>My pets</p>
+                <p>My Pets</p>
             </div>
         {pets.map(pet => {
             return (

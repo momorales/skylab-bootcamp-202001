@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {  withRouter } from "react-router-dom";
 import { logout } from '../logic'
 import './header.sass'
@@ -16,6 +16,7 @@ export default withRouter (function ({ user,history }) {
     function handleBack(event){
         event.preventDefault()
         history.push('/home')
+        // history.goBack()
     }
 
     return <>

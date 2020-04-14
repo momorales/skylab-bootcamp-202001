@@ -2,11 +2,11 @@ import React, { useEffect, useContext, useState } from 'react'
 
 import { Page,Login,Register,Home,Header,AlertsList, PetsList, CreateAlert, CreatePet, DetailPet, UpdatePet,Schedule, DiagnosticList, Contact } from '../components'
 import { registerUser, login, isLoggedIn, retrieveUser,alerts,pets, createAlert, createPet, detailPet, deletePet, updatePet, createAppointment,
-  retrieveAppointment, deleteAppointment, retrieveDiagnostics} from '../logic'
+  retrieveAppointment, deleteAppointment, deleteAlert, retrieveDiagnostics, retrieveToken} from '../logic'
 
 import { Context } from './ContextProvider'
 import { Route, withRouter, Redirect } from 'react-router-dom'
-// import Contact from './Contact'
+import context from '../logic/context'
 const jwt = require('jsonwebtoken')
 
 
@@ -24,15 +24,25 @@ export default withRouter(function ({ history }) {
   
   useEffect(() => {
     if (isLoggedIn()) {
-      setState({ page: 'home' })
+      onLoadUser()
 
-      history.push('/home')
     } else {
       setState({ page: 'login' })
-
       history.push('/login')
     }
   }, [])
+
+  async function onLoadUser(){
+    try {
+      const user = await retrieveUser() 
+      setUser(user)
+      setUserToken(await retrieveToken())
+      setState({ page: 'home' })
+      history.push('/home')
+    } catch ({ message }) {
+      setState({ error: message })
+    }
+  }
 
   //HANDLERS
 
@@ -82,6 +92,18 @@ export default withRouter(function ({ history }) {
     }
   }
 
+  async function handleDeleteAlert(eventToDelete) {
+    try {
+      const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET);
+      const deleteAlerts = await deleteAlert(user, eventToDelete)
+      const alertsList = await alerts(user)
+      setAlerts(alertsList)
+      history.push('/alerts/')
+    } catch ({ message }) {
+      setState({ ...state, error: message })
+    }
+  }
+
   async function handleAlerts() {
     try {
       const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET);
@@ -93,6 +115,7 @@ export default withRouter(function ({ history }) {
     }
   }
 
+  
   async function handlePets() {
     try {
       const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET);
@@ -173,10 +196,11 @@ export default withRouter(function ({ history }) {
 
 
 
-  async function handleDeleteAppointment(idPet, idAppointment) {
+  async function handleDeleteAppointment(idPet, idAppointment, eventDate) {
     try {
       const user = jwt.verify(userToken, process.env.REACT_APP_TEST_JWT_SECRET) 
       const appointment = await deleteAppointment(user, idPet, idAppointment) 
+      const deleteAlerts = await deleteAlert(user, eventDate)
       const appointments = await retrieveAppointment(user) 
       const petsList = await pets(user)
       setPets(petsList)
@@ -285,7 +309,7 @@ export default withRouter(function ({ history }) {
       <Route path="/login" render={() => isLoggedIn() ? <Redirect to="/home" /> : <Login onSubmit={handleLogin} error={error} onGoToRegister={handleGoToRegister} onMount={handleMountLogin} />} />
       <Route path="/register" render={() => isLoggedIn() ? <Redirect to="/home" /> : <Register onSubmit={handleRegister} error={error} onMount={handleMountRegister} />} />      
       <Route path="/home" render={() => isLoggedIn() ? <><Header user = {user}/><Home user = {user} onLoadAlerts={handleAlerts} onLoadPets={handlePets} onLoadAppointments={handleRetrieveAppointment} onLoadContact={handleContact} /></> : <Redirect to="/login" />} /> 
-      <Route path='/alerts/' render={() => isLoggedIn() ? <><Header user = {user}/><AlertsList alerts={alertsList} onCreateAlert={handleOnGoToCreateAlert} onMount={handleMountAlerts}/></> : <Redirect to="/login" />} /> 
+      <Route path='/alerts/' render={() => isLoggedIn() ? <><Header user = {user}/><AlertsList alerts={alertsList} onCreateAlert={handleOnGoToCreateAlert} onDelete={handleDeleteAlert} onMount={handleMountAlerts}/></> : <Redirect to="/login" />} /> 
       <Route path='/pets/' render={() => isLoggedIn() ? <><Header user = {user}/><PetsList pets={petsList} onLoadDetailPet={handleDetailPet} onDelete={handleDeletePet} onUpdate={handleGotoUpdatePet} onMount={handleMountPets} onGoToCreatePet={handleOnGoToCreatePet}/></> : <Redirect to="/login" />} /> 
       <Route path='/alert/create' render={() => isLoggedIn() ? <><Header user = {user}/><CreateAlert myPets = {petsList} createAlert={handleCreateAlert} onMount={handleMountAlert}/></> : <Redirect to="/login" />} />
       <Route path='/pet/create' render={() => isLoggedIn() ? <><Header user = {user}/><CreatePet createPet={handleCreatePet} onMount={handleMountPet}/></> : <Redirect to="/login" />} />

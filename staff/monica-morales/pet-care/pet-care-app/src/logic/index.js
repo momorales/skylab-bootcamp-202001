@@ -15,6 +15,8 @@ import retrieveAppointment from './retrieve-appointment'
 import deleteAppointment from './delete-appointment'
 import createDiagnostic from './create-diagnostic'
 import retrieveDiagnostics from './retrieve-diagnostics'
+import deleteAlert from './delete-alert'
+import retrieveToken from './retrieve-token'
 
 
 export {
@@ -34,6 +36,7 @@ export {
     retrieveAppointment,
     deleteAppointment,
     createDiagnostic,
-    retrieveDiagnostics
-
+    retrieveDiagnostics,
+    deleteAlert,
+    retrieveToken
 }

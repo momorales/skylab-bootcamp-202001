@@ -1,10 +1,11 @@
 @import config.sass
-@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates&display=swap')
+
 
 .newAlert
     display: flex
     flex-direction: column
     justify-content: center
+    font-family: 'EB Garamond', serif
 
     &__title
         border-bottom: #efd9ea solid 0.2rem
@@ -15,7 +16,7 @@
         margin-bottom: 1.5em
         justify-content: center
         padding: 1em
-        color: #A569BD
+        color: $color-margenta
     
     &__form
         width: 70%
@@ -23,10 +24,10 @@
 
     &__input
         display: flex
-        padding: 8px 26px
+        padding: 8px 3px
         box-sizing: border-box
         border: none
-        border-bottom: 2px solid #A569BD
+        border-bottom: 2px solid $color-margenta
         margin-bottom: 7%
         margin-top: 4%
         width: 105%
@@ -39,7 +40,7 @@
         font-size: 15px
         box-sizing: border-box
         border: none
-        border-bottom: 2px solid #A569BD
+        border-bottom: 2px solid $color-margenta
         margin-bottom: 7%
         margin-top: 4%
         width: 105%
