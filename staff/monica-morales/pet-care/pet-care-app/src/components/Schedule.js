@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import {  withRouter } from "react-router-dom"
 import {Calendar,momentLocalizer} from "react-big-calendar"
 import moment from "moment"
 import './modal.sass'
 import './scheduler-sass/styles.scss'
 import Modal from 'react-modal';
-export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAppointment, onMount}) =>{
+export default withRouter(function({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAppointment, onMount, history}){
     const localizer = momentLocalizer(moment)
     const [appointments, setAppointments] = useState([])
     const [petId , setPetId] = useState("")
@@ -121,6 +122,11 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
         event.preventDefault()
         setModalError(false)
     }
+
+    function handleBack(event){
+        event.preventDefault()
+        history.push('/home')
+    }
     return <>  
         <div id="Schedule" className="bigCalendar-container">
             <Calendar 
@@ -228,6 +234,6 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
                 </section>
                
             </Modal>
-
-    </>
-}
+            <a onClick={handleBack} className="newAppointment__back fas fa-arrow-left"></a>
+        </>
+})

@@ -1,15 +1,21 @@
 import React, { useEffect, useState} from 'react'
+import {  withRouter } from "react-router-dom"
 import Alert from './Alert'
 import './alerts-container.sass'
 import Moment from 'react-moment'
 import moment from 'moment'
 Moment.globalFormat = 'D MMM YYYY'
 
-export default ({alerts, onCreateAlert, onDelete, onMount}) =>{
+export default withRouter (function({alerts, onCreateAlert, onDelete, onMount, history}){
 
     useEffect(() => {
         onMount()
     }, [])
+
+    function handleBack(event){
+        event.preventDefault()
+        history.push('/home')
+    }
     
     function handleGoToCreateAlert(event) {
         event.preventDefault()
@@ -34,11 +40,11 @@ export default ({alerts, onCreateAlert, onDelete, onMount}) =>{
                 }
                 
             })}
-        
+            <a onClick={handleBack} className=" alerts__back fas fa-arrow-left"></a>
             <a href="" onClick={handleGoToCreateAlert}><button  className="alerts__add fas fa-plus"></button></a>
        
         </section>
     </>
-}   
+})
 
 
