@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import {  withRouter } from "react-router-dom"
 import {Calendar,momentLocalizer} from "react-big-calendar"
 import moment from "moment"
 import './modal.sass'
 import './scheduler-sass/styles.scss'
 import Modal from 'react-modal';
-export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAppointment, onMount}) =>{
+export default withRouter(function({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAppointment, onMount, history}){
     const localizer = momentLocalizer(moment)
     const [appointments, setAppointments] = useState([])
     const [petId , setPetId] = useState("")
@@ -27,7 +28,7 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
           left                  : 'center',
           width                 : '100%',
           heigth                : '100%',
-          background            :   'white',
+          background            : 'white',
           border                : 'none',
        }
       }
@@ -55,12 +56,14 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
     function handleGoToCancelAppointment(event) {
         event.preventDefault()
         let idPet=undefined
+        let dateAppointment=undefined
         appointmentList.forEach(item=>{
             if (item.appointmentId===deleteAppointmentId){
                 idPet= item.petId
+                dateAppointment=item.dateAppointment
             }
         })
-        onGoToDeleteAppointment(idPet,deleteAppointmentId)
+        onGoToDeleteAppointment(idPet,deleteAppointmentId,dateAppointment)
     }
     function handleSelectPetId(event){
         event.preventDefault()
@@ -119,6 +122,11 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
         event.preventDefault()
         setModalError(false)
     }
+
+    function handleBack(event){
+        event.preventDefault()
+        history.push('/home')
+    }
     return <>  
         <div id="Schedule" className="bigCalendar-container">
             <Calendar 
@@ -164,8 +172,8 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
                     <select className="newAppointment__select" onChange={handleSelectSubject} name = "subject">
                         <option disabled selected>Subject</option>
                         <option value ="vaccines">Vaccines</option>
-                        <option value ="deworming">Deworming</option>
-                        <option value ="medication">Medication</option>
+                        {/* <option value ="deworming">Deworming</option>
+                        <option value ="medication">Medication</option> */}
                         <option value ="appointment">Appointment</option>
                     </select>
                     <input className="newAppointment__input" type="text"  name="description" placeholder="Description"/>                   
@@ -214,6 +222,7 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
             <Modal 
                 key = {4}
                 isOpen={modalError}
+                contentLabel="Validate Error"
                 style={customStyles}
             >
                 <section className="newAppointment">
@@ -225,6 +234,6 @@ export default ({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAp
                 </section>
                
             </Modal>
-
-    </>
-}
+            <a onClick={handleBack} className="newAppointment__back fas fa-arrow-left"></a>
+        </>
+})

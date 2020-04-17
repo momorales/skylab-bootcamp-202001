@@ -1,21 +1,22 @@
 @import config.sass
-@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates&display=swap')
+
+.title
+    border-bottom: #efd9ea solid 0.2rem
+    font-size: 130%
+    width: 80%
+    margin: 0 auto
+    display: flex
+    margin-bottom: 1.5em
+    justify-content: center
+    color: $color-margenta
 
 .newPet
     display: flex
     flex-direction: column
     justify-content: center
-   
-    &__title
-        border-bottom: #efd9ea solid 0.2rem
-        font-size: 130%
-        width: 80%
-        margin: 0 auto
-        display: flex
-        margin-bottom: 1.5em
-        justify-content: center
-        color: #A569BD
-          
+    font-family: 'EB Garamond', serif
+    
+             
     &__form
         width: 70%
       
@@ -24,7 +25,7 @@
         padding: 8px 26px
         box-sizing: border-box
         border: none
-        border-bottom: 2px solid #A569BD
+        border-bottom: 2px solid $color-margenta
         margin-top: 1%
         width: 79%
         height: 2.7em
@@ -52,7 +53,7 @@
         padding: 8px 26px
         box-sizing: border-box
         border: none
-        border-bottom: 2px solid #A569BD
+        border-bottom: 2px solid $color-margenta
         margin-top: 1%
         width: 79%
         font-size: 14px

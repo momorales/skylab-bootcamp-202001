@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
+import Feedback from './Feedback'
 import './login.sass'
+import './feedback.sass'
 import Logo from'./logo.png'
-
 
 export default function ({ onSubmit, onGoToRegister, error,onMount }) {
     useEffect(() => {
@@ -35,6 +36,7 @@ export default function ({ onSubmit, onGoToRegister, error,onMount }) {
             <i className="fas fa-key"></i>
             <input  className= "access__input" name="password" type="password" placeholder="password"/>  <br></br> <br></br> 
             <div className='enter'>
+                {error && <Feedback message={error} level="warn" />}
                 <button className="enter__button" href= "" >Enter</button>
                 <button className="enter__button">
                     <a onClick = {handleGoToRegister}>Register</a>

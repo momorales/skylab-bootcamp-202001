@@ -1,20 +1,30 @@
 @import config.sass
-@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates&display=swap')
+
 
 .pets
     text-align: center
     margin: 0 auto
     justify-item: center
     self-align: center
+    font-family: 'EB Garamond', serif
 
     &__title
         @include title-h2
+    
+    &__back
+        position: fixed
+        z-index: 10
+        right: 20.8rem
+        background: none
+        border: none
+        font-size: 1.5em
+        bottom: 2rem
       
     &__add
         position: fixed
         z-index: 10
         bottom: 2rem
-        right: 1rem
+        right: 1.3rem
         background: none
         border: none
         font-size: 1.5em

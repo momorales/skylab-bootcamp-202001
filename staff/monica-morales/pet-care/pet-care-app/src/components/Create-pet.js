@@ -41,12 +41,13 @@ export default function ({  createPet, error, onMount }) {
     }
 
     return <>
-        <div className="newPet__title">
+        <div className="title">
             <p>New Pet</p>  
         </div>
 
-        <section>
-            <form className= "newPet" onSubmit={handleSubmit}>
+        <section className= "newPet">
+
+            <form onSubmit={handleSubmit}>
              
                     <input className="newPet__input" type="text"  name="chipNumber" placeholder="Chip number"/>
                     <input className="newPet__input" type="text"  name="Name" placeholder="Pet name"/>

@@ -16,6 +16,7 @@ import Schedule from './Schedule'
 import Diagnostic from './Diagnostic'
 import DiagnosticList from './Diagnostics-container'
 import Contact from './Contact'
+import Feedback from './Feedback'
 
 
 export {
@@ -36,5 +37,6 @@ export {
     Schedule,
     Diagnostic,
     DiagnosticList,
-    Contact
+    Contact,
+    Feedback
 }

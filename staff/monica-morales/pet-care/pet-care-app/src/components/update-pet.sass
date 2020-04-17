@@ -1,10 +1,10 @@
 @import config.sass
-@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates&display=swap')
 
 .updatePet
     display: flex
     flex-direction: column
     justify-content: center
+    font-family: 'EB Garamond', serif
    
     &__title
         @include title-h2
@@ -21,7 +21,7 @@
 
     &__input
         display: flex
-        padding: 8px 26px
+        padding: 0px 6px
         box-sizing: border-box
         border: none
         border-bottom: 2px solid #A569BD
@@ -29,6 +29,7 @@
         width: 70%
         height: 2.4em
         margin-left: 5em
+        background-color: white
     
     &__accept           
         position: fixed

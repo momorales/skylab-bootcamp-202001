@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from 'react'
+import moment from 'moment'
 import './create-alert.sass'
 import './config.sass'
 
@@ -20,7 +21,7 @@ export default function ({ myPets, createAlert, error, onMount }) {
           
         } } = event
 
-        createAlert(petId, subjectSelected, eventDate, description,telephone)
+        createAlert(petId, subjectSelected, moment(new Date(eventDate)).add(10, 'hours'), description,telephone)
     }
 
     function handleSelectSubject(event){
@@ -68,7 +69,7 @@ export default function ({ myPets, createAlert, error, onMount }) {
                                       
                 <input className="newAlert__input" type="text" name="eventDate" placeholder="Event date" onFocus = {onFocus} onBlur={onBlur}/>
                 <input className="newAlert__input" type="text" name="description" placeholder="Description"/>
-                <input className="newAlert__input" type="text" name="telephone" placeholder="Hour"/>
+                <input className="newAlert__input" type="text" name="telephone" placeholder="Notes"/>
                 <button className="newAlert__accept fas fa-check" type="submit"></button>
             </form>
         </section>
