@@ -2,6 +2,18 @@ const { validate } = require('pet-care-utils')
 const { models: { Pet, User }, ObjectId } = require('pet-care-data')
 const { NotFoundError } = require('pet-care-errors')
 
+/**
+ * Deletes a appointment from "calendary" section
+ * 
+ * @param {string} idAppointment apppintment's unique id number 
+ * @param {string} idPet pet unique id pet's number (pet)
+ * @param {string} id user's unique id number (owner)
+ * 
+ * @returns {Promise<string>} update user and remove the appointment
+ * 
+ * @throws {NotFoundError} when user or pet is not exists
+ */
+
 module.exports = (idAppointment, idPet, id) => {
 
     validate.string(id, 'id')

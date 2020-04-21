@@ -2,6 +2,28 @@ const { validate } = require('pet-care-utils')
 const { models: { Pet, User } } = require('pet-care-data')
 const { NotFoundError } = require('pet-care-errors')
 
+
+/**
+ * Updates the pet's info
+ * 
+ * @param {string} idPet pet's unique id
+ * @param {string} id user's unique id
+ * @param {string} name pet's name
+ * @param {date} birthDate pet's birthdate
+ * @param {string} specie pet's specie
+ * @param {string} sex pet's sex
+ * @param {string} race pet's race
+ * @param {string} typeRace pet's type of race
+ * @param {string} fur pet's type of fur
+ * @param {string} sterilized if pet is sterilized or not
+ * @param {number} weight pet's weight(kg)
+ * @param {date} created date created pet in app
+ * 
+ * @returns {Promise<string>} an empty Promise on a successful update
+ * 
+ * @throws {NotAllowedError} if a user or pet is not exists
+ */
+
 module.exports = (idPet, id, name, birthDate, specie, sex, race, typeRace, fur, sterilized, weight, created) =>{
    
     validate.string(idPet, 'idPet')

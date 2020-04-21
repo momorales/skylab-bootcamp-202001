@@ -2,12 +2,22 @@ const { validate } = require('pet-care-utils')
 const { models: { Alert, Pet, User } } = require('pet-care-data')
 const { NotFoundError } = require('pet-care-errors')
 
-// /*@params {idUSer, idPet, subject, description, telephone,creation, EventDate}*/
-// /*buscar bd si el usuario existe*/
-// /*si no existe lanzamos un error*/
-// /*si existe: 
-//     crear alerta con un create con los campos que necesito
-//     devolver alerta?*/
+/**
+ * Creates a new alert
+ * 
+ * @param {string} subject alert's subject
+ * @param {string} description alert's description information
+ * @param {string} hour alert's hour
+ * @param {Date} creation alert's date creation
+ * @param {Date} eventDate alert's date event
+ * @param {string} petId pet unique id pet's number (pet)
+ * @param {string} userId owner pet unique id user's number (owner)
+
+ * 
+ * @returns {Promise<string>} returns an empty Promise on a successful alert creation
+ * 
+ * @throws {NotFoundError} if the user or pet does not exist
+ */
 
 
 module.exports = (subject, description, hour, creation, eventDate, petId, userId) => {

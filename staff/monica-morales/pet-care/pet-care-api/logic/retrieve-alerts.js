@@ -3,6 +3,16 @@ const { validate } = require('pet-care-utils')
 const { models: { User, Pet } } = require('pet-care-data')
 const { NotFoundError } = require('pet-care-errors')
 
+/**
+ * retrieve all user's alerts 
+ * 
+ * @param {string} id user's unique id number (owner)
+ * 
+ * @returns {Promise<string>} returns user's alerts
+ * 
+ * @throws {NotFoundError} when user has not alerts
+ */
+
 module.exports = id => {
 
     validate.string(id, 'id')
