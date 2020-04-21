@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {  withRouter } from "react-router-dom"
 import { logout } from '../logic'
 import './header.sass'
@@ -24,7 +24,7 @@ export default withRouter (function ({ user,history }) {
         
             <div className = "login__header">
                 <a onClick={handleBack} className="fas fa-home"></a>
-                <img className="login__logo" src = {Logo}/>
+                <img className="login__logo" src = {Logo} alt="logo"/>
                 <a onClick = {handleLogout}>
                     <i className="fas fa-power-off fa-3x_login"></i>
                 </a>

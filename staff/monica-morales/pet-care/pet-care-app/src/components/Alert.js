@@ -10,7 +10,7 @@ export default ({alert, onDelete}) => {
     const {name} = alert.pets[0]
 
     const [modalIsOpen , setIsOpen] = useState(false)
-    const [eventToDelete, setEventToDelete] = useState(new Date)
+    const [eventToDelete, setEventToDelete] = useState(new Date())
 
 
     function handleGoToDeleteAlert(event) {

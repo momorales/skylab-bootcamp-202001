@@ -7,7 +7,7 @@ export default function(){
 
     return <>
       <section className="containerContact">
-            <img src = {Pet} className="containerContact__image"/>
+            <img src = {Pet} className="containerContact__image" alt="pet-care"/>
     
             <div className="containerContact__information">
                 <h1>Contact our center</h1>

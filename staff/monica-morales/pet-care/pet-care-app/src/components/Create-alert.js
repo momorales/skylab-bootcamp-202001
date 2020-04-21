@@ -68,8 +68,8 @@ export default function ({ myPets, createAlert, error, onMount }) {
                 </select>
                                       
                 <input className="newAlert__input" type="text" name="eventDate" placeholder="Event date" onFocus = {onFocus} onBlur={onBlur}/>
-                <input className="newAlert__input" type="text" name="description" placeholder="Description"/>
-                <input className="newAlert__input" type="text" name="telephone" placeholder="Notes"/>
+                <input className="newAlert__input" type="text" name="description" autoComplete="off" placeholder="Description"/>
+                <input className="newAlert__input" type="text" name="telephone" autoComplete="off" placeholder="Hour"/>
                 <button className="newAlert__accept fas fa-check" type="submit"></button>
             </form>
         </section>

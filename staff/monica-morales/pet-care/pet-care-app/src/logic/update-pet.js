@@ -7,7 +7,7 @@ const API_URL = process.env.REACT_APP_API_URL
 export default (function (dateOfBirth, specie, sex, sterilized, weight, race, typeOfRace, fur, idPet, user) {
 
     // const {sub:id} = user
-    const updateDate = new Date
+    const updateDate = new Date()
     
     return (async () => {
         const response = await fetch(`${API_URL}/user/update/pet/${idPet}`, {

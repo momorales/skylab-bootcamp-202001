@@ -49,8 +49,8 @@ export default function ({  createPet, error, onMount }) {
 
             <form onSubmit={handleSubmit}>
              
-                    <input className="newPet__input" type="text"  name="chipNumber" placeholder="Chip number"/>
-                    <input className="newPet__input" type="text"  name="Name" placeholder="Pet name"/>
+                    <input className="newPet__input" type="text"  name="chipNumber" autoComplete="off" placeholder="Chip number"/>
+                    <input className="newPet__input" type="text"  name="Name" autoComplete="off" placeholder="Pet name"/>
                     <input className="newPet__input" type="text"  name="dateOfBirth" placeholder="Date of birth" onFocus = {onFocus} onBlur={onBlur} />
                    
                     <select className="newPet__input" type="text" name="specie">
@@ -86,8 +86,8 @@ export default function ({  createPet, error, onMount }) {
                         <option value ="Long">Long</option>
                     </select>
 
-                    <input className="newPet__input" type="text"  name="weight" placeholder="Weight"/>
-                    <input className="newPet__input" type="text"  name="race" placeholder="Race"/>
+                    <input className="newPet__input" type="text"  autoComplete="off" name="weight" placeholder="Weight"/>
+                    <input className="newPet__input" type="text"  autoComplete="off" name="race" placeholder="Race"/>
                 <div className = "newPet__accept">
                     <button className="newPet__accept fas fa-check" type="submit"></button>
                 </div>

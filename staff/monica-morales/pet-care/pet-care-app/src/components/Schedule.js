@@ -4,7 +4,8 @@ import {Calendar,momentLocalizer} from "react-big-calendar"
 import moment from "moment"
 import './modal.sass'
 import './scheduler-sass/styles.scss'
-import Modal from 'react-modal';
+import Modal from 'react-modal'
+
 export default withRouter(function({myPets,appointmentList, onGoToCreateAppointment, onGoToDeleteAppointment, onMount, history}){
     const localizer = momentLocalizer(moment)
     const [appointments, setAppointments] = useState([])
@@ -49,6 +50,7 @@ export default withRouter(function({myPets,appointmentList, onGoToCreateAppointm
         setAppointments(myEventsList)
         Modal.setAppElement("#Schedule")
     }, [])
+    
     function handleGoToCreateAppointment(event) {
         event.preventDefault()
         onGoToCreateAppointment(descriptionAppointment, selectedDate, "0:00", petId, subjectSelected)
@@ -132,7 +134,7 @@ export default withRouter(function({myPets,appointmentList, onGoToCreateAppointm
             <Calendar 
                 popup={true}
                 selectable={true}
-                defaultDate={new Date}
+                defaultDate={new Date()}
                 defaultView='week'
                 views={['week','agenda']}
                 localizer={localizer}
@@ -140,7 +142,7 @@ export default withRouter(function({myPets,appointmentList, onGoToCreateAppointm
                 longPressThreshold ={150}
                 onSelectSlot={openModalNewVisit}
                 onSelectEvent={openModalDeleteVisit}
-                scrollToTime={new Date}
+                scrollToTime={new Date()}
                 components={{
                     agenda: {
                         event: EventAgenda
@@ -176,7 +178,7 @@ export default withRouter(function({myPets,appointmentList, onGoToCreateAppointm
                         <option value ="medication">Medication</option> */}
                         <option value ="appointment">Appointment</option>
                     </select>
-                    <input className="newAppointment__input" type="text"  name="description" placeholder="Description"/>                   
+                    <input className="newAppointment__input" type="text"  name="description" autoComplete="off" placeholder="Description"/>                   
                     <div className = "newAppointment__accept">
                         <button className="newAppointment__accept fas fa-check" type="submit"></button>
                     </div>
