@@ -28,13 +28,13 @@ export default function ({ onSubmit, onGoToRegister, error,onMount }) {
 
     return <>
         <figure className='logo'>
-            <img className='imageLogo' src = { Logo }/>
+            <img className='imageLogo' src = { Logo } alt="logo"/>
         </figure>
         <form className= 'access' onSubmit = {handleSubmit}>
             <i className="far fa-envelope fa-3x_access"></i>
-            <input className= "access__input" name="email" type= "email" placeholder="email"/><br></br><br></br>
+            <input className= "access__input" name="email" type= "email" autoComplete="off" placeholder="email"/><br></br><br></br>
             <i className="fas fa-key"></i>
-            <input  className= "access__input" name="password" type="password" placeholder="password"/>  <br></br> <br></br> 
+            <input  className= "access__input" name="password" type="password" autoComplete="off" placeholder="password"/>  <br></br> <br></br> 
             <div className='enter'>
                 {error && <Feedback message={error} level="warn" />}
                 <button className="enter__button" href= "" >Enter</button>
