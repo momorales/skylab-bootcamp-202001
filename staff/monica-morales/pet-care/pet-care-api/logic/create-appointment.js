@@ -2,6 +2,20 @@ const { validate } = require('pet-care-utils')
 const { models: { User, Pet, Appointment } } = require('pet-care-data')
 const { NotFoundError} = require('pet-care-errors')
 
+/**
+ * Creates a new appointment
+ * 
+ * @param {string} description appointment's description information
+ * @param {Date} dateAppointment appointment's date event
+ * @param {string} hour appointment's hour
+ * @param {string} petId pet unique id pet's number (pet)
+ * @param {string} id owner pet unique id user's number (owner)
+ * 
+ * @returns {Promise<string>} returns id of new appointment
+ * 
+ * @throws {NotFoundError} if the user or pet does not exist
+ */
+
 module.exports = (description, dateAppointment, hour, petId, id) =>{
    
     validate.string(description, 'description')
@@ -27,9 +41,7 @@ module.exports = (description, dateAppointment, hour, petId, id) =>{
 
     await pet.save()
 
-    // await Pet.update({ _id: petId}, {$push:{appointments: newVisit}})
-    
-    
+        
     return newVisit.id
     
     })()

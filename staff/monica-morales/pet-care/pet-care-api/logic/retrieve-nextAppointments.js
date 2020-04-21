@@ -2,10 +2,21 @@ const { validate } = require('pet-care-utils')
 const { models: { User } } = require('pet-care-data')
 const { NotFoundError } = require('pet-care-errors')
 
+/**
+ * retrieve appointments
+ * 
+ * @param {string} id user's unique id number (owner)
+ * 
+ * @returns {Promise<string>} returns appointments
+ * 
+ * @throws {NotFoundError} when user or pet is not exists 
+ */
+
 
 module.exports = (id) => {
 
     validate.string(id, 'id')
+    
     const newDate = new Date
 
     return User.findById(id)
